@@ -1,6 +1,6 @@
 # Ean's Pixi Game
 
-A game built for Jam City programming test
+A game built for job interview programming test
 
 
 ## SpriteSheet.js info
