@@ -83,6 +83,7 @@ var loadResources = function(urls = _urls, L = _loader){
         L.add(urls[x]);
         console.log(urls[x] + ": loaded in the game");
     }
+    L.load();
 
     /*
         TODO: make sure the return value is asynchonous based since the pixiLoader
