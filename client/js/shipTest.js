@@ -60,16 +60,24 @@ _gameCanvas.appendChild(app.view);
 */
 var addSprite = function(x, y, src, texture, call){
     var img  = _resources[src].textures[texture];
-    var sprite = new _sprite(img);
-    sprite.x   = x;
-    sprite.y   = y;
+    var spr = new _sprite(img);
+    spr.x   = x;
+    spr.y   = y;
 
     if (typeof call === "function") {
-        call(sprite);
+        call(spr);
     }
-    return sprite;
+    return spr;
 }
 
+var createShip = function(x,y,sprSource){
+    var src  = _resources[_imgRoot + "astroidsSprite.json"].textures[sprSource];
+    var ship = new _sprite(src);
+    ship.x   = x;
+    ship.y   = y;
+
+    return ship;
+}
 /**
 *    This handles loading game resources
 *    @param {obj} L - A reference to the loader object
@@ -80,10 +88,9 @@ var loadResources = function(urls = _urls, L = _loader){
 
     //Traverse url collection to load graphics
     for (var x = 0; x < urls.length; x++){
-        L.add(urls[x]);
+        L.add(urls[x]).load();
         console.log(urls[x] + ": loaded in the game");
     }
-    L.load();
 
     /*
         TODO: make sure the return value is asynchonous based since the pixiLoader
@@ -91,6 +98,8 @@ var loadResources = function(urls = _urls, L = _loader){
     */
     return true;
 };
+
+
 
 
 /**
@@ -103,13 +112,21 @@ var gameLoop = function(){
 };
 
 
+var createPhase = function(){
+    console.log("Everything has loaded!");
+    var ship = createShip(50,50,"ship1.png");
+    console.log("Ship created!");
+}
+ _loader.onComplete.add(createPhase);
+
 (function startGame(){
 
     console.log(_urls);
     loadResources(_urls, _loader);
 
-    var ship = addSprite(50,50,_astroidSpritesSheet, "ship1.png");
-    console.log(ship);
+    //var ship = addSprite(50,50,_astroidSpritesSheet, "ship1.png");
+    //var ship = createShip(50,50,"ship1.png");
+    //console.log(ship);
 
 
     gameLoop();
