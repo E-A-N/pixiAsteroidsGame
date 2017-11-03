@@ -70,14 +70,6 @@ var addSprite = function(x, y, src, texture, call){
     return spr;
 }
 
-var createShip = function(x,y,sprSource){
-    var src  = _resources[_imgRoot + "astroidsSprite.json"].textures[sprSource];
-    var ship = new _sprite(src);
-    ship.x   = x;
-    ship.y   = y;
-
-    return ship;
-}
 /**
 *    This handles loading game resources
 *    @param {obj} L - A reference to the loader object
@@ -92,10 +84,7 @@ var loadResources = function(urls = _urls, L = _loader){
         console.log(urls[x] + ": loaded in the game");
     }
 
-    /*
-        TODO: make sure the return value is asynchonous based since the pixiLoader
-        is async based
-    */
+    //return value does not effect asynchronous timing
     return true;
 };
 
@@ -114,9 +103,11 @@ var gameLoop = function(){
 
 var createPhase = function(){
     console.log("Everything has loaded!");
-    var ship = createShip(50,50,"ship1.png");
+    var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png");
     console.log("Ship created!");
 }
+
+//Must rely on event listening to take advantage of the async nature of the loader
  _loader.onComplete.add(createPhase);
 
 (function startGame(){
