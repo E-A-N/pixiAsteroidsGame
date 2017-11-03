@@ -33,4 +33,11 @@ var richText = new PIXI.Text('Rich text with a lot of options and across multipl
 richText.x = 30;
 richText.y = 180;
 
+var generateText = function(x, y, text, style){
+    var newText = new PIXI.Text(text, style);
+    newText.x = x;
+    newText.y = y;
+    return newText;
+}
+
 app.stage.addChild(richText);
