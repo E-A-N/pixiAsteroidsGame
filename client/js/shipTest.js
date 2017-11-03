@@ -64,7 +64,7 @@ var addSprite = function(x, y, src, texture, call){
     spr.x   = x;
     spr.y   = y;
 
-    if (typeof call === "function") {
+    if (call && typeof call === "function") {
         call(spr);
     }
     return spr;
