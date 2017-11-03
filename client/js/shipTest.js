@@ -4,9 +4,9 @@ var _renderEngine   = PIXI.autoDetectRenderer;
 var _loader         = PIXI.loader;
 var _resources      = PIXI.resources;
 var _sprite         = PIXI.Sprite;
-var _gameWidth      = 256;
-var _gameHeight     = 256;
-var _imgRoot        = "../img/";
+var _gameWidth      = 500;
+var _gameHeight     = 500;
+var _imgRoot        = "/img/";
 var _gameCanvas     = document.getElementById("gameContainer");
 
 //assign app parameters
@@ -24,7 +24,7 @@ _gameCanvas.appendChild(app.view);
 // var renderer = _renderEngine(_gameWidth, _gameHeight) //draw the stage
 //document.body.appendChild(app.view);
 
-(function gameCheck(game){
+(function gameCheck(app){
 
     var style = new PIXI.TextStyle({
         fontFamily: 'Arial',
@@ -43,8 +43,11 @@ _gameCanvas.appendChild(app.view);
         wordWrapWidth: 440,
     });
     var text = new PIXI.Text("PIXI is Running!! <3", style);
+    text.x = 50;
+    text.y = 50;
+    app.stage.addChild(text);
 
-    game.render();
+    app.render();
 
 })(app)
 
@@ -60,16 +63,17 @@ var preload = function(){
 */
 var createShip = function(x,y,resource){
     var ship = new _sprite(resource);
-    ship.x  = x;
-    ship.y = y;
+    ship.x   = x;
+    ship.y   = y;
 
     return ship;
 }
 
+var start = function() {
+    console.log(_resources);
+}
 
 //load graphical assets
 _loader
-    .add(_imgRoot + "fireball.png")
-    .add(_imgRoot + "ship1.png")
-    .add(_imgRoot + "ship2.png")
-    .load()
+    .add(_imgRoot + "astroidsSprite.json")
+    .load(start)
