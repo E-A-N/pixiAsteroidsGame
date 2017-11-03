@@ -6,12 +6,48 @@ var _resources      = PIXI.resources;
 var _sprite         = PIXI.Sprite;
 var _gameWidth      = 256;
 var _gameHeight     = 256;
-var _imgRoot       = "../img/";
+var _imgRoot        = "../img/";
+var _gameCanvas     = document.getElementById("gameContainer");
+
+//assign app parameters
+var opts = {};
+opts.autoStart = false;
+opts.width     = _gameWidth;
+opts.height    = _gameHeight;
+
+//initialize app
+var app = new PIXI.Application(opts);
+_gameCanvas.appendChild(app.view);
 
 //Create a stage and add it to DOM
-var stage = new _container();
-var renderer = _renderEngine(_gameWidth, _gameHeight) //draw the stage
-document.body.appendChild(renderer.view);
+// var stage = new _container();
+// var renderer = _renderEngine(_gameWidth, _gameHeight) //draw the stage
+//document.body.appendChild(app.view);
+
+(function gameCheck(game){
+
+    var style = new PIXI.TextStyle({
+        fontFamily: 'Arial',
+        fontSize: 36,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        fill: ['#ffffff', '#00ff99'], // gradient
+        stroke: '#4a1850',
+        strokeThickness: 5,
+        dropShadow: true,
+        dropShadowColor: '#000000',
+        dropShadowBlur: 4,
+        dropShadowAngle: Math.PI / 6,
+        dropShadowDistance: 6,
+        wordWrap: true,
+        wordWrapWidth: 440,
+    });
+    var text = new PIXI.Text("PIXI is Running!! <3", style);
+
+    game.render();
+
+})(app)
+
 
 var preload = function(){
 
@@ -23,7 +59,11 @@ var preload = function(){
 *    @return {obj}  - Ship sprite
 */
 var createShip = function(x,y,resource){
-     //var
+    var ship = new _sprite(resource);
+    ship.x  = x;
+    ship.y = y;
+
+    return ship;
 }
 
 
