@@ -7,6 +7,9 @@ var _sprite         = PIXI.Sprite;
 var _gameWidth      = 500;
 var _gameHeight     = 500;
 var _imgRoot        = "/img/";
+var _astroidSpritesSheet = _imgRoot + "astroidsSprite.json";
+var _urls           = [astroidSpritesSheets];
+_urls.push();
 var _gameCanvas     = document.getElementById("gameContainer");
 
 //assign app parameters
@@ -53,30 +56,61 @@ _gameCanvas.appendChild(app.view);
 })(app)
 
 
-var preload = function(){
-
-}
-
 /**
 *    @param {int} x - horizontal axis coordinate to set in canvas
 *    @param {int} y - vertical axis coordiante to set in canvas
+*    @param {object} src - A url reference to collection of textures
+*    @param {string} texture - A url reference to ideal texture
+*    @param {function} call - optional callback to run
 *    @return {obj}  - Ship sprite
 */
-var createShip = function(x,y,sprSource){
-    var src  = _resources[_imgRoot + "astroidsSprite.json"].textures[sprSource];
-    var ship = new _sprite(src);
+var addSprite = function(x, y, src, texture, call = false){
+    var src  = _resources[_astroidSpritesSheets].textures[texture];
+    var sprite = new _sprite(src);
     ship.x   = x;
     ship.y   = y;
 
-    return ship;
+    if (call) {
+        call(sprite);
+    }
+    return sprite;
 }
 
+/**
+*    @param {int}
+*/
 var start = function() {
     var myShip = createShip(200, 200, "ship1.png");
     app.stage.addChild(myShip);
 }
 
-//load graphical assets
-_loader
-    .add(_imgRoot + "astroidsSprite.json")
-    .load(start)
+/**
+*    This handles loading game resources
+*    @param {obj} L - A reference to the loader object
+*    @param {array} urls - A collection of resource locations for loading
+*    @return {bool} - Whether the resources have successfully loaded
+*/
+var loadResources = function(urls = _urls, L = _loader){
+
+    //Traverse url collection to load graphics
+    for (var x = 0; x < urls.length; x++){
+        L.add(urls[x]);
+        console.log(urls[x] + ": loaded in the game");
+    }
+
+    /*
+        TODO: make sure the return value is asychonous based since the pixiLoader
+        is async based
+    */
+    return true;
+};
+
+
+/**
+*    Game loop that will constantly update the state of the game
+*/
+var gameLoop = function(){
+    requestAnimationFrame(gameLoop);
+
+    app.render();
+};
