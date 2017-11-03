@@ -17,8 +17,13 @@ var preload = function(){
 
 }
 
+/**
+*    @param {int} x - horizontal axis coordinate to set in canvas
+*    @param {int} y - vertical axis coordiante to set in canvas
+*    @return {obj}  - Ship sprite
+*/
 var createShip = function(x,y,resource){
-     //var 
+     //var
 }
 
 
