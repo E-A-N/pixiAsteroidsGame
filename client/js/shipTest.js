@@ -8,8 +8,7 @@ var _gameWidth      = 500;
 var _gameHeight     = 500;
 var _imgRoot        = "/img/";
 var _astroidSpritesSheet = _imgRoot + "astroidsSprite.json";
-var _urls           = [astroidSpritesSheets];
-_urls.push();
+var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
 
 //assign app parameters
@@ -23,37 +22,32 @@ opts.backgroundColor = 0x1099bb;
 var app = new PIXI.Application(opts);
 _gameCanvas.appendChild(app.view);
 
-//Create a stage and add it to DOM
-// var stage = new _container();
-// var renderer = _renderEngine(_gameWidth, _gameHeight) //draw the stage
-//document.body.appendChild(app.view);
-
-(function gameCheck(app){
-
-    var style = new PIXI.TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 36,
-        fontStyle: 'italic',
-        fontWeight: 'bold',
-        fill: ['#ffffff', '#00ff99'], // gradient
-        stroke: '#4a1850',
-        strokeThickness: 5,
-        dropShadow: true,
-        dropShadowColor: '#000000',
-        dropShadowBlur: 4,
-        dropShadowAngle: Math.PI / 6,
-        dropShadowDistance: 6,
-        wordWrap: true,
-        wordWrapWidth: 440,
-    });
-    var text = new PIXI.Text("PIXI is Running!! <3", style);
-    text.x = 50;
-    text.y = 50;
-    app.stage.addChild(text);
-
-    app.render();
-
-})(app)
+// (function gameCheck(app){
+//
+//     var style = new PIXI.TextStyle({
+//         fontFamily: 'Arial',
+//         fontSize: 36,
+//         fontStyle: 'italic',
+//         fontWeight: 'bold',
+//         fill: ['#ffffff', '#00ff99'], // gradient
+//         stroke: '#4a1850',
+//         strokeThickness: 5,
+//         dropShadow: true,
+//         dropShadowColor: '#000000',
+//         dropShadowBlur: 4,
+//         dropShadowAngle: Math.PI / 6,
+//         dropShadowDistance: 6,
+//         wordWrap: true,
+//         wordWrapWidth: 440,
+//     });
+//     var text = new PIXI.Text("PIXI is Running!! <3", style);
+//     text.x = 50;
+//     text.y = 50;
+//     app.stage.addChild(text);
+//
+//     app.render();
+//
+// })(app)
 
 
 /**
@@ -64,24 +58,16 @@ _gameCanvas.appendChild(app.view);
 *    @param {function} call - optional callback to run
 *    @return {obj}  - Ship sprite
 */
-var addSprite = function(x, y, src, texture, call = false){
-    var src  = _resources[_astroidSpritesSheets].textures[texture];
-    var sprite = new _sprite(src);
-    ship.x   = x;
-    ship.y   = y;
+var addSprite = function(x, y, src, texture, call){
+    var img  = _resources[src].textures[texture];
+    var sprite = new _sprite(img);
+    sprite.x   = x;
+    sprite.y   = y;
 
-    if (call) {
+    if (typeof call === "function") {
         call(sprite);
     }
     return sprite;
-}
-
-/**
-*    @param {int}
-*/
-var start = function() {
-    var myShip = createShip(200, 200, "ship1.png");
-    app.stage.addChild(myShip);
 }
 
 /**
@@ -99,7 +85,7 @@ var loadResources = function(urls = _urls, L = _loader){
     }
 
     /*
-        TODO: make sure the return value is asychonous based since the pixiLoader
+        TODO: make sure the return value is asynchonous based since the pixiLoader
         is async based
     */
     return true;
@@ -111,6 +97,19 @@ var loadResources = function(urls = _urls, L = _loader){
 */
 var gameLoop = function(){
     requestAnimationFrame(gameLoop);
-
+    //game play logic goes here
     app.render();
 };
+
+
+(function startGame(){
+
+    console.log(_urls);
+    loadResources(_urls, _loader);
+
+    var ship = addSprite(50,50,_astroidSpritesSheet, "ship1.png");
+    console.log(ship);
+
+
+    gameLoop();
+})()
