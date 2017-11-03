@@ -58,7 +58,7 @@ _gameCanvas.appendChild(app.view);
 *    @param {function} call - optional callback to run
 *    @return {obj}  - Ship sprite
 */
-var addSprite = function(x, y, src, texture, call){
+var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
     var spr = new _sprite(img);
     spr.x   = x;
