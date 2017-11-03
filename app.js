@@ -28,6 +28,6 @@ console.log(sitePath);
 console.log("Starting server in: " + gameRoute);
 
 app.use(express.static(gameRoute));
-server.listen(port, function() {
+server.listen(port, (noArgs) => {
 	console.log("Server running at: " + address + port);
 });

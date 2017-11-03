@@ -2,7 +2,7 @@
 var _container      = PIXI.container;
 var _renderEngine   = PIXI.autoDetectRenderer;
 var _loader         = PIXI.loader;
-var _resources      = PIXI.resources;
+var _resources      = PIXI.loader.resources;
 var _sprite         = PIXI.Sprite;
 var _gameWidth      = 500;
 var _gameHeight     = 500;
@@ -14,6 +14,7 @@ var opts = {};
 opts.autoStart = false;
 opts.width     = _gameWidth;
 opts.height    = _gameHeight;
+opts.backgroundColor = 0x1099bb;
 
 //initialize app
 var app = new PIXI.Application(opts);
@@ -61,8 +62,9 @@ var preload = function(){
 *    @param {int} y - vertical axis coordiante to set in canvas
 *    @return {obj}  - Ship sprite
 */
-var createShip = function(x,y,resource){
-    var ship = new _sprite(resource);
+var createShip = function(x,y,sprSource){
+    var src  = _resources[_imgRoot + "astroidsSprite.json"].textures[sprSource];
+    var ship = new _sprite(src);
     ship.x   = x;
     ship.y   = y;
 
@@ -70,7 +72,8 @@ var createShip = function(x,y,resource){
 }
 
 var start = function() {
-    console.log(_resources);
+    var myShip = createShip(200, 200, "ship1.png");
+    app.stage.addChild(myShip);
 }
 
 //load graphical assets
