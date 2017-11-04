@@ -56,18 +56,16 @@ _gameCanvas.appendChild(app.view);
 *    @param {int} y - vertical axis coordiante to set in canvas
 *    @param {object} src - A url reference to collection of textures
 *    @param {string} texture - A url reference to ideal texture
-*    @param {function} call - optional callback to run
+*    @param {function} call - optional callback assign attributes to new sprite
 *    @return {obj}  - Ship sprite
 */
 var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
-    var soul = new gameSoul;
-    var spr = new _sprite(img);
-    spr.x   = x;
-    spr.y   = y;
-    var soul.spr = spr;
-
-
+    //ar soul = new gameObject;
+    //var spr = new _sprite(img);
+    spr = Object.create(gameObject);
+    spr.x = x;
+    spr.y = y;
 
     if (call && typeof call === "function") {
         call(spr);
