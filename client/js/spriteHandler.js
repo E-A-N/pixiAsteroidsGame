@@ -10,7 +10,7 @@ spriteHandler.prototype.issuedIds = 0;
 
 /**
 *    This method checks all sprites for any particular task
-*    @param {function} method - An object method based actions to take
+*    @param {string} method - A string key that sets action to take
 *    @return {bool} - true if items in the sprite List have been traversed
 */
 spriteHandler.prototype.spriteTraverse = function(method = false) {
@@ -40,8 +40,6 @@ spriteHandler.prototype.spriteTraverse = function(method = false) {
 *    @return {number} - an id to reference the sprite with
 */
 spriteHandler.prototype.initGameSprite = function(spr) {
-
-
     //TODO write a better method for issuing ids
     spr.id = this.issuedIds++
     this.spriteList.push(spr);
@@ -49,9 +47,29 @@ spriteHandler.prototype.initGameSprite = function(spr) {
     return spr.id;
 }
 
+/**
+*    @param {function} - Optional callback that runs after objects have been updated
+*    @return {bool} - returns true if all applicable game objects have been updated
+*/
+spriteHandler.prototype.updateAll = function(call = false) {
+    var updated = this.spriteTraverse("update")
+    var useCallback = updated && call && typeof call === "function";
+
+    if (useCallback){
+        call();
+    }
+
+    return updated;
+}
+
+
+
 
 var sprMaster = new spriteHandler;
 var frosty = new gameObject;
-// frosty.update = function() {
-//     console.log("its me frosty!!");
-// }
+var pookie = new gameObject;
+pookie.update = function() {console.log("Hi! I'm Pookie! <3")};
+
+sprMaster.initGameSprite(pookie);
+sprMaster.initGameSprite(pookie);
+sprMaster.initGameSprite(pookie);
