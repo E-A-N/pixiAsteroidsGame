@@ -1,45 +1,44 @@
-// var _keys = {};
-// kUp = keyboard(38);
-// kDn = keyboard(40);
-// kLf = keyboard(37);
-// kRt = keyboard(39);
 
+/**  This utility function setups the player controls for the space ship
+*    @param {object} ship - reference to game ship
+*    @returns TODO: find a testable return value to work with here
+*/
 var playerControls = function(ship){
-    var kUp = keyboard(38);
-    var kDn = keyboard(40);
-    var kLf = keyboard(37);
-    var kRt = keyboard(39);
-    console.log("keys are running!!")
-    kUp.press = function(){
+    var upInput = keyboard(38);
+    var downInput = keyboard(40);
+    var leftInput = keyboard(37);
+    var rightInput = keyboard(39);
+
+    upInput.press = function(){
         //pressing up
         ship.vy = -ship.spd;
     }
-    kUp.release = function(){
-        if (!kDn.isDown) {
+    upInput.release = function(){
+        if (!downInput.isDown) {
             ship.vy = 0;
         }
     }
-    kDn.press = function(){
+    downInput.press = function(){
         ship.vy = ship.spd;
     }
-    kDn.release = function(){
-        if (!kUp.isDown) {
+    downInput.release = function(){
+        if (!upInput.isDown) {
             ship.vy = 0;
         }
     }
-    kLf.press = function(){
+    leftInput.press = function(){
         ship.vx = -ship.spd;
     }
-    kLf.release = function(){
-        if (!kRt.isDown) {
+    leftInput.release = function(){
+        if (!rightInput.isDown) {
             ship.vx = 0;
         }
     }
-    kRt.press = function(){
+    rightInput.press = function(){
         ship.vx = ship.spd;
     }
-    kRt.release = function(){
-        if (!kLf.isDown) {
+    rightInput.release = function(){
+        if (!leftInput.isDown) {
             ship.vx = 0;
         }
     }
