@@ -123,12 +123,7 @@ var createPhase = function(){
 
     console.log("Everything has loaded!");
 
-    var shipDetails = function(ship) {
-        playerControls(ship);
-        ship.x += ship.vx;
-        ship.y += ship.vy;
-    }
-    var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png");
+    var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png", playerShip);
 
 
 

@@ -3,13 +3,10 @@
 
 var playerShip = function(ship){
     ship.update = function(){
-        _keys.left.press = function(){
-            ship.vx = -ship.spd;
-            ship.vy = 0;
-        }
+        playerControls(ship);
+        ship.x += ship.vx;
+        ship.y += ship.vy;
+        console.log("update is happneing!!");
     }
 
-    ship.create = function(){
-
-    }
 }

@@ -1,6 +1,7 @@
 //var gameObject = function(){};
 var gameObject = {}
 gameObject.id = 0; //game id
+gameObject.spd = 1;
 gameObject.vx = 0; //velocity x
 gameObject.vy = 0; //veloctiy y
 /**

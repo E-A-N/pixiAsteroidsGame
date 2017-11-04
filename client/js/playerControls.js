@@ -1,11 +1,17 @@
-var _keys = {};
-kUp = keyboard(38);
-kDn = keyboard(40);
-kLf = keyboard(37);
-kRt = keyboard(39);
+// var _keys = {};
+// kUp = keyboard(38);
+// kDn = keyboard(40);
+// kLf = keyboard(37);
+// kRt = keyboard(39);
 
 var playerControls = function(ship){
+    var kUp = keyboard(38);
+    var kDn = keyboard(40);
+    var kLf = keyboard(37);
+    var kRt = keyboard(39);
+    console.log("keys are running!!")
     kUp.press = function(){
+        //pressing up
         ship.vy = -ship.spd;
     }
     kUp.release = function(){
