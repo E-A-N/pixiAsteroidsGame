@@ -61,9 +61,8 @@ _gameCanvas.appendChild(app.view);
 */
 var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
-    //ar soul = new gameObject;
-    //var spr = new _sprite(img);
-    spr = Object.create(gameObject);
+    var spr = new _sprite(img);
+    spr = gameObject.sprConstruct(spr);
     spr.x = x;
     spr.y = y;
 
@@ -114,6 +113,7 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png");
+
     app.stage.addChild(ship);
     console.log("Ship created!");
 }

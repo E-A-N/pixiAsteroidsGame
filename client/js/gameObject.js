@@ -22,8 +22,11 @@ gameObject.create = function(){
     throw msg;
 }
 
-
-gameObject.construct = function(spr) {
+/**
+*    @param {object} spr - Reference to sprite to extend with gameObject attributes
+*    @return {object} - updated gameObject
+*/
+gameObject.sprConstruct = function(spr) {
     var attributes = Object.keys(gameObject);
 
     for (var x = 0; x < attributes.length; x++){
