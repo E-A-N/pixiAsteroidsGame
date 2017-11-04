@@ -1,33 +1,52 @@
-var spriteHandler = function(){};
+//create prototype object
+var sprMaster = function(){
+    this.info = "Sprite Master Object!!";
+};
 
 //Reference collection of all gamesprites
-spriteHandler.prototype.sprList = [];
+sprMaster.prototype.sprList = [];
+sprMaster.prototype.issuedIds = 0;
 
-/*
-*    This method checks all sprites and runs ideal code on them
+
+/**
+*    This method checks all sprites for any particular task
+*    @param {function} method - An object method based actions to take
+*    @return {bool} - true if items in the sprite List have been traversed
 */
-spriteHandler.prototype.spriteTraverse = function(call = false) {
+sprMaster.prototype.spriteTraverse = function(method = false) {
     var sprNum = this.sprList.length;
     var canTraverse = sprNum > 0;
-    var useCallback = call && typeof call === "string";
+    var useMethod = call && typeof call === "string";
     var curSpr;
 
     if (canTraverse){
         for(var x = 0; x < sprNum; x++){
             curSpr = this.sprList[x];
             //Evoke an action of the current sprite
-            useCallback ? curSpr[call]() : console.log(curSpr);
+            useMethod ? curSpr[call]() : console.log(curSpr);
         }
     }
 
     return canTraverse;
 }
 
+
 /**
-*    This method runs a create event on all existing game sprites
-*    @return {bool} - returns true if sprites exist with the create method
+*    This method adds a new sprite to the sprite collection and issues it an ID
+*    @param {object} spr - The sprite to be added to collection
+*    @return {number} - an id to reference the sprite with
 */
-spriteHandler.prototype.createAll = function() {
-    var successfulCreate = this.spriteTraverse("create");
-    return successfulCreate;
+sprMaster.prototype.addGameSprite = function(spr) {
+
+
+    //TODO write a better method for issuing ids
+    spr.id = ++this.issuedIds
+    this.sprList.push(spr);
+
+    return spr.id;
+}
+
+var frosty = {}
+frosty.update = function() {
+    console.log("its me frosty!!");
 }
