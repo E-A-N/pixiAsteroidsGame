@@ -1,3 +1,10 @@
+
+/**
+*    A utility function for constructoring keyboard pressing events
+*    @param {number} keycode - ASCII number value that represents a keyboard key
+*    @return {object} - A object with key press events for the input keycode
+*/
+
 function keyboard(keyCode) {
     var key = {};
     key.code = keyCode;

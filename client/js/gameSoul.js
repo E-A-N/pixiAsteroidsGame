@@ -1,5 +1,5 @@
-var gameSoul = function(){};
-
+//var gameSoul = function(){};
+var gameSoul = Object.create(PIXI.Sprite)
 
 gameSoul.prototype.id = 0; //game id
 gameSoul.prototype.spr = {}; //container for Pixi sprite
