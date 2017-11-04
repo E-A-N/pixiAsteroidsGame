@@ -74,15 +74,18 @@ var addSprite = function(x, y, src, texture, call = false){
 *    This handles loading game resources
 *    @param {obj} L - A reference to the loader object
 *    @param {array} urls - A collection of resource locations for loading
+*    @param {function} call - Function to run when resources have fully loaded
 *    @return {bool} - Whether the resources have successfully loaded
 */
-var loadResources = function(urls = _urls, L = _loader){
+var preload = function(urls = _urls, L = _loader){
 
-    //Traverse url collection to load graphics
+    //Traverse url collection to cache graphics
     for (var x = 0; x < urls.length; x++){
-        L.add(urls[x]).load();
+        L.add(urls[x]);
         console.log(urls[x] + ": loaded in the game");
     }
+    //Load all resources into the game
+    L.load();
 
     //return value does not effect asynchronous timing
     return true;
@@ -94,31 +97,32 @@ var loadResources = function(urls = _urls, L = _loader){
 /**
 *    Game loop that will constantly update the state of the game
 */
-var gameLoop = function(){
-    requestAnimationFrame(gameLoop);
+var update = function(){
+    requestAnimationFrame(update);
     //game play logic goes here
     app.render();
 };
 
-
+/**
+*
+*/
 var createPhase = function(){
     console.log("Everything has loaded!");
     var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png");
+    app.stage.addChild(ship);
     console.log("Ship created!");
 }
 
-//Must rely on event listening to take advantage of the async nature of the loader
- _loader.onComplete.add(createPhase);
+//Make sure resources are loaded before starting game
+_loader.onComplete.add(createPhase);
 
+//Run the game
 (function startGame(){
 
     console.log(_urls);
-    loadResources(_urls, _loader);
-
-    //var ship = addSprite(50,50,_astroidSpritesSheet, "ship1.png");
-    //var ship = createShip(50,50,"ship1.png");
+    preload(_urls, _loader);
     //console.log(ship);
 
 
-    gameLoop();
+    update();
 })()
