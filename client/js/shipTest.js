@@ -10,6 +10,7 @@ var _imgRoot        = "/img/";
 var _astroidSpritesSheet = _imgRoot + "astroidsSprite.json";
 var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
+var _gameMaster     = new spriteHandler; //from spriteHandler.js
 
 //assign app parameters
 var opts = {};
@@ -60,9 +61,13 @@ _gameCanvas.appendChild(app.view);
 */
 var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
+    var soul = new gameSoul;
     var spr = new _sprite(img);
     spr.x   = x;
     spr.y   = y;
+    var soul.spr = spr;
+
+
 
     if (call && typeof call === "function") {
         call(spr);
@@ -100,6 +105,8 @@ var preload = function(urls = _urls, L = _loader){
 var update = function(){
     requestAnimationFrame(update);
     //game play logic goes here
+
+    _gameMaster.updateAll();
     app.render();
 };
 

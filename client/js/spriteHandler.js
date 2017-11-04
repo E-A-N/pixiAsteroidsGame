@@ -61,15 +61,3 @@ spriteHandler.prototype.updateAll = function(call = false) {
 
     return updated;
 }
-
-
-
-
-var sprMaster = new spriteHandler;
-var frosty = new gameObject;
-var pookie = new gameObject;
-pookie.update = function() {console.log("Hi! I'm Pookie! <3")};
-
-sprMaster.initGameSprite(pookie);
-sprMaster.initGameSprite(pookie);
-sprMaster.initGameSprite(pookie);
