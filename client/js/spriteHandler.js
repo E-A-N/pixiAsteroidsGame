@@ -50,7 +50,7 @@ spriteHandler.prototype.initGameSprite = function(spr) {
 /**
 *    This method adds new sprites to the sprite collection and issues them IDs
 *    @param {array} sprites - The sprite to be added to collection
-*    @return {array} - a collection of IDs to added objects
+*    @return {array} - a collection of the added IDs
 */
 spriteHandler.prototype.initGameSprites = function(sprites) {
     var amount = sprites.length;

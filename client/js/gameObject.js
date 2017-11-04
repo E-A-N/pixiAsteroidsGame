@@ -1,26 +1,19 @@
 //var gameObject = function(){};
 var gameObject = {}
-
 gameObject.id = 0; //game id
-
+gameObject.vx = 0; //velocity x
+gameObject.vy = 0; //veloctiy y
 /**
 *    Place holder update method for game object, no return values because this method is arbitrary.
-*    This method throws an error if it's not defined by an instance
 */
-gameObject.update = function(){
-    var msg = "Please define update method for game obj id#" + this.id;
-    throw msg;
-}
+gameObject.update = function(){};
 
 
 /**
 *    Place holder create method for game object, no return value because this method is arbitrary
 *    This method throws an error if it's not defined by an instance
 */
-gameObject.create = function(){
-    var msg = "Please define create method for game obj id#" + this.id;
-    throw msg;
-}
+gameObject.create = function(){};
 
 /**
 *    @param {object} spr - Reference to sprite to extend with gameObject attributes

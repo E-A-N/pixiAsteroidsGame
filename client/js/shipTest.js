@@ -12,6 +12,13 @@ var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
 var _gameMaster     = new spriteHandler; //from spriteHandler.js
 
+//setup keyboard controls
+var _keys = {};
+_keys.up   = keyboard(38);
+_keys.down = keyboard(40);
+_keys.left = keyboard(37);
+_keys.right= keyboard(39);
+
 //assign app parameters
 var opts = {};
 opts.autoStart = false;
@@ -69,6 +76,8 @@ var addSprite = function(x, y, src, texture, call = false){
     if (call && typeof call === "function") {
         call(spr);
     }
+
+    _gameMaster.initGameSprite(spr);
     return spr;
 }
 
@@ -111,11 +120,22 @@ var update = function(){
 *
 */
 var createPhase = function(){
+
     console.log("Everything has loaded!");
+
+    var shipDetails = function(ship) {
+        playerControls(ship);
+        ship.x += ship.vx;
+        ship.y += ship.vy;
+    }
     var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png");
+
+
 
     app.stage.addChild(ship);
     console.log("Ship created!");
+
+
 }
 
 //Make sure resources are loaded before starting game
