@@ -1,3 +1,6 @@
+
+//Be sure to only define keys once!!
+//If keys keep getting defined it will cause memory leak!!
 var k = {};
 k.upInput = keyboard(38);
 k.downInput = keyboard(40);
@@ -20,7 +23,7 @@ var playerControls = function(ship){
         ship.vy = -ship.spd;
     }
     k.upInput.release = function(){
-        if (!downInput.isDown) {
+        if (!k.downInput.isDown) {
             ship.vy = 0;
         }
     }
@@ -28,7 +31,7 @@ var playerControls = function(ship){
         ship.vy = ship.spd;
     }
     k.downInput.release = function(){
-        if (!upInput.isDown) {
+        if (!k.upInput.isDown) {
             ship.vy = 0;
         }
     }
@@ -36,7 +39,7 @@ var playerControls = function(ship){
         ship.vx = -ship.spd;
     }
     k.leftInput.release = function(){
-        if (!rightInput.isDown) {
+        if (!k.rightInput.isDown) {
             ship.vx = 0;
         }
     }
@@ -44,7 +47,7 @@ var playerControls = function(ship){
         ship.vx = ship.spd;
     }
     k.rightInput.release = function(){
-        if (!leftInput.isDown) {
+        if (!k.leftInput.isDown) {
             ship.vx = 0;
         }
     }
