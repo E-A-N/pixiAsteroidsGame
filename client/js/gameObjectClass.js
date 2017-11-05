@@ -56,3 +56,47 @@ gameObject.screenWrap = function(){
 
     return wrapLeft || wrapRight || wrapTop || wrapBottom
 }
+
+/**
+*    This method cheks to see if there's a collision with another gameObject
+*    @param {object} spr2 - The sprite that's being checked for a collision
+*    @returns {bool} - returns true if there is a collision
+*/
+
+gameObject.collision = function (spr2) {
+
+    //Abstract context of object that's checking for collision
+    var spr1 = this;
+
+    var possibleCollision = false;
+    var combinedHalfWidths;
+    var combinedHalfHeights;
+    var vx;
+    var vy;
+
+    //Find the center points of each sprite
+    spr1.centerX = spr1.x + spr1.width / 2;
+    spr1.centerY = spr1.y + spr1.height / 2;
+    spr2.centerX = spr2.x + spr2.width / 2;
+    spr2.centerY = spr2.y + spr2.height / 2;
+
+    //Find the half-widths and half-heights of each sprite
+    spr1.halfWidth = spr1.width / 2;
+    spr1.halfHeight = spr1.height / 2;
+    spr2.halfWidth = spr2.width / 2;
+    spr2.halfHeight = spr2.height / 2;
+
+    //Calculate the distance vector between the sprites
+    vx = spr1.centerX - spr2.centerX;
+    vy = spr1.centerY - spr2.centerY;
+
+    //Figure out the combined half-widths and half-heights
+    combinedHalfWidths = spr1.halfWidth + spr2.halfWidth;
+    combinedHalfHeights = spr1.halfHeight + spr2.halfHeight;
+
+    var horizontalCollision = Math.abs(vx) < combinedHalfWidths;
+    var verticalCollision   = Math.abs(vy) < combinedHalfHeights;
+    possibleCollision = horizontalCollision && verticalCollision;
+
+    return possibleCollision;
+};
