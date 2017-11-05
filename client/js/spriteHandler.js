@@ -79,3 +79,18 @@ spriteHandler.prototype.updateAll = function(call = false) {
 
     return updated;
 }
+
+/**
+*    @param {function} - Optional callback that runs after objects have ran their create event
+*    @return {bool} - returns true if all applicable game objects have ran their create event
+*/
+spriteHandler.prototype.createAll = function(call = false) {
+    var updated = this.spriteTraverse("create");
+    var useCallback = updated && call && typeof call === "function";
+
+    if (useCallback){
+        call();
+    }
+
+    return updated;
+}
