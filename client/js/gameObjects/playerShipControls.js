@@ -13,16 +13,15 @@ k.rightInput = keyboard(39);
 */
 var playerControls = function(ship){
 
-    var notThrusting = !k.upInput.isDown;
+    var thrusting = k.upInput.isDown;
     var turningLeft =  k.leftInput.isDown && !k.rightInput.isDown;
     var turningRight =  k.rightInput.isDown && !k.leftInput.isDown;
 
-    k.upInput.press = function(){
-        //pressing up
+    if(thrusting){
         ship.vx = Math.cos(ship.rotation) * ship.acceleration;
         ship.vy = Math.sin(ship.rotation) * ship.acceleration;
     }
-    if (notThrusting){
+    else {
         ship.vx *= ship.friction;
         ship.vy *= ship.friction;
     }

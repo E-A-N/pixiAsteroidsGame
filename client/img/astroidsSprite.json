@@ -2,7 +2,7 @@
 
 "fireball.png":
 {
-	"frame": {"x":0,"y":0,"w":50,"h":50},
+	"frame": {"x":76,"y":0,"w":50,"h":50},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":50},
@@ -29,20 +29,20 @@
 },
 "ship1.png":
 {
-	"frame": {"x":0,"y":250,"w":50,"h":38},
+	"frame": {"x":38,"y":0,"w":38,"h":50},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":38},
-	"sourceSize": {"w":50,"h":38},
+	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":50},
+	"sourceSize": {"w":38,"h":50},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "ship2.png":
 {
-	"frame": {"x":50,"y":250,"w":50,"h":38},
+	"frame": {"x":0,"y":0,"w":38,"h":50},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":38},
-	"sourceSize": {"w":50,"h":38},
+	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":50},
+	"sourceSize": {"w":38,"h":50},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -50,8 +50,8 @@
 	"version": "1.0",
 	"image": "astroidsSprite.png",
 	"format": "RGBA8888",
-	"size": {"w":100,"h":288},
+	"size": {"w":126,"h":250},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a53ba20c88ad06e1b0bed726f9b8f1a4:f7d821a71f8dfa6a9bccb5106ae6e823:559ed145f587511eb11a04333ccee151$"
+	"smartupdate": "$TexturePacker:SmartUpdate:9b1ac0284c436a71141473198c90d94a:48e68498a2cbe96f029ab573aead9c46:559ed145f587511eb11a04333ccee151$"
 }
 }
