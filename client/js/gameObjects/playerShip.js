@@ -2,9 +2,12 @@
 
 
 var playerShip = function(ship){
+    ship.anchor.x = 0.5;
+    ship.anchor.y = 0.5;
     ship.acceleration = 0.40;
     ship.spd = 5;
-    
+    ship.turnSpd = .25; //speed at which ship rotates
+    ship.friction = .99; //speed at which ship will gradually slowdown
 
     ship.update = function(){
         playerControls(ship);

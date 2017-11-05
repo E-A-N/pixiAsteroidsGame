@@ -20,36 +20,40 @@ var playerControls = function(ship){
 
     k.upInput.press = function(){
         //pressing up
-        ship.vy = -ship.spd;
+        ship.vx = Math.cos(ship.rotation) * ship.acceleration;
+        ship.vy = Math.sin(ship.rotation) * ship.acceleration;
     }
     k.upInput.release = function(){
-        if (!k.downInput.isDown) {
-            ship.vy = 0;
-        }
+        ship.vx *= ship.friction;
+        ship.vy *= ship.friction;
     }
-    k.downInput.press = function(){
-        ship.vy = ship.spd;
-    }
-    k.downInput.release = function(){
-        if (!k.upInput.isDown) {
-            ship.vy = 0;
-        }
-    }
+    // k.downInput.press = function(){
+    //     ship.vy = ship.spd;
+    // }
+    // k.downInput.release = function(){
+    //     if (!k.upInput.isDown) {
+    //         ship.vy = 0;
+    //     }
+    // }
     k.leftInput.press = function(){
-        ship.vx = -ship.spd;
-    }
-    k.leftInput.release = function(){
         if (!k.rightInput.isDown) {
-            ship.vx = 0;
+            ship.rotation += ship.turnSpd;
         }
     }
+    // k.leftInput.release = function(){
+    //     if (!k.rightInput.isDown) {
+    //         ship.vx = 0;
+    //     }
+    // }
     k.rightInput.press = function(){
-        ship.vx = ship.spd;
-    }
-    k.rightInput.release = function(){
         if (!k.leftInput.isDown) {
-            ship.vx = 0;
+            ship.rotation -= ship.turnSpd;
         }
     }
+    // k.rightInput.release = function(){
+    //     if (!k.leftInput.isDown) {
+    //         ship.vx = 0;
+    //     }
+    // }
 
 }
