@@ -16,17 +16,18 @@ spriteHandler.prototype.issuedIds = 0;
 spriteHandler.prototype.spriteTraverse = function(method = false) {
     var sprNum = this.spriteList.length;
     var canTraverse = sprNum > 0;
-    var useMethod = method && typeof method === "string";
+    var useMethod = canTraverse && method && typeof method === "string";
     /*
     *  Sprite method string keys are: "init", "create", "update",
     */
     var curSpr;
 
     if (canTraverse){
-        for(var x = 0; x < sprNum; x++){
+        for(var x = 0; x < sprNum; x++) {
+
             curSpr = this.spriteList[x];
             //Evoke an action of the current sprite
-            useMethod ? curSpr[method]() : console.log(curSpr);
+            curSpr[method]();
         }
     }
 
