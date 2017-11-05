@@ -30,15 +30,13 @@ var asteroidRock = function(spr){
 
             default:
                 spr.vx = Math.round(Math.random() * 3) * spr.rotateDirection;
-                spr.vy = Math.round(Math.random() * 3) * spr.rotateDirection; 
+                spr.vy = Math.round(Math.random() * 3) * spr.rotateDirection;
                 break;
         }
     }
 
     spr.update = function(){
-        playerControls(spr);
         spr.screenWrap();
-        spr.roation += spr.turnSpd * spr.rotateDirection;
         spr.x += spr.vx;
         spr.y += spr.vy;
         //console.log("update is happening!!");

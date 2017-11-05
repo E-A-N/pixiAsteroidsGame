@@ -114,8 +114,12 @@ var update = function(){
 */
 var createPhase = function(){
     console.log("Everything has loaded!");
+    //ship is the player character
     var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png", playerShip);
+
+    var ast1 = addSprite(250,250, _astroidSpritesSheet, "rock1.png", asteroidRock);
     app.stage.addChild(ship);
+    app.stage.addChild(ast1);
 }
 
 //Make sure resources are loaded before starting game
