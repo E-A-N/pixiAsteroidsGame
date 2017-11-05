@@ -11,6 +11,7 @@ var playerShip = function(ship){
 
     ship.update = function(){
         playerControls(ship);
+        ship.screenWrap();
         ship.x += ship.vx;
         ship.y += ship.vy;
         //console.log("update is happening!!");

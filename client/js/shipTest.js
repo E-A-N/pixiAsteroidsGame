@@ -110,20 +110,12 @@ var update = function(){
 };
 
 /**
-*
+*   TODO: make this function more modular and testable, add parameters and return value
 */
 var createPhase = function(){
-
     console.log("Everything has loaded!");
-
     var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png", playerShip);
-
-
-
     app.stage.addChild(ship);
-    console.log("Ship created!");
-
-
 }
 
 //Make sure resources are loaded before starting game
