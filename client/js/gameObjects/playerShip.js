@@ -3,7 +3,7 @@
 
 var playerShip = function(ship){
     ship.anchor.x = 0.5;
-    ship.anchor.y = 0.5;    
+    ship.anchor.y = 0.5;
     ship.acceleration = 1.90;
     ship.spd = 5;
     ship.turnSpd = .05; //speed at which ship rotates
@@ -15,5 +15,4 @@ var playerShip = function(ship){
         ship.y += ship.vy;
         //console.log("update is happening!!");
     }
-
 }
