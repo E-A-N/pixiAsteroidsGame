@@ -12,13 +12,6 @@ var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
 var _gameMaster     = new spriteHandler; //from spriteHandler.js
 
-//setup keyboard controls
-var _keys = {};
-_keys.up   = keyboard(38);
-_keys.down = keyboard(40);
-_keys.left = keyboard(37);
-_keys.right= keyboard(39);
-
 //assign app parameters
 var opts = {};
 opts.autoStart = false;
@@ -113,7 +106,7 @@ var update = function(){
     //game play logic goes here
 
     _gameMaster.updateAll();
-    app.render();
+    //app.render();
 };
 
 /**
@@ -142,7 +135,6 @@ _loader.onComplete.add(createPhase);
     console.log(_urls);
     preload(_urls, _loader);
     //console.log(ship);
-
-
+    app.render();
     update();
 })()
