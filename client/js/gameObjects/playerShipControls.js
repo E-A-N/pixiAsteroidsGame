@@ -18,15 +18,20 @@ var playerControls = function(ship){
     // var leftInput = keyboard(37);
     // var rightInput = keyboard(39);
 
+    console.log(k.upInput.isDown);
     k.upInput.press = function(){
         //pressing up
         ship.vx = Math.cos(ship.rotation) * ship.acceleration;
         ship.vy = Math.sin(ship.rotation) * ship.acceleration;
     }
-    k.upInput.release = function(){
+    if (!k.upInput.isDown){
         ship.vx *= ship.friction;
         ship.vy *= ship.friction;
     }
+    // k.upInput.release = function(){
+    //     ship.vx *= ship.friction;
+    //     ship.vy *= ship.friction;
+    // }
     // k.downInput.press = function(){
     //     ship.vy = ship.spd;
     // }
