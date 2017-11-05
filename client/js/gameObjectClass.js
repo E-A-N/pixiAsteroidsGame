@@ -68,12 +68,11 @@ gameObject.collision = function (spr2) {
     //Abstract context of object that's checking for collision
     var spr1 = this;
 
-    //Define the variables we'll need to calculate
-    var hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
-
-    //hit will determine whether there's a collision
-    hit = false;
-
+    var possibleCollision = false;
+    var combinedHalfWidths;
+    var combinedHalfHeights;
+    var vx;
+    var vy;
 
     //Find the center points of each sprite
     spr1.centerX = spr1.x + spr1.width / 2;
@@ -97,7 +96,7 @@ gameObject.collision = function (spr2) {
 
     var horizontalCollision = Math.abs(vx) < combinedHalfWidths;
     var verticalCollision   = Math.abs(vy) < combinedHalfHeights;
-    var hit = horizontalCollision && verticalCollision;
+    possibleCollision = horizontalCollision && verticalCollision;
 
-    return hit;
+    return possibleCollision;
 };

@@ -1,10 +1,10 @@
 function spriteCollision(spr1, spr2) {
 
     //Define the variables we'll need to calculate
-    var hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+    var possibleCollision, combinedHalfWidths, combinedHalfHeights, vx, vy;
 
     //hit will determine whether there's a collision
-    hit = false;
+    possibleCollision = false;
 
     //Find the center points of each sprite
     spr1.centerX = spr1.x + spr1.width / 2;
@@ -28,7 +28,7 @@ function spriteCollision(spr1, spr2) {
 
     var horizontalCollision = Math.abs(vx) < combinedHalfWidths;
     var verticalCollision   = Math.abs(vy) < combinedHalfHeights;
-    var hit = horizontalCollision && verticalCollision;
+    possibleCollision = horizontalCollision && verticalCollision;
 
-    return hit;
+    return possibleCollision;
 };
