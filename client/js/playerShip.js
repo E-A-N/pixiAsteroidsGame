@@ -2,6 +2,8 @@
 
 
 var playerShip = function(ship){
+
+    ship.spd = 5;
     ship.update = function(){
         playerControls(ship);
         ship.x += ship.vx;
