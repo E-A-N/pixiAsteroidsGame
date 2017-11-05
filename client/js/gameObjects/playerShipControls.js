@@ -1,5 +1,5 @@
 
-//Be sure to only define keys once otherwise memory leak will occur!
+//Be sure to only define keys once, otherwise memory leak will occur!
 var k = {};
 k.upInput = keyboard(38);
 k.downInput = keyboard(40);
