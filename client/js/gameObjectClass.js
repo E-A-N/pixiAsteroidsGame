@@ -111,6 +111,7 @@ gameObject.singleCollisionCheck = function(sprList, call = false){
     var doSomething = call && typeof call === "function";
     var sprID;
     for (var x in sprList) {
+        if (self.id === sprList[x].id) continue;
         var collisionCheck = self.collision(sprList[x]);
         if (collisionCheck){
             sprID = sprList[x].id;

@@ -20,5 +20,10 @@ var playerShip = function(spr){
         spr.x += spr.vx;
         spr.y += spr.vy;
 
+        if(spr.debug){
+            var eSpr = spr.singleCollisionCheck(_gameMaster.spriteList);
+            var msg = "colliding with: " + eSpr;
+            spr.debug.text = "DEBUG: " + msg;
+        }
     }
 }
