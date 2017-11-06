@@ -2,4 +2,5 @@
 
 A game built for job a interview programming test
 
-[https://e-a-n.github.io/](Play it here!)
+[Play it!](https://e-a-n.github.io/)
+https://e-a-n.github.io/
