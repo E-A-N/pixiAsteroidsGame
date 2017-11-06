@@ -1,20 +1,28 @@
-//setup keyboard controls
+spr//setup keyboard controls
 
+var playerShip = function(spr){
+    spr.anchor.x = 0.5;
+    spr.anchor.y = 0.5;
+    spr.acceleration = 3.5;
+    spr.spd = 5;
+    spr.turnSpd = .05; //speed at which ship rotates
+    spr.friction = .997; //speed at which ship will gradually slowdown
 
-var playerShip = function(ship){
-    ship.anchor.x = 0.5;
-    ship.anchor.y = 0.5;
-    ship.acceleration = 3.5;
-    ship.spd = 5;
-    ship.turnSpd = .05; //speed at which ship rotates
-    ship.friction = .997; //speed at which ship will gradually slowdown
-    ship.name = "playerShip"
+    spr.name = "playerShip"
 
-    ship.update = function(){
-        playerControls(ship);
-        ship.screenWrap();
-        ship.x += ship.vx;
-        ship.y += ship.vy;
-        //console.log("update is happening!!");
+    spr.update = function(){
+        playerControls(spr);
+        //Check for any collisions
+
+        spr.screenWrap();
+        spr.x += spr.vx;
+        spr.y += spr.vy;
+
+    }
+
+    var collisionCheck = function(sprList){
+        for (x = 0; x < sprList.length; x++){
+
+        }
     }
 }

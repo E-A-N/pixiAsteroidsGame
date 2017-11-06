@@ -62,7 +62,6 @@ gameObject.screenWrap = function(){
 *    @param {object} spr2 - The sprite that's being checked for a collision
 *    @returns {bool} - returns true if there is a collision
 */
-
 gameObject.collision = function (spr2) {
 
     //Abstract context of object that's checking for collision
@@ -100,3 +99,5 @@ gameObject.collision = function (spr2) {
 
     return possibleCollision;
 };
+
+gameObject.collisionCheck
