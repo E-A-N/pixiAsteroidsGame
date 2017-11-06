@@ -15,6 +15,11 @@ var playerShip = function(spr){
     spr.name = "playerShip";
     spr.respawnTime = 200;
 
+    //Set up variables for after image effect
+    spr.aImageIsCoolingDown = false;
+    spr.aImageCoolDownPeriod = 5;
+    spr.aImageCoolDownTime = 5;
+
     //This method is for debugging
     // spr.debugMsg = function (msg){
     //     if(spr.debug){
@@ -36,6 +41,18 @@ var playerShip = function(spr){
         }
     }
 
+    spr.afterImage = function(){
+        var img = spr.texture;
+        img = new _sprite(img);
+        img = _objPolymorph(img);
+        img.x = spr.x;
+        img.y = spr.y;
+        img.rotation = spr.rotation;
+        img.update = function(){
+
+        }
+
+    }
     /**
     *    This method enables a player ship to fire a bullet object
     *    @returns {object} a new created bullet object
@@ -80,6 +97,7 @@ var playerShip = function(spr){
         // var msg = "coolDown: " + spr.coolDown +" canShoot:"+ spr.canShoot;;
         // spr.debugMsg(msg);
 
+        //TODO: reimpliment this using the ticker for timing
         if (spr.coolDown){
             if (spr.coolDownTime > 0){
                 spr.coolDownTime--
