@@ -103,10 +103,21 @@ gameObject.collision = function (spr2) {
 /**
 *    This method traverses all game objects checking for a collision
 *    @param {array} sprList -a collection of registered gameObjects
-*    @returns {string} - key to
+*    @param {function} call - Callback action to take in the case there is a collision
+*    @returns {string} - ID key with collision results
 */
-gameObject.singleCollisionCheck = function(sprList){
-    for (x = 0; x < sprList.length; x++){
-        //collisionCheck
+gameObject.singleCollisionCheck = function(sprList, call = false){
+    var self = this;
+    var doSomething = call && typeof call === "function";
+    var sprID;
+    for (var x in sprList) {
+        var collisionCheck = self.collision(sprList[x]);
+        if (collisionCheck){
+            sprID = sprList[x].id;
+            if (doSomething) call(self, sprList[x])
+            break;
+        }
+        sprID = "No sprite IDs found";
     }
+    return sprID;
 }

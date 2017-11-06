@@ -95,7 +95,7 @@ var preload = function(urls = _urls, L = _loader){
     return true;
 };
 
-
+var ship;
 
 
 /**
@@ -104,7 +104,8 @@ var preload = function(urls = _urls, L = _loader){
 var update = function(){
     requestAnimationFrame(update);
     //game play logic goes here
-
+    console.log(ship.collision(asteroid1));
+    console.log(ship.collision(asteroid2));
     _gameMaster.updateAll();
     //app.render();
 };
@@ -115,10 +116,10 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
-    var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
+    ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
 
-    var asteroid1 = addSprite(150,150, _astroidSpritesSheet, "rock1.png", asteroidRock);
-    var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
+    asteroid1 = addSprite(150,150, _astroidSpritesSheet, "rock1.png", asteroidRock);
+    asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
     app.stage.addChild(ship);
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);

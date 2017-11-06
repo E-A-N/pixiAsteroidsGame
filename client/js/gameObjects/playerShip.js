@@ -13,7 +13,9 @@ var playerShip = function(spr){
     spr.update = function(){
         playerControls(spr);
         //Check for any collisions
-
+        // spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
+        //     console.log(spr2.id);
+        // });
         spr.screenWrap();
         spr.x += spr.vx;
         spr.y += spr.vy;
