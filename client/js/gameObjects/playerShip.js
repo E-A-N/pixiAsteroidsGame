@@ -76,6 +76,7 @@ var playerShip = function(spr){
             window.location.reload();
         }
 
+        /** DEBUGGING ITEMS **/
         // var msg = "coolDown: " + spr.coolDown +" canShoot:"+ spr.canShoot;;
         // spr.debugMsg(msg);
 

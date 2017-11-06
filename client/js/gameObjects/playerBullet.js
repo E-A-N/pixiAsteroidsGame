@@ -7,11 +7,17 @@ var playerBullet = function(spr){
     spr.name = "playerBullet";
     spr.lifeTime = 120;
 
+    /**
+    *    This method needs to be fired to adabt object to immediate game settings
+    */
     spr.create = function(){
         spr.vx = Math.cos(spr.rotation) * spr.spd;
         spr.vy = Math.sin(spr.rotation) * spr.spd;
     }
 
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
     spr.update = function(delta){
         if (spr.alive) {
 
