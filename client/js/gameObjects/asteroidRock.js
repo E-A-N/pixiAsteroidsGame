@@ -15,9 +15,9 @@ var asteroidRock = function(spr){
             case "small":
                 spr.scale.x = .20;
                 spr.scale.y = .20;
-                spr.turnSpd = Math.floor(Math.random() * 10)/ 1000;
-                spr.vx = (Math.floor(Math.random() * 8)/8) * spr.rotateDirection;
-                spr.vy = (Math.floor(Math.random() * 8)/8) * spr.rotateDirection;
+                spr.turnSpd = Math.floor(Math.random() * 30)/ 100;
+                spr.vx = (Math.floor(Math.random() * 20)/40) * spr.rotateDirection;
+                spr.vy = (Math.floor(Math.random() * 20)/40) * spr.rotateDirection;
                 break;
 
             case "medium":
@@ -42,30 +42,22 @@ var asteroidRock = function(spr){
     spr.explode = function(){
         switch (spr.sizeState){
             case "small":
-                spr.width  /= 5;
-                spr.height /= 5;
-                spr.turnSpd = Math.floor(Math.random() * 10)/ 1000;
-                spr.vx = (Math.floor(Math.random() * 8)/8) * spr.rotateDirection;
-                spr.vy = (Math.floor(Math.random() * 8)/8) * spr.rotateDirection;
                 break;
 
             case "medium":
-                spr.width  /= 2;
-                spr.height /= 2;
-                spr.turnSpd = Math.floor(Math.random() * 50)/ 1000;
-                spr.vx = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
-                spr.vy = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
+                spr.spitAsteroid('small');
+                spr.spitAsteroid('small');
+                spr.spitAsteroid('small');
+                spr.spitAsteroid('small');
                 break;
 
             default:
             case "big":
-                var med1 = new _sprite(texture);
-                var med2 = new _sprite(texture);
-                med1 = _objPolymorph(med1);
-                med2 = _objPolymorph(med2);
+                spr.spitAsteroid('medium');
+                spr.spitAsteroid('medium');
                 break;
         }
-
+        spr.destroySelf();
         return spr.id;
     }
 
@@ -81,13 +73,12 @@ var asteroidRock = function(spr){
         asteroidRock(babyAst);  //give sprite asteroidRock specific fields
 
         var randomDir = Math.round(Math.random()) ? 1 : -1;
-
         //assign size and location
         babyAst.sizeState = size;
         babyAst.x = spr.x + (Math.random() * 25) * randomDir;
         babyAst.y = spr.y + (Math.random() * 25) * randomDir;
-        app.stage.addChild(babyAst);
         babyAst.create();
+        app.stage.addChild(babyAst);
         return babyAst;
     }
 
@@ -96,10 +87,5 @@ var asteroidRock = function(spr){
         spr.x += spr.vx;
         spr.y += spr.vy;
         spr.rotation += spr.turnSpd * spr.rotateDirection;
-        //console.log("update is happening!!");
-        var bInput = keyboard(98);
-        if (bInput.isDown){
-            spr.spitAsteroid('small');
-        }
     }
 }

@@ -18,14 +18,19 @@ var playerShip = function(spr){
     }
 
     spr.update = function(){
-        playerControls(spr);
-        //Check for any collisions
-        spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
-            var msg = self.id +" is colliding with "+ spr2.id;;
-            spr.debugMsg(msg);
-            spr2.destroySelf();
+        if (spr.alive) {
+            playerControls(spr);
+            //Check for any collisions
+            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
+                var msg = self.id +" is colliding with "+ spr2.id;;
+                spr.debugMsg(msg);
+                self.destroySelf();
+                spr2.explode();
+                spr.alive = false;
 
-        });
+
+            });
+        }
         spr.screenWrap();
         spr.x += spr.vx;
         spr.y += spr.vy;

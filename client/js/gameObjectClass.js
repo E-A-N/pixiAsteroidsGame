@@ -3,6 +3,7 @@ gameObject.id = 0; //game id
 gameObject.spd = 1;   //basic sprite movement speed
 gameObject.vx = 0; //velocity x
 gameObject.vy = 0; //veloctiy y
+gameObject.alive = true;
 
 
 /**
