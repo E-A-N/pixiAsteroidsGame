@@ -21,15 +21,14 @@ gameObject.create = function(){};
 *    This method deletes a sprite permanetly from the game
 *    @returns {number} id number of destroyed sprite
 */
-// gameObject.destroySelf = function(){
-//     //var id = this.id;
-//     //delete _gameMaster[this.id]; //clear from sprite registry
-//     //this.destroy(); //TODO: find error that's not letting me destory sprites
-//     //this.parent.removeChild(this);
-//
-//     //this.visible = false;
-//     return id;
-// }
+gameObject.destroySelf = function(){
+    var id = this.id;
+    //delete _gameMaster[this.id]; //clear from sprite registry
+    //this.destroy(); //TODO: find error that's not letting me destory sprites
+    //this.parent.removeChild(this);
+    app.stage.removeChild(this);
+    return id;
+}
 
 
 /**
