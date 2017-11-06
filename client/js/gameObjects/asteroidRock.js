@@ -5,9 +5,6 @@ var asteroidRock = function(spr){
     spr.name = "asteroidRock"
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
-    spr.acceleration = 1.90;
-    spr.spd = 5;
-    spr.friction = .99; //speed at which spr will gradually slowdown
 
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
@@ -83,11 +80,12 @@ var asteroidRock = function(spr){
         _gameMaster.initGameSprite(babyAst);    //register new sprite into game
         asteroidRock(babyAst);  //give sprite asteroidRock specific fields
 
+        var randomDir = Math.round(Math.random()) ? 1 : -1;
+
         //assign size and location
         babyAst.sizeState = size;
-        babyAst.x = 50 //spr.x + (Math.random() * 25) * spr.rotateDirection;
-        babyAst.y = 50 //spr.y + (Math.random() * 25) * spr.rotateDirection;
-        //spr.parent.addChild(babyAst); //add child to stage
+        babyAst.x = spr.x + (Math.random() * 25) * randomDir;
+        babyAst.y = spr.y + (Math.random() * 25) * randomDir;
         app.stage.addChild(babyAst);
         babyAst.create();
         return babyAst;
@@ -99,5 +97,9 @@ var asteroidRock = function(spr){
         spr.y += spr.vy;
         spr.rotation += spr.turnSpd * spr.rotateDirection;
         //console.log("update is happening!!");
+        var bInput = keyboard(98);
+        if (bInput.isDown){
+            spr.spitAsteroid('small');
+        }
     }
 }

@@ -23,9 +23,6 @@ gameObject.create = function(){};
 */
 gameObject.destroySelf = function(){
     var id = this.id;
-    //delete _gameMaster[this.id]; //clear from sprite registry
-    //this.destroy(); //TODO: find error that's not letting me destory sprites
-    //this.parent.removeChild(this);
     app.stage.removeChild(this);
     return id;
 }
