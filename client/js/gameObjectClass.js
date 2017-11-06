@@ -100,4 +100,13 @@ gameObject.collision = function (spr2) {
     return possibleCollision;
 };
 
-gameObject.collisionCheck
+/**
+*    This method traverses all game objects checking for a collision
+*    @param {array} sprList -a collection of registered gameObjects
+*    @returns {string} - key to
+*/
+gameObject.singleCollisionCheck = function(sprList){
+    for (x = 0; x < sprList.length; x++){
+        //collisionCheck
+    }
+}

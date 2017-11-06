@@ -1,4 +1,4 @@
-spr//setup keyboard controls
+//setup keyboard controls
 
 var playerShip = function(spr){
     spr.anchor.x = 0.5;
@@ -18,11 +18,5 @@ var playerShip = function(spr){
         spr.x += spr.vx;
         spr.y += spr.vy;
 
-    }
-
-    var collisionCheck = function(sprList){
-        for (x = 0; x < sprList.length; x++){
-
-        }
     }
 }

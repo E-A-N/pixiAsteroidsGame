@@ -4,7 +4,7 @@ var spriteHandler = function(){
 };
 
 //Reference collection of all gamesprites
-spriteHandler.prototype.spriteList = [];
+spriteHandler.prototype.spriteList = {};
 spriteHandler.prototype.issuedIds = 0;
 
 
@@ -14,17 +14,18 @@ spriteHandler.prototype.issuedIds = 0;
 *    @return {bool} - true if items in the sprite List have been traversed
 */
 spriteHandler.prototype.spriteTraverse = function(method = false) {
-    var sprNum = this.spriteList.length;
-    var canTraverse = sprNum > 0;
-    var useMethod = canTraverse && method && typeof method === "string";
+    // var sprNum = this.spriteList.length;
+    // var canTraverse = sprNum > 0;
+    //var useMethod = canTraverse && method && typeof method === "string";
+    var canTraverse = method && typeof method === "string";
     /*
     *  Sprite method string keys are: "init", "create", "update",
     */
     var curSpr;
 
     if (canTraverse){
-        for(var x = 0; x < sprNum; x++) {
-
+        //for(var x = 0; x < sprNum; x++) {
+        for(var x in this.spriteList) {
             curSpr = this.spriteList[x];
             //Evoke an action of the current sprite
             curSpr[method]();
@@ -43,27 +44,9 @@ spriteHandler.prototype.spriteTraverse = function(method = false) {
 spriteHandler.prototype.initGameSprite = function(spr) {
     //TODO write a better method for issuing ids
     spr.id = this.issuedIds++
-    this.spriteList.push(spr);
-
+    this.spriteList[spr.id] = spr;
+    //this.spriteList.push(spr);
     return spr.id;
-}
-
-/**
-*    This method adds new sprites to the sprite collection and issues them IDs
-*    @param {array} sprites - The sprite to be added to collection
-*    @return {array} - a collection of the added IDs
-*/
-spriteHandler.prototype.initGameSprites = function(sprites) {
-    var amount = sprites.length;
-    var idList = [];
-    for (var x = 0; x < amount; x++) {
-        //TODO write a better method for issuing ids
-        sprites[x].id = this.issuedIds++;
-        idList.push(this.issuedIDs);
-        this.spriteList.push(sprites[x]);
-        csonsole.log(sprites[x].id + " is in the game now!!");
-    }
-    return idList;
 }
 
 /**
