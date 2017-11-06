@@ -123,6 +123,9 @@ var createPhase = function(){
 
     asteroid1 = addSprite(150,150, _astroidSpritesSheet, "rock1.png", asteroidRock);
     asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
+    _debug.x = 200;
+    _debug.y = 100;
+    app.stage.addChild(_debug);
     app.stage.addChild(ship);
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);
