@@ -1,3 +1,3 @@
-# Ean's Pixi Game
+# A simple Astroid game made with Pixi
 
-A game built for job interview programming test
+A game built for job a interview programming test
