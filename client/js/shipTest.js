@@ -11,6 +11,7 @@ var _astroidSpritesSheet = _imgRoot + "astroidsSprite.json";
 var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
 var _gameMaster     = new spriteHandler; //from spriteHandler.js
+var _objPolymorph   = gameObject.sprConstruct;
 
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
@@ -26,34 +27,6 @@ opts.backgroundColor = 0x1099bb;
 var app = new PIXI.Application(opts);
 _gameCanvas.appendChild(app.view);
 
-// (function gameCheck(app){
-//
-//     var style = new PIXI.TextStyle({
-//         fontFamily: 'Arial',
-//         fontSize: 36,
-//         fontStyle: 'italic',
-//         fontWeight: 'bold',
-//         fill: ['#ffffff', '#00ff99'], // gradient
-//         stroke: '#4a1850',
-//         strokeThickness: 5,
-//         dropShadow: true,
-//         dropShadowColor: '#000000',
-//         dropShadowBlur: 4,
-//         dropShadowAngle: Math.PI / 6,
-//         dropShadowDistance: 6,
-//         wordWrap: true,
-//         wordWrapWidth: 440,
-//     });
-//     var text = new PIXI.Text("PIXI is Running!! <3", style);
-//     text.x = 50;
-//     text.y = 50;
-//     app.stage.addChild(text);
-//
-//     app.render();
-//
-// })(app)
-
-
 /**
 *    @param {int} x - horizontal axis coordinate to set in canvas
 *    @param {int} y - vertical axis coordiante to set in canvas
@@ -65,7 +38,7 @@ _gameCanvas.appendChild(app.view);
 var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
     var spr = new _sprite(img);
-    spr = gameObject.sprConstruct(spr);
+    spr = _objPolymorph(spr);
     spr.x = x;
     spr.y = y;
 

@@ -48,8 +48,8 @@ var asteroidRock = function(spr){
     }
 
     spr.explode = function(){
+        var texture = spr.texture;
         switch (spr.sizeState){
-
             case "small":
                 spr.width  /= 5;
                 spr.height /= 5;
@@ -68,13 +68,24 @@ var asteroidRock = function(spr){
 
             default:
             case "big":
-            spr.width  *= 1.2;
-            spr.height *= 1.2;
-                spr.turnSpd = Math.floor(Math.random() * 100)/ 10000;
-                spr.vx = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
-                spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
+                var med1 = new _sprite(texture);
+                var med2 = new _sprite(texture);
+                med1 = _objPolymorph(med1);
+                med2 = _objPolymorph(med2);
                 break;
         }
+    }
+
+    /**
+    *    This method creates a new asteroidRock
+    *    @param {string} size - a string key that determines the size
+    */
+    spr.spitAsteroid = function(size) {
+        var babyAst = new _sprite(spr.texture);
+        babyAst = _objPolymorph(babyAst);
+        babyAst.sizeState = size;
+        _gameMaster.initGameSprite(babyAst);
+        return babyAst;
     }
 
     spr.update = function(){
