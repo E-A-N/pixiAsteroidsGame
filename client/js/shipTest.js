@@ -115,7 +115,7 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
-    var ship = addSprite(250, 200, _astroidSpritesSheet, "ship1.png", playerShip);
+    var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
 
     var asteroid1 = addSprite(150,150, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);

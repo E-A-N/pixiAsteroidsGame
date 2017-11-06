@@ -2,11 +2,11 @@
 
 
 var asteroidRock = function(spr){
+    spr.name = "asteroidRock"
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
     spr.acceleration = 1.90;
     spr.spd = 5;
-    spr.turnSpd = Math.floor(Math.random() * 100)/ 10000; //speed at which spr rotates
     spr.friction = .99; //speed at which spr will gradually slowdown
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
