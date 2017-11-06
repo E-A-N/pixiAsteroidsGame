@@ -115,11 +115,14 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
-    var ship = addSprite(50, 50, _astroidSpritesSheet, "ship1.png", playerShip);
+    var ship = addSprite(250, 200, _astroidSpritesSheet, "ship1.png", playerShip);
 
-    var ast1 = addSprite(250,250, _astroidSpritesSheet, "rock1.png", asteroidRock);
+    var asteroid1 = addSprite(150,150, _astroidSpritesSheet, "rock1.png", asteroidRock);
+    var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
     app.stage.addChild(ship);
-    app.stage.addChild(ast1);
+    app.stage.addChild(asteroid1);
+    app.stage.addChild(asteroid2);
+    _gameMaster.createAll();
 }
 
 //Make sure resources are loaded before starting game
@@ -130,7 +133,7 @@ _loader.onComplete.add(createPhase);
 
     console.log(_urls);
     preload(_urls, _loader);
-    //console.log(ship);
+     //only needs to be ran once
     app.render();
     update();
 })()

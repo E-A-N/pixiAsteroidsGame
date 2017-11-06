@@ -61,6 +61,7 @@ spriteHandler.prototype.initGameSprites = function(sprites) {
         sprites[x].id = this.issuedIds++;
         idList.push(this.issuedIDs);
         this.spriteList.push(sprites[x]);
+        csonsole.log(sprites[x].id + " is in the game now!!");
     }
     return idList;
 }
