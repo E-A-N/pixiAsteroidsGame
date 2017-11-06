@@ -1,4 +1,4 @@
-# A simple Astroid game made with Pixi
+# A simple Asteroid game made with Pixi
 
 A game built for job a interview programming test
 
@@ -12,4 +12,3 @@ A game built for job a interview programming test
    npm install
    node app.js
    ```
-
