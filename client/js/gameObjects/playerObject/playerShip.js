@@ -19,6 +19,7 @@ var playerShip = function(spr){
     spr.aImageIsCoolingDown = false;
     spr.aImageCoolDownPeriod = 5;
     spr.aImageCoolDownTime = 5;
+    spr.aImageThreshold = false;
 
     //This method is for debugging
     // spr.debugMsg = function (msg){
@@ -39,6 +40,11 @@ var playerShip = function(spr){
         if (spr.vy > maxVY){
             spr.vy = maxVY;
         }
+
+        //check to see if going fast enough to leave after images
+        var blazingX = spr.vx > 7;
+        var blazingY = spr.vx > 7;
+        if (blazingX && blazingY) spr.aImageThreshold = true;
     }
 
     spr.afterImage = function(){
@@ -49,9 +55,11 @@ var playerShip = function(spr){
         img.y = spr.y;
         img.rotation = spr.rotation;
         img.update = function(){
-
+            while (img.alpha > 0){
+                img.alpha -= .05;
+            }
+            img.destroySelf();
         }
-
     }
     /**
     *    This method enables a player ship to fire a bullet object
@@ -100,7 +108,7 @@ var playerShip = function(spr){
         //TODO: reimpliment this using the ticker for timing
         if (spr.coolDown){
             if (spr.coolDownTime > 0){
-                spr.coolDownTime--
+                spr.coolDownTime--;
             }
             else {
                 spr.canShoot = true;
@@ -108,6 +116,22 @@ var playerShip = function(spr){
                 spr.coolDownTime = spr.coolDownPeriod;
             }
         }
+        //After image logic
+        if (spr.aImageIsCoolingDown){
+            if (spr.aImageCoolDownTime > 0){
+                spr.aImageCoolDownTime--;
+            }
+            else {
+                spr.aImageIsCoolingDown = false;
+            }
+        }
+        else if (spr.aImageIsCoolingDown && spr.aImageThreshold) {
+            spr.afterImage();
+            spr.aImageCoolDownTime = spr.aImageCoolDownPeriod;
+            spr.aImageIsCoolingDown = true;
+        }
+
+
         spr.screenWrap();
         spr.speedCap();
         spr.x += spr.vx * delta;

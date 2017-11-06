@@ -130,7 +130,8 @@ var createPhase = function(){
     //ship.debug = _debug; //temporary
     ship.textureIdle = ship.texture;
     ship.textureThrust = _resources[_astroidSpritesSheet].textures["ship2.png"];
-    console.log(ship.texture.textureCacheIds[0]);
+    ship.alpha = 0.5
+    console.log(ship.alpha);
 
     var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
