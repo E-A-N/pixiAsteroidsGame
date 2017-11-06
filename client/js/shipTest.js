@@ -12,6 +12,9 @@ var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
 var _gameMaster     = new spriteHandler; //from spriteHandler.js
 
+//text object for bug tracking
+var _debug = new PIXI.Text("DEBUG: ", {fontSize: 36});
+
 //assign app parameters
 var opts = {};
 opts.autoStart = false;
