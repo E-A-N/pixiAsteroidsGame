@@ -7,7 +7,8 @@ var playerShip = function(spr){
     spr.spd = 5;
     spr.turnSpd = .05; //speed at which ship rotates
     spr.friction = .997; //speed at which ship will gradually slowdown
-
+    spr.canShoot = true;
+    spr.coolDown = false;
     spr.name = "playerShip";
 
     //This method is for debugging
@@ -27,9 +28,14 @@ var playerShip = function(spr){
                 self.destroySelf();
                 spr2.explode();
                 spr.alive = false;
-
-
             });
+        }
+
+        if (spr.coolDown && !spr.canShoot){
+            setInterval(function(){
+                spr.canShoot = true;
+                spr.coolDown = false;
+            }, 250);
         }
         spr.screenWrap();
         spr.x += spr.vx;
