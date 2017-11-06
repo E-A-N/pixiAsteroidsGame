@@ -17,10 +17,19 @@ gameObject.update = function(){};
 */
 gameObject.create = function(){};
 
-gameObject.destroySelf = function(){
-    delete _gameMaster[this.id]; //clear from sprite registry
-    this.destroy(); //destory pixi pixi sprite
-}
+/**
+*    This method deletes a sprite permanetly from the game
+*    @returns {number} id number of destroyed sprite
+*/
+// gameObject.destroySelf = function(){
+//     //var id = this.id;
+//     //delete _gameMaster[this.id]; //clear from sprite registry
+//     //this.destroy(); //TODO: find error that's not letting me destory sprites
+//     //this.parent.removeChild(this);
+//
+//     //this.visible = false;
+//     return id;
+// }
 
 
 /**

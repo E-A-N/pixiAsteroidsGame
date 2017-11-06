@@ -23,6 +23,9 @@ var playerShip = function(spr){
         spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
             var msg = self.id +" is colliding with "+ spr2.id;
             spr.debugMsg(msg);
+            spr2.visible = false; //This how to destory sprites for now
+            //spr2.parent.removeChild(spr2);
+            //spr2.destroySelf(); TODO: find error that's not letting me destory sprites
         });
         spr.screenWrap();
         spr.x += spr.vx;
