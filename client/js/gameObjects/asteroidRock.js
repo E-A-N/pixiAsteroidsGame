@@ -30,8 +30,6 @@ var asteroidRock = function(spr){
 
             default:
             case "big":
-            //spr.width  *= 1.2;
-            //spr.height *= 1.2;
                 spr.turnSpd = Math.floor(Math.random() * 100)/ 10000;
                 spr.vx = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;

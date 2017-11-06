@@ -17,14 +17,14 @@ var playerControls = function(ship){
     var thrusting = k.upInput.isDown;
     var turningLeft =  k.leftInput.isDown && !k.rightInput.isDown;
     var turningRight =  k.rightInput.isDown && !k.leftInput.isDown;
-    var okToShoot = ship.canShoot;
+    var okToShoot = k.fInput.isDown && ship.canShoot;
 
     if (okToShoot){
-        //ship.fireBullet()
+        ship.fireBullet()
     }
     if(thrusting){
-        ship.vx = Math.cos(ship.rotation) * ship.acceleration;
-        ship.vy = Math.sin(ship.rotation) * ship.acceleration;
+        ship.vx += Math.cos(ship.rotation) * ship.acceleration;
+        ship.vy += Math.sin(ship.rotation) * ship.acceleration;
     }
     else {
         ship.vx *= ship.friction;
