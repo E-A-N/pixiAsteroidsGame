@@ -1,3 +1,6 @@
+/**
+*    @param {object} spr - A reference to an extended pixi game sprite
+*/
 var asteroidRock = function(spr){
     spr.name = "asteroidRock"
     spr.anchor.x = 0.5;
@@ -39,8 +42,8 @@ var asteroidRock = function(spr){
     }
 
     /**
-    *    This method 
-    *   @returns {number} returns true to indicate tests this method is successfully overwritten
+    *    This method destroys a rock and splits it smaller chunks depending on size
+    *   @returns {number} returns id of gameObject
     */
     spr.explode = function(){
         switch (spr.sizeState){
@@ -84,10 +87,13 @@ var asteroidRock = function(spr){
         return babyAst;
     }
 
-    spr.update = function(){
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
+    spr.update = function(delta){
         spr.screenWrap();
-        spr.x += spr.vx;
-        spr.y += spr.vy;
+        spr.x += spr.vx * delta;
+        spr.y += spr.vy * delta;
         spr.rotation += spr.turnSpd * spr.rotateDirection;
     }
 }
