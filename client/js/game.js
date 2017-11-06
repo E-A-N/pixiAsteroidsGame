@@ -4,6 +4,7 @@ var _renderEngine   = PIXI.autoDetectRenderer;
 var _loader         = PIXI.loader;
 var _resources      = PIXI.loader.resources;
 var _sprite         = PIXI.Sprite;
+//var _animSpr        = new PIXI.extras.AnimatedSprite;
 var _ticker         =  new PIXI.ticker.Ticker;
 var _gameWidth      = 500;
 var _gameHeight     = 500;
@@ -51,6 +52,39 @@ var addSprite = function(x, y, src, texture, call = false){
     return spr;
 }
 
+
+/**
+*    @param {int} x - horizontal axis coordinate to set in canvas
+*    @param {int} y - vertical axis coordiante to set in canvas
+*    @param {object} src - A url reference to collection of textures
+*    @param {string} texture - A url reference to ideal texture
+*    @param {function} call - optional callback assign attributes to new sprite
+*    @return {obj}  - Ship sprite
+*/
+var addAnimatedSprite = function(x, y, src, textures, call = false){
+    var spr  = PIXI.extras.AnimatedSprite.fromImages(textures)
+    // for(var x = 0; x < textures.length; x++){
+    //     // img.push(_resources[src].textures[x])
+    //     img.push(PIXI.Texture[x])
+    // }
+
+    //var spr = new PIXI.extras.AnimatedSprite(img);
+    //var spr = new _animSpr(img);
+    spr = _objPolymorph(spr);
+    spr.x = x;
+    spr.y = y;
+    spr.animationSpeed = 0.2;
+    spr.loop = true;
+    spr.play();
+    console.log(spr.currentFrame)
+    if (call && typeof call === "function") {
+        call(spr);
+    }
+
+    _gameMaster.initGameSprite(spr);
+    return spr;
+}
+
 /**
 *    This handles loading game resources
 *    @param {obj} L - A reference to the loader object
@@ -90,8 +124,13 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
+    var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
+    //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
     //ship.debug = _debug; //temporary
+    ship.textureIdle = ship.texture;
+    ship.textureThrust = _resources[_astroidSpritesSheet].textures["ship2.png"];
+    console.log(ship.texture.textureCacheIds[0]);
 
     var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);

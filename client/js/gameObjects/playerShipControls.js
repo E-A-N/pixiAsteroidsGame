@@ -25,12 +25,18 @@ var playerControls = function(ship){
         ship.coolDown = true;
     }
     if(thrusting){
+        if (ship.texture.textureCacheIds[0] === "ship1.png"){
+            ship.texture = ship.textureThrust
+        }
         ship.vx += Math.cos(ship.rotation) * ship.acceleration;
         ship.vy += Math.sin(ship.rotation) * ship.acceleration;
     }
     else {
         ship.vx *= ship.friction;
         ship.vy *= ship.friction;
+        if (ship.texture.textureCacheIds[0] === "ship2.png"){
+            ship.texture = ship.textureIdle
+        }
     }
     if (turningRight) {
         ship.rotation += ship.turnSpd;

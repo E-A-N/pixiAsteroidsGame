@@ -3,8 +3,6 @@
 */
 var asteroidRock = function(spr){
     spr.name = "asteroidRock"
-    spr.anchor.x = 0.5;
-    spr.anchor.y = 0.5;
 
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
@@ -38,6 +36,9 @@ var asteroidRock = function(spr){
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 break;
         }
+
+        spr.anchor.x = 0.5;
+        spr.anchor.y = 0.5;
         return true;
     }
 
