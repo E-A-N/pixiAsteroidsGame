@@ -12,7 +12,7 @@ var sitePath = process.argv[2] || ".";
 var port = 7777;
 var address = "http://localhost:";
 
-var gameRoute = path.join(__dirname,'client',sitePath);
+var gameRoute = path.join(__dirname, sitePath);
 gameRoute = path.normalize(gameRoute);
 
 /*
