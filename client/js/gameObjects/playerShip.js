@@ -12,6 +12,7 @@ var playerShip = function(spr){
     spr.coolDownPeriod = 25;
     spr.coolDownTime = 25;
     spr.name = "playerShip";
+    spr.respawnTime = 200;
 
     //This method is for debugging
     // spr.debugMsg = function (msg){
@@ -54,6 +55,9 @@ var playerShip = function(spr){
                     spr.vy = 0;
                 }
             });
+        }
+        else if (--spr.respawnTime < 0){
+            window.location.reload();
         }
 
         // var msg = "coolDown: " + spr.coolDown +" canShoot:"+ spr.canShoot;;

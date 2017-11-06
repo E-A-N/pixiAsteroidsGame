@@ -13,7 +13,7 @@ spriteHandler.prototype.issuedIds = 0;
 *    @param {string} method - A string key that sets action to take
 *    @return {bool} - true if items in the sprite List have been traversed
 */
-spriteHandler.prototype.spriteTraverse = function(method = false) {
+spriteHandler.prototype.spriteTraverse = function(method = false, arg = false) {
     // var sprNum = this.spriteList.length;
     // var canTraverse = sprNum > 0;
     //var useMethod = canTraverse && method && typeof method === "string";
@@ -28,7 +28,7 @@ spriteHandler.prototype.spriteTraverse = function(method = false) {
         for(var x in this.spriteList) {
             curSpr = this.spriteList[x];
             //Evoke an action of the current sprite
-            curSpr[method]();
+            curSpr[method](arg);
         }
     }
 
@@ -53,8 +53,8 @@ spriteHandler.prototype.initGameSprite = function(spr) {
 *    @param {function} - Optional callback that runs after objects have been updated
 *    @return {bool} - returns true if all applicable game objects have been updated
 */
-spriteHandler.prototype.updateAll = function(call = false) {
-    var updated = this.spriteTraverse("update")
+spriteHandler.prototype.updateAll = function(delta, call = false) {
+    var updated = this.spriteTraverse("update",delta)
     var useCallback = updated && call && typeof call === "function";
 
     if (useCallback){

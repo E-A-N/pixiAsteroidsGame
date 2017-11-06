@@ -4,6 +4,7 @@ var _renderEngine   = PIXI.autoDetectRenderer;
 var _loader         = PIXI.loader;
 var _resources      = PIXI.loader.resources;
 var _sprite         = PIXI.Sprite;
+var _ticker         =  new PIXI.ticker.Ticker;
 var _gameWidth      = 500;
 var _gameHeight     = 500;
 var _imgRoot        = "/img/";
@@ -14,7 +15,7 @@ var _gameMaster     = new spriteHandler; //from spriteHandler.js
 var _objPolymorph   = gameObject.sprConstruct;
 
 //text object for bug tracking
-var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
+//var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
 
 //assign app parameters
 var opts = {};
@@ -75,11 +76,12 @@ var preload = function(urls = _urls, L = _loader){
 *    Game loop that will constantly update the state of the game
 */
 var update = function(){
+    //var lastTime = _ticker.lastTime;
     requestAnimationFrame(update);
     //game play logic goes here
-
-    _gameMaster.updateAll();
-    //app.render();
+     //var deltaTime = 0;
+     //if lastTime - deltaTime
+    _gameMaster.updateAll(_ticker.deltaTime);
 };
 
 /**
@@ -89,15 +91,13 @@ var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
-    ship.debug = _debug; //temporary
+    //ship.debug = _debug; //temporary
 
     var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
     //asteroid1.sizeState = "medium";
     asteroid2.sizeState = "small";
-    _debug.x = 20;
-    _debug.y = 100;
-    app.stage.addChild(ship.debug);
+    //app.stage.addChild(ship.debug);
     app.stage.addChild(ship);
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);
@@ -114,5 +114,6 @@ _loader.onComplete.add(createPhase);
     preload(_urls, _loader);
      //only needs to be ran once
     app.render();
+    //_ticker.start();
     update();
 })()

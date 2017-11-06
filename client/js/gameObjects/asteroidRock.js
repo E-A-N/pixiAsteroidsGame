@@ -1,6 +1,3 @@
-//setup keyboard controls
-
-
 var asteroidRock = function(spr){
     spr.name = "asteroidRock"
     spr.anchor.x = 0.5;
@@ -9,6 +6,9 @@ var asteroidRock = function(spr){
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
 
+    /**
+    *   @returns {bool} returns true to indicate tests this method is successfully overwritten
+    */
     spr.create = function(){
         switch (spr.sizeState){
 
@@ -35,8 +35,13 @@ var asteroidRock = function(spr){
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 break;
         }
+        return true;
     }
 
+    /**
+    *    This method 
+    *   @returns {number} returns true to indicate tests this method is successfully overwritten
+    */
     spr.explode = function(){
         switch (spr.sizeState){
             case "small":
@@ -50,7 +55,6 @@ var asteroidRock = function(spr){
                 break;
 
             default:
-            case "big":
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 break;

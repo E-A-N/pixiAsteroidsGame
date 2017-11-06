@@ -31,7 +31,7 @@ var playerBullet = function(spr){
         }
 
         spr.screenWrap();
-        spr.x += spr.vx //* delta;
-        spr.y += spr.vy //* delta;
+        spr.x += spr.vx * delta;
+        spr.y += spr.vy * delta;
     }
 }
