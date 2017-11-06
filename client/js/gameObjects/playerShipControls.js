@@ -5,7 +5,7 @@ k.upInput = keyboard(38);
 k.downInput = keyboard(40);
 k.leftInput = keyboard(37);
 k.rightInput = keyboard(39);
-k.fInput = keyboard(102);
+k.fInput = keyboard(70);
 
 
 /**  This utility function setups the player controls for the space ship
@@ -21,6 +21,8 @@ var playerControls = function(ship){
 
     if (okToShoot){
         ship.fireBullet()
+        ship.canShoot = false;
+        ship.coolDown = true;
     }
     if(thrusting){
         ship.vx += Math.cos(ship.rotation) * ship.acceleration;

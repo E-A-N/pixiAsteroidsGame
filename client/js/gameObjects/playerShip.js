@@ -8,15 +8,17 @@ var playerShip = function(spr){
     spr.turnSpd = .05; //speed at which ship rotates
     spr.friction = .997; //speed at which ship will gradually slowdown
     spr.canShoot = true;
-    spr.coolDown = false;
+    spr.coolingDown = false;
+    spr.coolDownPeriod = 25;
+    spr.coolDownTime = 25;
     spr.name = "playerShip";
 
     //This method is for debugging
-    spr.debugMsg = function (msg){
-        if(spr.debug){
-            spr.debug.text = "DEBUG: " + msg;
-        }
-    }
+    // spr.debugMsg = function (msg){
+    //     if(spr.debug){
+    //         spr.debug.text = "DEBUG: " + msg;
+    //     }
+    // }
     spr.speedCap = function(){
         if (spr.vx > 10){
             spr.vx = 10;
@@ -28,15 +30,14 @@ var playerShip = function(spr){
     spr.fireBullet = function(){
         var img = _resources[_astroidSpritesSheet].textures["fireball.png"];
         var bullet = new _sprite(img);
-        bullet = _objPolymorph;
-        _gameMaster.initGameSprite(bullet);
-        playerBullet(bullet, spr.vx, spr.vy );
+        bullet = _objPolymorph(bullet);  //universal game object attributes
+        _gameMaster.initGameSprite(bullet);    //register new sprite into game
+        playerBullet(bullet); //bullet specific fields
         bullet.x = spr.x;
         bullet.y = spr.y;
+        bullet.rotation = spr.rotation;
         bullet.create();
         app.stage.addChild(bullet);
-        var msg = "The bullet id is: "+ bullet.id;;
-        spr.debugMsg(msg);
 
         return bullet;
     }
@@ -49,18 +50,24 @@ var playerShip = function(spr){
                     self.destroySelf();
                     spr2.explode();
                     spr.alive = false;
+                    spr.vx = 0;
+                    spr.vy = 0;
                 }
             });
         }
 
-        var msg = "coolDown: " + self.coolDown +" canShoot:"+ self.canShoot;;
-        spr.debugMsg(msg);
+        // var msg = "coolDown: " + spr.coolDown +" canShoot:"+ spr.canShoot;;
+        // spr.debugMsg(msg);
 
-        if (spr.coolDown && !spr.canShoot){
-            setInterval(function(){
+        if (spr.coolDown){
+            if (spr.coolDownTime > 0){
+                spr.coolDownTime--
+            }
+            else {
                 spr.canShoot = true;
                 spr.coolDown = false;
-            }, 250);
+                spr.coolDownTime = spr.coolDownPeriod;
+            }
         }
         spr.screenWrap();
         spr.speedCap();
