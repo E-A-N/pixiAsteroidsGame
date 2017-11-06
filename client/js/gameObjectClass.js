@@ -17,6 +17,11 @@ gameObject.update = function(){};
 */
 gameObject.create = function(){};
 
+gameObject.destroySelf = function(){
+    delete _gameMaster[this.id]; //clear from sprite registry
+    this.destroy(); //destory pixi pixi sprite
+}
+
 
 /**
 *    @param {object} spr - Reference to sprite to extend with gameObject attributes

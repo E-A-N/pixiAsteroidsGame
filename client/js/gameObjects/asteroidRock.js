@@ -14,8 +14,6 @@ var asteroidRock = function(spr){
 
     //default sizeState is "big".  Other states are "med", "small"
     spr.sizeState = "big" //default phase is big
-    spr.randy = "frosty!";
-
 
     spr.create = function(){
         switch (spr.sizeState){
@@ -48,7 +46,6 @@ var asteroidRock = function(spr){
     }
 
     spr.explode = function(){
-        var texture = spr.texture;
         switch (spr.sizeState){
             case "small":
                 spr.width  /= 5;
@@ -74,17 +71,21 @@ var asteroidRock = function(spr){
                 med2 = _objPolymorph(med2);
                 break;
         }
+
+        return spr.id;
     }
 
     /**
     *    This method creates a new asteroidRock
-    *    @param {string} size - a string key that determines the size
+    *    @param {string} size - a string key that determines the size of asteroidRock
+    *    @returns {obj} - an astroid gameObject
     */
     spr.spitAsteroid = function(size) {
-        var babyAst = new _sprite(spr.texture);
-        babyAst = _objPolymorph(babyAst);
+        var babyAst = new _sprite(spr.texture); //turn texture into sprite
+        babyAst = _objPolymorph(babyAst);       //give sprite global game object attributes
+        _gameMaster.initGameSprite(babyAst);    //register new sprite into game
+        asteroidRock(babyAst);  //give sprite asteroidRock specific fields
         babyAst.sizeState = size;
-        _gameMaster.initGameSprite(babyAst);
         return babyAst;
     }
 
