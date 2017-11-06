@@ -1,5 +1,6 @@
-//setup keyboard controls
-
+/**
+*    @param {object} spr - A reference to an extended pixi game sprite
+*/
 var playerShip = function(spr){
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
@@ -20,14 +21,25 @@ var playerShip = function(spr){
     //         spr.debug.text = "DEBUG: " + msg;
     //     }
     // }
-    spr.speedCap = function(){
-        if (spr.vx > 10){
-            spr.vx = 10;
+
+    /**
+    *    This method prevents the ship from breaking a given speed limit
+    *    @param {number} maxVX - speed cap for x-axis
+    *    @param {number} maxVY - speed cap for y-axis
+    */
+    spr.speedCap = function(maxVX, maxVY){
+        if (spr.vx > maxVX){
+            spr.vx = maxVX;
         }
-        if (spr.vy > 10){
-            spr.vy = 10;
+        if (spr.vy > maxVY){
+            spr.vy = maxVY;
         }
     }
+
+    /**
+    *    This method enables a player ship to fire a bullet object
+    *    @returns {object} a new created bullet object
+    */
     spr.fireBullet = function(){
         var img = _resources[_astroidSpritesSheet].textures["fireball.png"];
         var bullet = new _sprite(img);
@@ -42,7 +54,11 @@ var playerShip = function(spr){
 
         return bullet;
     }
-    spr.update = function(){
+
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
+    spr.update = function(delta){
         if (spr.alive) {
             playerControls(spr);
             //Check for any collisions
@@ -75,7 +91,7 @@ var playerShip = function(spr){
         }
         spr.screenWrap();
         spr.speedCap();
-        spr.x += spr.vx;
-        spr.y += spr.vy;
+        spr.x += spr.vx * delta;
+        spr.y += spr.vy * delta;
     }
 }
