@@ -42,7 +42,7 @@ var playerShip = function(spr){
         if (blazingX && blazingY) spr.aImageThreshold = true;
     }
 
-    spr.afterImage = function(){
+    spr.afterImage = function(delta){
         var img = spr.texture;
         img = new _sprite(img);
         img = _objPolymorph(img);
@@ -51,7 +51,7 @@ var playerShip = function(spr){
         img.rotation = spr.rotation;
         img.update = function(){
             if (img.alpha > 0){
-                img.alpha -= .005;
+                img.alpha -= .005 * delta;
             }
             else{
                 img.destroySelf();
