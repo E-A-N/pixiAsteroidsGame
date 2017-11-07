@@ -16,7 +16,7 @@ var playerBullet = function(spr){
     }
 
     /**
-    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    *    @param {number} delta - A time value that helps keep the game in sync
     */
     spr.update = function(delta){
         if (spr.alive) {
