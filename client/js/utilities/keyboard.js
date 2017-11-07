@@ -2,7 +2,7 @@
 /**
 *    A utility function for constructoring keyboard pressing events
 *    @param {number} keycode - ASCII number value that represents a keyboard key
-*    @return {object} - An object with relative keyboard input events methods
+*    @returns {object} - An object with relative keyboard input events methods
 */
 
 function keyboard(keyCode) {

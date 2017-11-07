@@ -60,7 +60,7 @@ var playerShip = function(spr){
     }
     /**
     *    This method enables a player ship to fire a bullet object
-    *    @returns {object} a new created bullet object
+    *    @returnss {object} a new created bullet object
     */
     spr.fireBullet = function(){
         var img = _resources[_astroidSpritesSheet].textures["fireball.png"];

@@ -10,7 +10,7 @@ k.fInput = keyboard(70);
 
 /**  This utility function setups the player controls for the space ship
 *    @param {object} ship - reference to game ship
-*    @returns TODO: find a testable return value to work with here
+*    @returnss TODO: find a testable return value to work with here
 */
 var playerControls = function(ship){
 

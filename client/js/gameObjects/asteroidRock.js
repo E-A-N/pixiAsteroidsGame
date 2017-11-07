@@ -8,7 +8,7 @@ var asteroidRock = function(spr){
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
 
     /**
-    *   @returns {bool} returns true to indicate tests this method is successfully overwritten
+    *   @returnss {bool} returns true to indicate tests this method is successfully overwritten
     */
     spr.create = function(){
         switch (spr.sizeState){
@@ -44,7 +44,7 @@ var asteroidRock = function(spr){
 
     /**
     *    This method destroys a rock and splits it smaller chunks depending on size
-    *   @returns {number} returns id of gameObject
+    *   @returnss {number} returns id of gameObject
     */
     spr.explode = function(){
         switch (spr.sizeState){
@@ -70,7 +70,7 @@ var asteroidRock = function(spr){
     /**
     *    This method creates a new asteroidRock
     *    @param {string} size - a string key that determines the size of asteroidRock
-    *    @returns {obj} - an astroid gameObject
+    *    @returnss {obj} - an astroid gameObject
     */
     spr.spitAsteroid = function(size) {
         var babyAst = new _sprite(spr.texture); //turn texture into sprite

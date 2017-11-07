@@ -11,7 +11,7 @@ spriteHandler.prototype.issuedIds = 0;
 /**
 *    This method checks all sprites for any particular task
 *    @param {string} method - A string key that sets action to take
-*    @return {bool} - true if items in the sprite List have been traversed
+*    @returns {bool} - true if items in the sprite List have been traversed
 */
 spriteHandler.prototype.spriteTraverse = function(method = false, arg = false) {
     // var sprNum = this.spriteList.length;
@@ -39,7 +39,7 @@ spriteHandler.prototype.spriteTraverse = function(method = false, arg = false) {
 /**
 *    This method adds a new sprite to the sprite collection and issues it an ID
 *    @param {object} spr - The sprite to be added to collection
-*    @return {number} - an id to reference the sprite with
+*    @returns {number} - an id to reference the sprite with
 */
 spriteHandler.prototype.initGameSprite = function(spr) {
     //TODO write a better method for issuing ids
@@ -51,7 +51,7 @@ spriteHandler.prototype.initGameSprite = function(spr) {
 
 /**
 *    @param {function} - Optional callback that runs after objects have been updated
-*    @return {bool} - returns true if all applicable game objects have been updated
+*    @returns {bool} - returns true if all applicable game objects have been updated
 */
 spriteHandler.prototype.updateAll = function(delta, call = false) {
     var updated = this.spriteTraverse("update",delta)
@@ -66,7 +66,7 @@ spriteHandler.prototype.updateAll = function(delta, call = false) {
 
 /**
 *    @param {function} - Optional callback that runs after objects have ran their create event
-*    @return {bool} - returns true if all applicable game objects have ran their create event
+*    @returns {bool} - returns true if all applicable game objects have ran their create event
 */
 spriteHandler.prototype.createAll = function(call = false) {
     var updated = this.spriteTraverse("create");

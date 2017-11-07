@@ -35,7 +35,7 @@ _gameCanvas.appendChild(app.view);
 *    @param {object} src - A url reference to collection of textures
 *    @param {string} texture - A url reference to ideal texture
 *    @param {function} call - optional callback assign attributes to new sprite
-*    @return {obj}  - Ship sprite
+*    @returns {obj}  - Ship sprite
 */
 var addSprite = function(x, y, src, texture, call = false){
     var img  = _resources[src].textures[texture];
@@ -59,7 +59,7 @@ var addSprite = function(x, y, src, texture, call = false){
 *    @param {object} src - A url reference to collection of textures
 *    @param {string} texture - A url reference to ideal texture
 *    @param {function} call - optional callback assign attributes to new sprite
-*    @return {obj}  - Ship sprite
+*    @returns {obj}  - Ship sprite
 */
 var addAnimatedSprite = function(x, y, src, textures, call = false){
     var spr  = PIXI.extras.AnimatedSprite.fromImages(textures)
@@ -90,7 +90,7 @@ var addAnimatedSprite = function(x, y, src, textures, call = false){
 *    @param {obj} L - A reference to the loader object
 *    @param {array} urls - A collection of resource locations for loading
 *    @param {function} call - Function to run when resources have fully loaded
-*    @return {bool} - Whether the resources have successfully loaded
+*    @returns {bool} - Whether the resources have successfully loaded
 */
 var preload = function(urls = _urls, L = _loader){
 

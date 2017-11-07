@@ -20,7 +20,7 @@ gameObject.create = function(){};
 
 /**
 *    This method deletes a sprite permanetly from the game
-*    @returns {number} id number of destroyed sprite
+*    @returnss {number} id number of destroyed sprite
 */
 gameObject.destroySelf = function(){
     var id = this.id;
@@ -31,7 +31,7 @@ gameObject.destroySelf = function(){
 
 /**
 *    @param {object} spr - Reference to sprite to extend with gameObject attributes
-*    @return {object} - updated gameObject
+*    @returns {object} - updated gameObject
 */
 gameObject.sprConstruct = function(spr) {
     var attributes = Object.keys(gameObject);
@@ -71,7 +71,7 @@ gameObject.screenWrap = function(){
 /**
 *    This method cheks to see if there's a collision with another gameObject
 *    @param {object} spr2 - The sprite that's being checked for a collision
-*    @returns {bool} - returns true if there is a collision
+*    @returnss {bool} - returns true if there is a collision
 */
 gameObject.collision = function (spr2) {
 
@@ -115,7 +115,7 @@ gameObject.collision = function (spr2) {
 *    This method traverses all game objects checking for a collision
 *    @param {array} sprList -a collection of registered gameObjects
 *    @param {function} call - Callback action to take in the case there is a collision
-*    @returns {string} - ID key with collision results
+*    @returnss {string} - ID key with collision results
 */
 gameObject.singleCollisionCheck = function(sprList, call = false){
     var self = this;
