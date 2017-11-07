@@ -14,7 +14,6 @@ gameObject.update = function(){};
 
 /**
 *    Place holder create method for game object, no return value because this method is arbitrary
-*    This method throws an error if it's not defined by an instance
 */
 gameObject.create = function(){};
 
@@ -65,7 +64,7 @@ gameObject.screenWrap = function(){
     if (wrapTop)    this.y  = _gameHeight + this.height/2;
     if (wrapBottom) this.y = -this.height/2;
 
-    return wrapLeft || wrapRight || wrapTop || wrapBottom
+    return wrapLeft || wrapRight || wrapTop || wrapBottom;
 }
 
 /**
