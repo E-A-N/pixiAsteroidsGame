@@ -16,7 +16,7 @@ var _gameMaster     = new spriteHandler; //from spriteHandler.js
 var _objPolymorph   = gameObject.sprConstruct;
 
 //text object for bug tracking
-//var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
+var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
 
 //assign app parameters
 var opts = {};
@@ -127,20 +127,20 @@ var createPhase = function(){
     var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
     //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
-    //ship.debug = _debug; //temporary
+    ship.debug = _debug; //temporary
     ship.textureIdle = ship.texture;
     ship.textureThrust = _resources[_astroidSpritesSheet].textures["ship2.png"];
     ship.alpha = 0.5
     console.log(ship.alpha);
 
-    var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
-    var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
-    //asteroid1.sizeState = "medium";
-    asteroid2.sizeState = "small";
-    //app.stage.addChild(ship.debug);
+    // var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
+    // var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
+    // //asteroid1.sizeState = "medium";
+    // asteroid2.sizeState = "small";
+    app.stage.addChild(ship.debug);
     app.stage.addChild(ship);
-    app.stage.addChild(asteroid1);
-    app.stage.addChild(asteroid2);
+    // app.stage.addChild(asteroid1);
+    // app.stage.addChild(asteroid2);
     _gameMaster.createAll();
 }
 

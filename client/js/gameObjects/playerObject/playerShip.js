@@ -21,12 +21,7 @@ var playerShip = function(spr){
     spr.aImageCoolDownTime = 5;
     spr.aImageThreshold = false;
 
-    //This method is for debugging
-    // spr.debugMsg = function (msg){
-    //     if(spr.debug){
-    //         spr.debug.text = "DEBUG: " + msg;
-    //     }
-    // }
+
 
     /**
     *    This method prevents the ship from breaking a given speed limit
@@ -55,10 +50,12 @@ var playerShip = function(spr){
         img.y = spr.y;
         img.rotation = spr.rotation;
         img.update = function(){
-            while (img.alpha > 0){
-                img.alpha -= .05;
+            if (img.alpha > 0){
+                img.alpha -= .005;
             }
-            img.destroySelf();
+            else{
+                img.destroySelf();
+            }
         }
     }
     /**
@@ -101,9 +98,18 @@ var playerShip = function(spr){
             window.location.reload();
         }
 
+
+
         /** DEBUGGING ITEMS **/
-        // var msg = "coolDown: " + spr.coolDown +" canShoot:"+ spr.canShoot;;
-        // spr.debugMsg(msg);
+
+        spr.debugMsg = function (msg){
+            if(spr.debug){
+                spr.debug.text = "DEBUG: " + msg;
+            }
+        }
+
+        var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
+        spr.debugMsg(msg);
 
         //TODO: reimpliment this using the ticker for timing
         if (spr.coolDown){
@@ -133,7 +139,7 @@ var playerShip = function(spr){
 
 
         spr.screenWrap();
-        spr.speedCap();
+        spr.speedCap(10,10);
         spr.x += spr.vx * delta;
         spr.y += spr.vy * delta;
     }
