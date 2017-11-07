@@ -42,14 +42,19 @@ var playerShip = function(spr){
         if (blazingX && blazingY) spr.aImageThreshold = true;
     }
 
-    spr.afterImage = function(delta){
+    /**
+    *    This method creates an after image sprite
+    *    Note: After Images do not come with image IDs
+    *    @returns {object} - An output of the newly created afterImage
+    */
+    spr.afterImage = function(){
         var img = spr.texture;
         img = new _sprite(img);
         img = _objPolymorph(img);
         img.x = spr.x;
         img.y = spr.y;
         img.rotation = spr.rotation;
-        img.update = function(){
+        img.update = function(delta){
             if (img.alpha > 0){
                 img.alpha -= .005 * delta;
             }
@@ -57,6 +62,7 @@ var playerShip = function(spr){
                 img.destroySelf();
             }
         }
+        return img;
     }
     /**
     *    This method enables a player ship to fire a bullet object
