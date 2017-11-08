@@ -133,14 +133,14 @@ var createPhase = function(){
     ship.alpha = 0.5
     console.log(ship.alpha);
 
-    // var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
-    // var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
-    // //asteroid1.sizeState = "medium";
-    // asteroid2.sizeState = "small";
-    app.stage.addChild(ship.debug);
+    var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
+    var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
+    asteroid1.sizeState = "big";
+    asteroid2.sizeState = "big";
+    //app.stage.addChild(ship.debug);
     app.stage.addChild(ship);
-    // app.stage.addChild(asteroid1);
-    // app.stage.addChild(asteroid2);
+    app.stage.addChild(asteroid1);
+    app.stage.addChild(asteroid2);
     _gameMaster.createAll();
 }
 
