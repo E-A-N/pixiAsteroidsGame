@@ -85,10 +85,11 @@ var playerShip = function(spr){
     }
 
     /**
-    *    The method handles delay for bullet shooting
+    *    The method handles the delay for bullet shooting
+    *    TODO: reimpliment this using the ticker for timing
     *    @returns {number} value representing how long down will last
     */
-    spr.coolDownCheck = function() {
+    spr.bulletCoolDownCheck = function() {
         if (spr.coolDown){
             if (spr.coolDownTime > 0){
                 spr.coolDownTime--;
@@ -99,14 +100,13 @@ var playerShip = function(spr){
                 spr.coolDownTime = spr.coolDownPeriod;
             }
         }
-
         return spr.coolDownTime;
     }
 
     /**
-    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    *    This method checks for collisions and resets the game if the ship gets destroyed
     */
-    spr.update = function(delta){
+    spr.checkMyDeath = function (){
         if (spr.alive) {
             playerControls(spr);
             //Check for any collisions
@@ -123,28 +123,24 @@ var playerShip = function(spr){
         else if (--spr.respawnTime < 0){
             window.location.reload();
         }
-
-        /** DEBUGGING ITEMS **/
-        spr.debugMsg = function (msg){
-            if(spr.debug){
-                spr.debug.text = "DEBUG: " + msg;
-            }
+    }
+    /** DEBUGGING ITEMS **/
+    spr.debugMsg = function (msg){
+        if(spr.debug){
+            spr.debug.text = "DEBUG: " + msg;
         }
+    }
+
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
+    spr.update = function(delta){
+        spr.checkMyDeath();
 
         //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
         //spr.debugMsg(msg);
 
-        //TODO: reimpliment this using the ticker for timing
-        if (spr.coolDown){
-            if (spr.coolDownTime > 0){
-                spr.coolDownTime--;
-            }
-            else {
-                spr.canShoot = true;
-                spr.coolDown = false;
-                spr.coolDownTime = spr.coolDownPeriod;
-            }
-        }
+        spr.bulletCoolDownCheck();
         //After image logic
         if (spr.aImageIsCoolingDown){
             if (spr.aImageCoolDownTime > 0){
