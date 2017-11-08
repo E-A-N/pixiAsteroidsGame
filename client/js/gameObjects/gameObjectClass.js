@@ -2,13 +2,12 @@
 *    @class
 *   A template for all game objects
 */
-
 var gameObject = {}
-gameObject.id = 0; //game id
-gameObject.spd = 1;   //basic sprite movement speed
-gameObject.vx = 0; //velocity x
-gameObject.vy = 0; //veloctiy y
-gameObject.alive = true;
+gameObject.id = 0;       /** @member {Number} */
+gameObject.spd = 1;      /** @member {Number} */
+gameObject.vx = 0;       /** @member {Number} */
+gameObject.vy = 0;       /** @member {Number} */
+gameObject.alive = true; /** @member {Boolean} */
 
 
 /**
