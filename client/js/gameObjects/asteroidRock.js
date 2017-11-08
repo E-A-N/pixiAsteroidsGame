@@ -18,8 +18,8 @@ var asteroidRock = function(spr){
                 spr.scale.x = .20;
                 spr.scale.y = .20;
                 spr.turnSpd = Math.floor(Math.random() * 30)/ 100;
-                spr.vx = (Math.floor(Math.random() * 20)/40) * spr.rotateDirection;
-                spr.vy = (Math.floor(Math.random() * 20)/40) * spr.rotateDirection;
+                spr.vx = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
+                spr.vy = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
                 break;
 
             case "medium":
@@ -57,9 +57,12 @@ var asteroidRock = function(spr){
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
+                spr.spitAsteroid('small');
+                spr.spitAsteroid('small');
                 break;
 
             default:
+                spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 break;
