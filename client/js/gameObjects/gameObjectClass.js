@@ -24,6 +24,7 @@ gameObject.create = function(){};
 gameObject.destroySelf = function(){
     var id = this.id;
     app.stage.removeChild(this);
+    delete _gameMaster.spriteList[id];
     return id;
 }
 

@@ -52,6 +52,7 @@ var playerShip = function(spr){
         var img = spr.texture;
         img = new _sprite(img);
         img = _objPolymorph(img);
+        img.name = "afterImage";
         _gameMaster.initGameSprite(img);
         img.x = spr.x;
         img.y = spr.y;
