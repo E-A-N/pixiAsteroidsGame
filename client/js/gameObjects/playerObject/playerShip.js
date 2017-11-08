@@ -37,7 +37,9 @@ var playerShip = function(spr){
         //check to see if going fast enough to leave after images
         var blazingX = Math.abs(spr.vx) > 7;
         var blazingY = Math.abs(spr.vx) > 7;
-        if (blazingX && blazingY) spr.aImageThreshold = true;
+        if (blazingX && blazingY) {
+            spr.aImageThreshold = true;
+        }
     }
 
     /**
@@ -53,8 +55,9 @@ var playerShip = function(spr){
         img.y = spr.y;
         img.rotation = spr.rotation;
         img.update = function(delta){
+            spr.debugMsg("After Image!!");
             if (img.alpha > 0){
-                img.alpha -= .005 * delta;
+                img.alpha -= .002 * delta;
             }
             else{
                 img.destroySelf();
@@ -82,6 +85,25 @@ var playerShip = function(spr){
     }
 
     /**
+    *    The method handles delay for bullet shooting
+    *    @returns {number} value representing how long down will last
+    */
+    spr.coolDownCheck = function() {
+        if (spr.coolDown){
+            if (spr.coolDownTime > 0){
+                spr.coolDownTime--;
+            }
+            else {
+                spr.canShoot = true;
+                spr.coolDown = false;
+                spr.coolDownTime = spr.coolDownPeriod;
+            }
+        }
+
+        return spr.coolDownTime;
+    }
+
+    /**
     *    @param {number} delta - A time based value that sustains relative space/time accuracy
     */
     spr.update = function(delta){
@@ -102,18 +124,15 @@ var playerShip = function(spr){
             window.location.reload();
         }
 
-
-
         /** DEBUGGING ITEMS **/
-
         spr.debugMsg = function (msg){
             if(spr.debug){
                 spr.debug.text = "DEBUG: " + msg;
             }
         }
 
-        var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
-        spr.debugMsg(msg);
+        //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
+        //spr.debugMsg(msg);
 
         //TODO: reimpliment this using the ticker for timing
         if (spr.coolDown){
