@@ -15,6 +15,12 @@ var _gameCanvas     = document.getElementById("gameContainer");
 var _gameMaster     = new spriteHandler; //from spriteHandler.js
 var _objPolymorph   = gameObject.sprConstruct;
 
+//Initiate the game state controller
+var _referee = {};
+_objPolymorph(_referee);
+stateController(_referee)
+_gameMaster.initGameSprite(_referee);
+
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
 
@@ -124,6 +130,7 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
+
     var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
     //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
