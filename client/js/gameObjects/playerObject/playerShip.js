@@ -136,19 +136,9 @@ var playerShip = function(spr){
     }
 
     /**
-    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    *    This method checks if ship is fast enough for after images
     */
-    spr.update = function(delta){
-        spr.checkMyDeath();
-        spr.bulletCoolDownCheck();
-        //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
-        //spr.debugMsg(msg);
-
-        var msg = "isCool: " + spr.aImageIsCoolingDown + "\n";
-        msg += "coolDownTime: " +spr.aImageCoolDownTime+ "\n";
-        msg += "threshold reached?: " +spr.aImageThreshold;
-        spr.debugMsg(msg)
-        //After image logic
+    spr.superFastEffect = function (){
         var fastAndCool = !spr.aImageIsCoolingDown && spr.aImageThreshold;
         if (spr.aImageIsCoolingDown){
             if (spr.aImageCoolDownTime > 0){
@@ -164,7 +154,17 @@ var playerShip = function(spr){
             spr.aImageIsCoolingDown = true;
             spr.aImageThreshold = false;
         }
+    }
 
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
+    spr.update = function(delta){
+        spr.checkMyDeath();
+        spr.bulletCoolDownCheck();
+        spr.superFastEffect();
+        //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
+        //spr.debugMsg(msg);
 
         spr.screenWrap();
         spr.speedCap(10,10);
