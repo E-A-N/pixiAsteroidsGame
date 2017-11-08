@@ -1,5 +1,6 @@
 /**
 *    This is a unique game object that essentially handles the logic and transition of game states.
+*    @param {object} spr - reference to sprite to be dynamically expanded into statemachine
 */
 var stateController = function(spr){
     var respawnTime = 200;

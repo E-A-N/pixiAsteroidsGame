@@ -1,5 +1,6 @@
 /**
-*    @param {object} spr - A reference to an extended pixi game sprite
+*    This object respresents the main playable game character
+*    @param {object} spr - reference to sprite to be dynamically extended into playerShip
 */
 var playerShip = function(spr){
     spr.anchor.x = 0.5;

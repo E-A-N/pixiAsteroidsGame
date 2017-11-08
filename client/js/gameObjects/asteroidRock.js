@@ -1,7 +1,8 @@
 /**
-*    @param {object} spr - A reference to an extended pixi game sprite
+*    @param {object} spr - reference to sprite to be dynamically expanded
 */
 var asteroidRock = function(spr){
+    /** @memberof asteroidRock */
     spr.name = "asteroidRock"
 
     //choose random direction to spin

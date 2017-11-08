@@ -27,7 +27,8 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-*    @param {object} spr - A reference to an extended pixi game sprite
+*    This object respresents the main playable game character
+*    @param {object} spr - reference to sprite to be dynamically extended into playerShip
 */
 var playerShip = function(spr){
     spr.anchor.x = 0.5;
@@ -45,8 +46,8 @@ var playerShip = function(spr){
 
     //Set up variables for after image effect
     spr.aImageIsCoolingDown = false;
-    spr.aImageCoolDownPeriod = 5;
-    spr.aImageCoolDownTime = 5;
+    spr.aImageCoolDownPeriod = 1;
+    spr.aImageCoolDownTime = 1;
     spr.aImageThreshold = false;
 
 
@@ -57,17 +58,18 @@ var playerShip = function(spr){
     *    @param {number} maxVY - speed cap for y-axis
     */
     spr.speedCap = function(maxVX, maxVY){
-        if (spr.vx > maxVX){
-            spr.vx = maxVX;
-        }
-        if (spr.vy > maxVY){
-            spr.vy = maxVY;
-        }
+        if (spr.vx > maxVX)  spr.vx = maxVX;
+        if (spr.vx &lt; -maxVX) spr.vx = -maxVX;
+        if (spr.vy > maxVY)  spr.vy = maxVY;
+        if (spr.vy &lt; -maxVY) spr.vy = -maxVY;
 
         //check to see if going fast enough to leave after images
-        var blazingX = spr.vx > 7;
-        var blazingY = spr.vx > 7;
-        if (blazingX &amp;&amp; blazingY) spr.aImageThreshold = true;
+        var blazingX = Math.abs(spr.vx) > 7;
+        var blazingY = Math.abs(spr.vy) > 7;
+        if (blazingX || blazingY) {
+            //spr.debugMsg("Threshold Reached!!");
+            spr.aImageThreshold = true;
+        }
     }
 
     /**
@@ -79,18 +81,23 @@ var playerShip = function(spr){
         var img = spr.texture;
         img = new _sprite(img);
         img = _objPolymorph(img);
+        img.name = "afterImage";
+        _gameMaster.initGameSprite(img);
         img.x = spr.x;
         img.y = spr.y;
+        img.anchor.x = spr.anchor.x;
+        img.anchor.y = spr.anchor.y;
         img.rotation = spr.rotation;
         img.update = function(delta){
             if (img.alpha > 0){
-                img.alpha -= .005 * delta;
+                img.alpha -= .05 * delta;
             }
             else{
                 img.destroySelf();
             }
         }
-        return img;
+        app.stage.addChild(img);
+        return img.id;
     }
     /**
     *    This method enables a player ship to fire a bullet object
@@ -112,40 +119,11 @@ var playerShip = function(spr){
     }
 
     /**
-    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    *    The method handles the delay for bullet shooting
+    *    TODO: reimpliment this using the ticker for timing
+    *    @returns {number} value representing how long down will last
     */
-    spr.update = function(delta){
-        if (spr.alive) {
-            playerControls(spr);
-            //Check for any collisions
-            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
-                if (spr2.name === "asteroidRock"){
-                    self.destroySelf();
-                    spr2.explode();
-                    spr.alive = false;
-                    spr.vx = 0;
-                    spr.vy = 0;
-                }
-            });
-        }
-        else if (--spr.respawnTime &lt; 0){
-            window.location.reload();
-        }
-
-
-
-        /** DEBUGGING ITEMS **/
-
-        spr.debugMsg = function (msg){
-            if(spr.debug){
-                spr.debug.text = "DEBUG: " + msg;
-            }
-        }
-
-        var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
-        spr.debugMsg(msg);
-
-        //TODO: reimpliment this using the ticker for timing
+    spr.bulletCoolDownCheck = function() {
         if (spr.coolDown){
             if (spr.coolDownTime > 0){
                 spr.coolDownTime--;
@@ -156,7 +134,43 @@ var playerShip = function(spr){
                 spr.coolDownTime = spr.coolDownPeriod;
             }
         }
-        //After image logic
+        return spr.coolDownTime;
+    }
+
+    /**
+    *    This method checks for collisions and resets the game if the ship gets destroyed
+    */
+    spr.checkMyDeath = function (){
+        if (spr.alive) {
+            playerControls(spr);
+            //Check for any collisions
+            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, rockSpr){
+                if (rockSpr.name === "asteroidRock"){
+                    self.destroySelf();
+                    rockSpr.explode();
+                    _referee.playerDead = true;
+                    spr.alive = false;
+                    spr.vx = 0;
+                    spr.vy = 0;
+                }
+            });
+        }
+        // else if (--spr.respawnTime &lt; 0){
+        //     window.location.reload();
+        // }
+    }
+    /** DEBUGGING ITEMS **/
+    spr.debugMsg = function (msg){
+        if(spr.debug){
+            spr.debug.text = "DEBUG: " + msg;
+        }
+    }
+
+    /**
+    *    This method checks if ship is fast enough for after images
+    */
+    spr.superFastEffect = function (){
+        var fastAndCool = !spr.aImageIsCoolingDown &amp;&amp; spr.aImageThreshold;
         if (spr.aImageIsCoolingDown){
             if (spr.aImageCoolDownTime > 0){
                 spr.aImageCoolDownTime--;
@@ -165,12 +179,23 @@ var playerShip = function(spr){
                 spr.aImageIsCoolingDown = false;
             }
         }
-        else if (spr.aImageIsCoolingDown &amp;&amp; spr.aImageThreshold) {
+        else if (fastAndCool) {
             spr.afterImage();
             spr.aImageCoolDownTime = spr.aImageCoolDownPeriod;
             spr.aImageIsCoolingDown = true;
+            spr.aImageThreshold = false;
         }
+    }
 
+    /**
+    *    @param {number} delta - A time based value that sustains relative space/time accuracy
+    */
+    spr.update = function(delta){
+        spr.checkMyDeath();
+        spr.bulletCoolDownCheck();
+        spr.superFastEffect();
+        //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
+        //spr.debugMsg(msg);
 
         spr.screenWrap();
         spr.speedCap(10,10);
@@ -188,13 +213,13 @@ var playerShip = function(spr){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addAnimatedSprite">addAnimatedSprite</a></li><li><a href="global.html#addSprite">addSprite</a></li><li><a href="global.html#createPhase">createPhase</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#playerControls">playerControls</a></li><li><a href="global.html#playerShip">playerShip</a></li><li><a href="global.html#preload">preload</a></li><li><a href="global.html#update">update</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="gameObject.html">gameObject</a></li><li><a href="spriteHandler.html">spriteHandler</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAnimatedSprite">addAnimatedSprite</a></li><li><a href="global.html#addSprite">addSprite</a></li><li><a href="global.html#asteroidRock">asteroidRock</a></li><li><a href="global.html#createPhase">createPhase</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#playerBullet">playerBullet</a></li><li><a href="global.html#playerControls">playerControls</a></li><li><a href="global.html#playerShip">playerShip</a></li><li><a href="global.html#preload">preload</a></li><li><a href="global.html#stateController">stateController</a></li><li><a href="global.html#update">update</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Nov 07 2017 18:04:50 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Nov 07 2017 22:56:56 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>

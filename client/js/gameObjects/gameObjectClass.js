@@ -2,7 +2,7 @@
 *    @class
 *   A template for all game objects
 */
-var gameObject = {}
+var gameObject = {};
 gameObject.id = 0;       /** @member {Number} */
 gameObject.spd = 1;      /** @member {Number} */
 gameObject.vx = 0;       /** @member {Number} */

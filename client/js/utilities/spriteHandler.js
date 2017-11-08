@@ -1,11 +1,14 @@
-//create prototype object
+/**
+*    @class
+*   A template for spriteHandlers that organize references and member to gameObjects
+*/
 var spriteHandler = function(){
     this.info = "Sprite Master Object!!";
 };
 
 //Reference collection of all gamesprites
-spriteHandler.prototype.spriteList = {};
-spriteHandler.prototype.issuedIds = 0;
+spriteHandler.prototype.spriteList = {}; /** @member {object} */
+spriteHandler.prototype.issuedIds = 0;   /** @member {number} */
 
 
 /**
