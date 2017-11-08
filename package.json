@@ -1,8 +1,4 @@
-{
-  "name": "Ean Pixi Game",
-  "version": "0.0.1",
-  "description": "A game built for a programming test from Jam City",
-  "dependencies": {
-    "express": "^4.15.2",
+{ "dependencies":
+    { "express": "^4.15.2"
   }
 }
