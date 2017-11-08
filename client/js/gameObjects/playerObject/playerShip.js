@@ -29,16 +29,14 @@ var playerShip = function(spr){
     *    @param {number} maxVY - speed cap for y-axis
     */
     spr.speedCap = function(maxVX, maxVY){
-        if (spr.vx > maxVX){
-            spr.vx = maxVX;
-        }
-        if (spr.vy > maxVY){
-            spr.vy = maxVY;
-        }
+        if (spr.vx > maxVX)  spr.vx = maxVX;
+        if (spr.vx < -maxVX) spr.vx = -maxVX;
+        if (spr.vy > maxVY)  spr.vy = maxVY;
+        if (spr.vy < -maxVY) spr.vy = -maxVY;
 
         //check to see if going fast enough to leave after images
-        var blazingX = spr.vx > 7;
-        var blazingY = spr.vx > 7;
+        var blazingX = Math.abs(spr.vx) > 7;
+        var blazingY = Math.abs(spr.vx) > 7;
         if (blazingX && blazingY) spr.aImageThreshold = true;
     }
 
