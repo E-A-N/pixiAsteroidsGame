@@ -59,7 +59,6 @@ var playerShip = function(spr){
         img.anchor.y = spr.anchor.y;
         img.rotation = spr.rotation;
         img.update = function(delta){
-            spr.debugMsg("After Image!!");
             if (img.alpha > 0){
                 img.alpha -= .05 * delta;
             }
@@ -68,7 +67,7 @@ var playerShip = function(spr){
             }
         }
         app.stage.addChild(img);
-        return img;
+        return img.id;
     }
     /**
     *    This method enables a player ship to fire a bullet object
@@ -163,6 +162,7 @@ var playerShip = function(spr){
             spr.afterImage();
             spr.aImageCoolDownTime = spr.aImageCoolDownPeriod;
             spr.aImageIsCoolingDown = true;
+            spr.aImageThreshold = false;
         }
 
 
