@@ -36,8 +36,9 @@ var playerShip = function(spr){
 
         //check to see if going fast enough to leave after images
         var blazingX = Math.abs(spr.vx) > 7;
-        var blazingY = Math.abs(spr.vx) > 7;
-        if (blazingX && blazingY) {
+        var blazingY = Math.abs(spr.vy) > 7;
+        if (blazingX || blazingY) {
+            spr.debugMsg("Threshold Reached!!");
             spr.aImageThreshold = true;
         }
     }
@@ -136,11 +137,11 @@ var playerShip = function(spr){
     */
     spr.update = function(delta){
         spr.checkMyDeath();
-
+        spr.bulletCoolDownCheck();
         //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
         //spr.debugMsg(msg);
 
-        spr.bulletCoolDownCheck();
+
         //After image logic
         if (spr.aImageIsCoolingDown){
             if (spr.aImageCoolDownTime > 0){
