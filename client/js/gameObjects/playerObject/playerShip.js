@@ -115,19 +115,20 @@ var playerShip = function(spr){
         if (spr.alive) {
             playerControls(spr);
             //Check for any collisions
-            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
-                if (spr2.name === "asteroidRock"){
+            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, rockSpr){
+                if (rockSpr.name === "asteroidRock"){
                     self.destroySelf();
-                    spr2.explode();
+                    rockSpr.explode();
+                    _referee.playerDead = true;
                     spr.alive = false;
                     spr.vx = 0;
                     spr.vy = 0;
                 }
             });
         }
-        else if (--spr.respawnTime < 0){
-            window.location.reload();
-        }
+        // else if (--spr.respawnTime < 0){
+        //     window.location.reload();
+        // }
     }
     /** DEBUGGING ITEMS **/
     spr.debugMsg = function (msg){
