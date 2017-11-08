@@ -17,8 +17,8 @@ var playerShip = function(spr){
 
     //Set up variables for after image effect
     spr.aImageIsCoolingDown = false;
-    spr.aImageCoolDownPeriod = 5;
-    spr.aImageCoolDownTime = 5;
+    spr.aImageCoolDownPeriod = 1;
+    spr.aImageCoolDownTime = 1;
     spr.aImageThreshold = false;
 
 
@@ -38,7 +38,7 @@ var playerShip = function(spr){
         var blazingX = Math.abs(spr.vx) > 7;
         var blazingY = Math.abs(spr.vy) > 7;
         if (blazingX || blazingY) {
-            spr.debugMsg("Threshold Reached!!");
+            //spr.debugMsg("Threshold Reached!!");
             spr.aImageThreshold = true;
         }
     }
@@ -52,18 +52,22 @@ var playerShip = function(spr){
         var img = spr.texture;
         img = new _sprite(img);
         img = _objPolymorph(img);
+        _gameMaster.initGameSprite(img);
         img.x = spr.x;
         img.y = spr.y;
+        img.anchor.x = spr.anchor.x;
+        img.anchor.y = spr.anchor.y;
         img.rotation = spr.rotation;
         img.update = function(delta){
             spr.debugMsg("After Image!!");
             if (img.alpha > 0){
-                img.alpha -= .002 * delta;
+                img.alpha -= .05 * delta;
             }
             else{
                 img.destroySelf();
             }
         }
+        app.stage.addChild(img);
         return img;
     }
     /**
@@ -141,8 +145,12 @@ var playerShip = function(spr){
         //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
         //spr.debugMsg(msg);
 
-
+        var msg = "isCool: " + spr.aImageIsCoolingDown + "\n";
+        msg += "coolDownTime: " +spr.aImageCoolDownTime+ "\n";
+        msg += "threshold reached?: " +spr.aImageThreshold;
+        spr.debugMsg(msg)
         //After image logic
+        var fastAndCool = !spr.aImageIsCoolingDown && spr.aImageThreshold;
         if (spr.aImageIsCoolingDown){
             if (spr.aImageCoolDownTime > 0){
                 spr.aImageCoolDownTime--;
@@ -151,7 +159,7 @@ var playerShip = function(spr){
                 spr.aImageIsCoolingDown = false;
             }
         }
-        else if (spr.aImageIsCoolingDown && spr.aImageThreshold) {
+        else if (fastAndCool) {
             spr.afterImage();
             spr.aImageCoolDownTime = spr.aImageCoolDownPeriod;
             spr.aImageIsCoolingDown = true;
