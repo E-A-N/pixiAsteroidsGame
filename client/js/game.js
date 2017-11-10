@@ -17,6 +17,7 @@ var _objPolymorph   = gameObject.sprConstruct;
 
 //Check for mobile
 var _mobileuser = /Android|webOS|iPhone|iPod|BlackBerry|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent);
+
 //Initiate the game state controller
 var _referee = {};
 _objPolymorph(_referee);
