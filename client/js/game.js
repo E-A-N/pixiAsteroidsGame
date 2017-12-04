@@ -61,6 +61,9 @@ var addSprite = function(x, y, src, texture, call = false){
     return spr;
 }
 
+//setup scoreBoard
+var scoreBoard = new Score("Score");
+scoreBoard.init();
 
 /**
 *    @param {int} x - horizontal axis coordinate to set in canvas
@@ -121,25 +124,21 @@ var preload = function(urls = _urls, L = _loader){
 var update = function(){
     //var lastTime = _ticker.lastTime;
     requestAnimationFrame(update);
+    scoreBoard.format = scoreBoard.name + ": " + scoreBoard.score;
+    scoreBoard.instance.text = scoreBoard.format;
     //game play logic goes here
      //var deltaTime = 0;
      //if lastTime - deltaTime
     _gameMaster.updateAll(_ticker.deltaTime);
 };
 
-var scoreBoard = new Score("Your Score").init();
-
 /**
 *   TODO: make this function more modular and testable, add parameters and return value
 */
 var createPhase = function(){
     console.log("Everything has loaded!");
-    //ship is the player character
-    http://localhost:7777/
-
-    console.log(scoreBoard);;
-
     var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
+    //_gameMaster.initGameSprite(scoreBoard);
     //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
     ship.debug = _debug; //temporary
@@ -151,7 +150,7 @@ var createPhase = function(){
     asteroid1.sizeState = "big";
     asteroid2.sizeState = "big";
     //app.stage.addChild(ship.debug);
-    //app.stage.addChild(scoreBoard.instance);
+    app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);

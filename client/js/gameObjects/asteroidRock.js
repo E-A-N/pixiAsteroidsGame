@@ -3,7 +3,7 @@
 */
 var asteroidRock = function(spr){
     /** @memberof asteroidRock */
-    spr.name = "asteroidRock"
+    spr.name = "asteroidRock";
 
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
@@ -20,6 +20,7 @@ var asteroidRock = function(spr){
                 spr.turnSpd = Math.floor(Math.random() * 30)/ 100;
                 spr.vx = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
+                spr.scoreValue = 40;
                 break;
 
             case "medium":
@@ -28,6 +29,7 @@ var asteroidRock = function(spr){
                 spr.turnSpd = Math.floor(Math.random() * 50)/ 1000;
                 spr.vx = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
+                spr.scoreValue = 20;
                 break;
 
             default:
@@ -35,6 +37,7 @@ var asteroidRock = function(spr){
                 spr.turnSpd = Math.floor(Math.random() * 100)/ 10000;
                 spr.vx = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
+                spr.scoreValue = 10;
                 break;
         }
 
@@ -67,7 +70,10 @@ var asteroidRock = function(spr){
                 spr.spitAsteroid('medium');
                 break;
         }
-        spr.destroySelf();
+        spr.destroySelf(function(){
+            //increase game score
+            scoreBoard.score += spr.scoreValue;
+        });
         return spr.id;
     }
 
