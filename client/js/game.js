@@ -127,12 +127,17 @@ var update = function(){
     _gameMaster.updateAll(_ticker.deltaTime);
 };
 
+var scoreBoard = new Score("Your Score").init();
+
 /**
 *   TODO: make this function more modular and testable, add parameters and return value
 */
 var createPhase = function(){
     console.log("Everything has loaded!");
     //ship is the player character
+    http://localhost:7777/
+
+    console.log(scoreBoard);;
 
     var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
     //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
@@ -146,6 +151,7 @@ var createPhase = function(){
     asteroid1.sizeState = "big";
     asteroid2.sizeState = "big";
     //app.stage.addChild(ship.debug);
+    //app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);

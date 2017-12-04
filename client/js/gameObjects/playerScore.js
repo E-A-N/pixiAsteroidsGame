@@ -1,13 +1,13 @@
 var Score =  function(name) {
     this.name = name || "score";
     this.score = 0;
-    this.format = this.name + ": ";
 };
 
 Score.prototype.init = function(font){
-    var text = this.name + ": " + this.score;
+    this.format = this.name + ": " + this.score;
     var fontVal = font || {font: "32px sans-serif", fill: "white"};
-    this.instance = new PIXI.Text(text, fontVal);
+    this.instance = new PIXI.Text(this.format, fontVal);
+    this.instance.position.set(50,50);
 }
 
 Score.prototype.updateScore = function(value){
