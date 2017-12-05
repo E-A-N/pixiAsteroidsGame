@@ -21,7 +21,7 @@ var _mobileuser = /Android|webOS|iPhone|iPod|BlackBerry|PlayBook|IEMobile|Window
 //Initiate the game state controller
 var _referee = {};
 _objPolymorph(_referee);
-stateController(_referee)
+stateController(_referee);
 _gameMaster.initGameSprite(_referee);
 
 //text object for bug tracking
@@ -119,16 +119,14 @@ var preload = function(urls = _urls, L = _loader){
 };
 
 /**
-*    Game loop that will constantly update the state of the game
+*    Game loop that will constantly update the state of the game.
+*    Ideal for game play logic
 */
 var update = function(){
     //var lastTime = _ticker.lastTime;
     requestAnimationFrame(update);
     scoreBoard.format = scoreBoard.name + ": " + scoreBoard.score;
     scoreBoard.instance.text = scoreBoard.format;
-    //game play logic goes here
-     //var deltaTime = 0;
-     //if lastTime - deltaTime
     _gameMaster.updateAll(_ticker.deltaTime);
 };
 
