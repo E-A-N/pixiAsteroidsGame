@@ -1,13 +1,13 @@
 var Ost = function(src){
-    this.src = src || [
-        "/client/audio/bangSmall.wav",
-        "/client/audio/bangMedium.wav",
-        "/client/audio/bangLarge.wav",
-        "/client/audio/fire.wav",
-        "/client/audio/thrust.wav",
-    ];
+    this.soundCollection = src || {
+        smallExplosion: "/client/audio/bangSmall.wav",
+        medExplosion:   "/client/audio/bangMedium.wav",
+        bigExplosion:   "/client/audio/bangLarge.wav",
+        fireBullet:     "/client/audio/fire.wav",
+        thrust:         "/client/audio/thrust.wav",
+    };
 
-    this.soundCollection = [];
+    //this.soundCollection = {};
 };
 
 /**
@@ -26,7 +26,10 @@ Ost.prototype._setupSound = function(x){
 
 Ost.prototype.init = function(){
     const method = this._setupSound;
-    this.soundCollection = this.src.map(method);
+    const soundObjects = Object.keys(this.soundCollection).map(method);
+    for (var x in this.soundCollection){
+        this.soundCollection[x] =
+    }
 };
 
 //Sound.soundCollection[1].play();
