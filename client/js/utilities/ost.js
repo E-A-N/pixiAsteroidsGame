@@ -1,4 +1,4 @@
-var Sound = function(src){
+var Ost = function(src){
     this.src = src || [
         "/client/audio/bangSmall.wav",
         "/client/audio/bangMedium.wav",
@@ -10,20 +10,26 @@ var Sound = function(src){
     this.soundCollection = [];
 };
 
-/*
+/**
 *    This method is to be used for traversal through source collection
+*    @returns {object} A Howl instance from howler.js library
 */
-Sound.prototype._setupSound = function(x){
-    var config = {
+Ost.prototype._setupSound = function(x){
+    const config = {
         src: x,
         autoplay: false,
         loop: false,
         volume: 0.5,
-    }
+    };
     return new Howl(config);
 }
 
-Sound.prototype.init = function(){
-    var method = this._setupSound;
+Ost.prototype.init = function(){
+    const method = this._setupSound;
     this.soundCollection = this.src.map(method);
 };
+
+//Sound.soundCollection[1].play();
+
+ga = new Ost();
+ga.init();
