@@ -26,9 +26,9 @@ Ost.prototype._setupSound = function(x){
 
 Ost.prototype.init = function(){
     const method = this._setupSound;
-    const soundObjects = Object.keys(this.soundCollection).map(method);
-    for (var x in soundObjects){
-    	var current = soundObjects[x];
+    const soundsArray = Object.keys(this.soundCollection);
+    for (var x in soundsArray){
+    	var current = soundsArray[x];
     	console.log(current);
         this.src[current] = this._setupSound(current);
     }
