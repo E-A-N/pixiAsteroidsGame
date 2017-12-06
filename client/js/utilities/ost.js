@@ -24,15 +24,28 @@ Ost.prototype._setupSound = function(x){
     return new Howl(config);
 }
 
+/**
+*    This method initializes sound resources as howl objects
+*    @returns {object} - a reference the current Ost instance
+*/
 Ost.prototype.init = function(){
     const method = this._setupSound;
     const soundsArray = Object.keys(this.soundCollection);
     for (var x in soundsArray){
     	var current = soundsArray[x];
-    	console.log(current);
         this.src[current] = this._setupSound(current);
     }
+    return this;
 };
+
+/**
+*    A getter method for sound collection attribute
+*    @returns {Array}
+*/
+Ost.prototype.getSoundCollection = function(){
+    return this.soundCollection;
+}
+
 
 //Sound.soundCollection[1].play();
 
