@@ -19,7 +19,7 @@ Ost.prototype._setupSound = function(x){
         src: x,
         autoplay: false,
         loop: false,
-        volume: 0.5,
+        volume: 1,
     };
     return new Howl(config);
 }
@@ -33,7 +33,8 @@ Ost.prototype.init = function(){
     const soundsArray = Object.keys(this.soundCollection);
     for (var x in soundsArray){
     	var current = soundsArray[x];
-        this.src[current] = this._setupSound(current);
+        var location = this.soundCollection[current];
+        this.src[current] = this._setupSound(location);
     }
     return this;
 };
