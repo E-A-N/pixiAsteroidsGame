@@ -6,7 +6,7 @@ var Ost = function(src){
         fireBullet:     "/client/audio/fire.wav",
         thrust:         "/client/audio/thrust.wav",
     };
-
+    this.src = {};
     //this.soundCollection = {};
 };
 
@@ -27,8 +27,10 @@ Ost.prototype._setupSound = function(x){
 Ost.prototype.init = function(){
     const method = this._setupSound;
     const soundObjects = Object.keys(this.soundCollection).map(method);
-    for (var x in this.soundCollection){
-        this.soundCollection[x] =
+    for (var x in soundObjects){
+    	var current = soundObjects[x];
+    	console.log(current);
+        this.src[current] = this._setupSound(current);
     }
 };
 
