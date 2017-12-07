@@ -4,7 +4,6 @@
 var asteroidRock = function(spr){
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
-
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
 
@@ -21,6 +20,7 @@ var asteroidRock = function(spr){
                 spr.vx = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
                 spr.scoreValue = 40;
+                spr.boomOst = _ost.smallExplosion;
                 break;
 
             case "medium":
@@ -30,6 +30,7 @@ var asteroidRock = function(spr){
                 spr.vx = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
                 spr.scoreValue = 20;
+                spr.boomOst = _ost.medExplosion;
                 break;
 
             default:
@@ -38,6 +39,7 @@ var asteroidRock = function(spr){
                 spr.vx = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 spr.scoreValue = 10;
+                spr.boomOst = _ost.bigExplosion;
                 break;
         }
 
@@ -53,11 +55,9 @@ var asteroidRock = function(spr){
     spr.explode = function(){
         switch (spr.sizeState){
             case "small":
-                _ost.smallExplosion.play();
                 break;
 
             case "medium":
-                _ost.medExplosion.play();
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
@@ -67,12 +67,12 @@ var asteroidRock = function(spr){
                 break;
 
             default:
-                _ost.bigExplosion.play();
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 break;
         }
+        spr.boomOst.play();
         spr.destroySelf(function(){
             //increase game score
             scoreBoard.score += spr.scoreValue;

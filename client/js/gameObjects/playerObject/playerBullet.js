@@ -9,11 +9,12 @@ var playerBullet = function(spr){
     spr.spd = 3.5;
     spr.name = "playerBullet";
     spr.lifeTime = 120;
-
+    spr.mySound = _ost.fireBullet;
     /**
     *    This method needs to be fired to adabt object to immediate game settings
     */
     spr.create = function(){
+        spr.mySound.play();
         spr.vx = Math.cos(spr.rotation) * spr.spd;
         spr.vy = Math.sin(spr.rotation) * spr.spd;
     }
