@@ -11,8 +11,8 @@ var playerShip = function(spr){
     spr.friction = .997; //speed at which ship will gradually slowdown
     spr.canShoot = true;
     spr.coolingDown = false;
-    spr.coolDownPeriod = 25;
-    spr.coolDownTime = 25;
+    spr.coolDownPeriod = 10;
+    spr.coolDownTime = 0;
     spr.name = "playerShip";
     spr.respawnTime = 200;
 

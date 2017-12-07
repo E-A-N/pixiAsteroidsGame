@@ -6,9 +6,9 @@
 var playerBullet = function(spr){
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
-    spr.spd = 3.5;
+    spr.spd = 5;
     spr.name = "playerBullet";
-    spr.lifeTime = 120;
+    spr.lifeTime = 100;
     spr.mySound = _ost.fireBullet;
     /**
     *    This method needs to be fired to adabt object to immediate game settings
