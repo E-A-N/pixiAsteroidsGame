@@ -53,9 +53,11 @@ var asteroidRock = function(spr){
     spr.explode = function(){
         switch (spr.sizeState){
             case "small":
+                _ost.smallExplosion.play();
                 break;
 
             case "medium":
+                _ost.medExplosion.play();
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
@@ -65,6 +67,7 @@ var asteroidRock = function(spr){
                 break;
 
             default:
+                _ost.bigExplosion.play();
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
