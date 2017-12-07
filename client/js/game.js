@@ -135,6 +135,8 @@ var update = function(){
 
 /**
 *   TODO: make this function more modular and testable, add parameters and return value
+        return value should be a number that represents a create state in FSM
+*   TODO: make this function dynamic, it should be able to handle create phase of any level
 */
 var createPhase = function(){
     console.log("Everything has loaded!");
