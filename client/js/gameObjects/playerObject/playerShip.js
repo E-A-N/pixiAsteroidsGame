@@ -15,7 +15,6 @@ var playerShip = function(spr){
     spr.coolDownTime = 0;
     spr.name = "playerShip";
     spr.respawnTime = 200;
-
     //Set up variables for after image effect
     spr.aImageIsCoolingDown = false;
     spr.aImageCoolDownPeriod = 1;
@@ -84,6 +83,7 @@ var playerShip = function(spr){
         bullet.x = spr.x;
         bullet.y = spr.y;
         bullet.rotation = spr.rotation;
+        //bullet.parent = spr;
         bullet.create();
         app.stage.addChild(bullet);
 
@@ -167,7 +167,7 @@ var playerShip = function(spr){
         spr.bulletCoolDownCheck();
         spr.superFastEffect();
         //var msg = "vx: " + spr.vx +" vy:"+ spr.vy;;
-        //spr.debugMsg(msg);
+        spr.debugMsg();
 
         spr.screenWrap();
         spr.speedCap(10,10);

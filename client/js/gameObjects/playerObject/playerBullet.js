@@ -7,6 +7,7 @@ var playerBullet = function(spr){
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
     spr.spd = 5;
+    spr.distance = 0;
     spr.name = "playerBullet";
     spr.lifeTime = 100;
     spr.mySound = _ost.fireBullet;
@@ -34,6 +35,7 @@ var playerBullet = function(spr){
             spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
                 if (spr2.name === "asteroidRock"){
                     spr.alive = false;
+                    //spr.parent.debugMsg(spr.distance);
                     spr.destroySelf();
                     spr2.explode();
                 }
@@ -43,5 +45,6 @@ var playerBullet = function(spr){
         spr.screenWrap();
         spr.x += spr.vx * delta;
         spr.y += spr.vy * delta;
+        spr.distance += spr.spd;
     }
 }
