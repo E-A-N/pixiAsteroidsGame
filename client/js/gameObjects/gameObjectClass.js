@@ -133,13 +133,14 @@ gameObject.collision = function (spr2) {
 *    This method traverses all game objects checking for a collision
 *    @param {array} sprList -a collection of registered gameObjects
 *    @param {function} call - Callback action to take in the case there is a collision
-*    @returnss {string} - ID key with collision results
+*    @returns {string} - ID key with collision results
 */
 gameObject.singleCollisionCheck = function(sprList, call = false){
     var self = this;
     var doSomething = call && typeof call === "function";
     var sprID;
     for (var x in sprList) {
+        //prevent a collision with yourself
         if (self.id === sprList[x].id) continue;
         var collisionCheck = self.collision(sprList[x]);
         if (collisionCheck){
