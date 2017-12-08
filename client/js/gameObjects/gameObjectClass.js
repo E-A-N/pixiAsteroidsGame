@@ -51,26 +51,39 @@ gameObject.sprConstruct = function(spr) {
 /**
 *    This function checks if a sprite is on the border of a stage and sends it to the opposite side of it is.
 *    TODO: Make this function more modular and testable, replace the game width/height variables with parameters
-*    @param {bool} - Returns true if there's any screen wrap
+*    @param {number} - A number representing current status of a screen wrap. 0 indicates that the gameObject is not wrapping the screen.
 */
 gameObject.screenWrap = function(){
 
     //These are static values, they need to be adaptable in the future
     var _gameWidth  = 500;
     var _gameHeight = 500;
-
+    var status = 0
 
     var wrapLeft   = this.x < -this.width/2;
     var wrapRight  = this.x > _gameWidth + this.width/2;
     var wrapTop    = this.y < -this.height/2;
     var wrapBottom = this.y > _gameHeight + this.height/2;
 
-    if (wrapLeft)   this.x  = _gameWidth + this.width/2;
-    if (wrapRight)  this.x  = -this.width/2;
-    if (wrapTop)    this.y  = _gameHeight + this.height/2;
-    if (wrapBottom) this.y = -this.height/2;
 
-    return wrapLeft || wrapRight || wrapTop || wrapBottom;
+    if (wrapRight) {
+        this.x  = -this.width/2;
+        status = 1;
+    }
+    if (wrapBottom) {
+        this.y = -this.height/2;
+        status = 2;
+    }
+    if (wrapLeft)   {
+        this.x  = _gameWidth + this.width/2;
+        status = 3;
+    }
+    if (wrapTop) {
+        this.y  = _gameHeight + this.height/2;
+        status = 4;
+    }
+
+    return status;
 }
 
 /**
