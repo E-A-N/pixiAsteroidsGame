@@ -19,7 +19,10 @@ ScoreModifyer.prototype.getBonus = function(){
 /**
 *   This function adds to score bonus based travel distance of bullet
 */
-ScoreModifyer.prototype.setModifier = function(){}
+ScoreModifyer.prototype.setModifier = function(mod, mult){
+    this.mod = mod;
+    this.multiplyer = mult;
+}
 
 /**
 *    This method increases multiplyer field based on combo counter

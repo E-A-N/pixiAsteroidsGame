@@ -7,7 +7,6 @@ var Ost = function(src){
         thrust:         "/client/audio/thrust.wav",
     };
     this.src = {};
-    //this.soundCollection = {};
 };
 
 /**
@@ -26,10 +25,9 @@ Ost.prototype._setupSound = function(x){
 
 /**
 *    This method initializes sound resources as howl objects
-*    @returns {object} - a reference the current Ost instance
+*    @returns {object} - a reference to the current Ost instance
 */
 Ost.prototype.init = function(){
-    const method = this._setupSound;
     const soundsArray = Object.keys(this.soundCollection);
     for (var x in soundsArray){
     	var current = soundsArray[x];
@@ -46,9 +44,3 @@ Ost.prototype.init = function(){
 Ost.prototype.getSoundCollection = function(){
     return this.soundCollection;
 }
-
-
-//Sound.soundCollection[1].play();
-
-ga = new Ost();
-ga.init();

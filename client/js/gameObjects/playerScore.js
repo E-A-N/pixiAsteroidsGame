@@ -1,6 +1,7 @@
 var Score =  function(name) {
     this.name = name || "score";
     this.score = 0;
+    this.mod = new ScoreModifyer();
 };
 
 Score.prototype.init = function(font){
