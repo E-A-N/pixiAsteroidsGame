@@ -23,7 +23,7 @@ gameObject.create = function(){};
 
 /**
 *    This method deletes a sprite permanetly from the game
-*    @returnss {number} id number of destroyed sprite
+*    @returns {number} id number of destroyed sprite
 */
 gameObject.destroySelf = function(call = false){
     if (call && typeof call === "function") call()

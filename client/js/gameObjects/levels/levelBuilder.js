@@ -1,5 +1,5 @@
-var Level = function(game){
-    this.game = game;
+var Level = function(gameMaster){
+    this.game = gameMaster;
 };
 
 
@@ -19,5 +19,6 @@ Level.preload = function(urls, loader){
 Level.create = function(sprites){};
 
 Level.update = function(delta){
+    requestAnimationFrame(update);
     this.game.updateAll(delta);
 };
