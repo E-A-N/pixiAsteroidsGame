@@ -14,6 +14,7 @@ spriteHandler.prototype.issuedIds = 0;   /** @member {number} */
 /**
 *    This method checks all sprites for any particular task
 *    @param {string} method - A string key that sets action to take
+*    @param arg - optional argument to be passed to method argument when called
 *    @returns {bool} - true if items in the sprite List have been traversed
 */
 spriteHandler.prototype.spriteTraverse = function(method = false, arg = false) {
@@ -73,6 +74,21 @@ spriteHandler.prototype.updateAll = function(delta, call = false) {
 */
 spriteHandler.prototype.createAll = function(call = false) {
     var updated = this.spriteTraverse("create");
+    var useCallback = updated && call && typeof call === "function";
+
+    if (useCallback){
+        call();
+    }
+
+    return updated;
+}
+
+/**
+*    @param {function} - Optional callback that runs after objects have ran their delete event
+*    @returns {bool} - returns true if all applicable game objects have ran their delete event
+*/
+spriteHandler.prototype.deleteAll = function(call = false) {
+    var updated = this.spriteTraverse("delete");
     var useCallback = updated && call && typeof call === "function";
 
     if (useCallback){
