@@ -16,9 +16,17 @@ Level.preload = function(urls, loader){
     return true;
 };
 
+
+/**
+*    Place holder create method for game level, no return value because this method is arbitrary
+*/
 Level.create = function(sprites){};
 
 Level.update = function(delta){
     requestAnimationFrame(update);
     this.game.updateAll(delta);
 };
+
+Level.start = function (){
+    this.update();
+}
