@@ -1,5 +1,5 @@
 module.exports = function(io){
-    const sockets = {};
+    io.sockets = {}; //eanDebug setup socket io node modules
     const socketInit = require("socketInit");
     const config = require("config");
 
