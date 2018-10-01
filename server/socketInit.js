@@ -26,7 +26,8 @@ module.exports = (soc, server, config) => {
         //find a way to make server calculate input from here eanDebug
     });
 
-    soc.on("disconnecting", () => {
+    //eanDebug check if disconnect or disconnecting is proper built in api
+    soc.on("disconnect", () => {
         console.log(soc.id + " has disconnected!!");
         if (server.sockets[soc.id]){
             delete server.sockets[soc.id];
