@@ -1,4 +1,4 @@
-module.exports = (soc, server) => {
+module.exports = (soc, server, config) => {
     soc.init = false;
     soc.game = {};
     soc.on("ean test!!", (clientData) => {
@@ -10,10 +10,17 @@ module.exports = (soc, server) => {
         if (!soc.init){
             soc.game.x = 250;
             soc.game.y = 250;
+            soc.join(server.game._currentRoom);
+            soc.emit(config.successfulJoin);
         }
-
-        soc.join(server.currentRoom); //eanDebug define server.currentRoom
+        else {
+            console.log(soc.username, "is already in the game!");
+        }
     });
+
+    soc.on("playerInput", (data) => {
+        //soc
+    })
 
     return soc;
 }

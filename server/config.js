@@ -1,8 +1,5 @@
-module.exports = () => {
-    const data = {
+module.exports = {
         sockets: {},
-
-    };
-
-    return data;
+        currentRoom: "gameRoom",
+        successfulJoin: "joinGameSuccess"
 }
