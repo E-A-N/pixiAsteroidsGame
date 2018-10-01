@@ -6,6 +6,6 @@ module.exports = function(io){
     //When a new user connects
     io.on("connection", (socket) => {
         console.log("New connection!!", socket, socket.id);
-        socket = socketInit(socket, config);
+        socket = socketInit(socket, io, config);
     })
 }
