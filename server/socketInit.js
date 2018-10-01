@@ -30,6 +30,7 @@ module.exports = (soc, server, config) => {
         console.log(soc.id + " has disconnected!!");
         if (server.sockets[soc.id]){
             delete server.sockets[soc.id];
+        //find a way to make server remove the player from all other clients (sockets) eanDebug
         }
     })
 
