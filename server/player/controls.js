@@ -1,8 +1,13 @@
 module.export = (soc, server, config) => {
 
     return (data) => {
-        soc.game.leftInput    = data.leftIn;
-        soc.game.rightInput   = data.rightIn;
-        soc.game.actionInput  = data.actionIn;
+        var thrusting = data.upIn;
+        var turningLeft  = data.leftIn  && !data.rightIn;
+        var turningRight = data.rightIn && !data.leftIn;
+        var okToShoot = data.actionIn && soc.game.canShoot;
+
+        if (okToShoot){
+            soc.emit("fireBullet"); //eanDebug this is not implemented
+        }
     }
 }
