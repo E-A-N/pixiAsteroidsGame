@@ -1,6 +1,8 @@
 module.exports = (soc, server, config) => {
     soc.init = false;
     soc.game = {};
+
+    const controls = require("./player/controls")(soc,server, config);
     soc.on("ean test!!", (clientData) => {
         soc.username = clientData.username;
         console.log("Username changed to:", clientData.username);
@@ -20,9 +22,12 @@ module.exports = (soc, server, config) => {
     });
 
     soc.on("playerInput", (data) => {
-        soc.game.leftInput    = data.leftIn;
-        soc.game.rightInpout  = data.rightIn;
-        soc.game.actionInput  = data.actionIn;
+        const dataExists = Object.keys(data).length > 0;
+        if (dataExists){
+            controls(data)
+        }
+        
+
         //find a way to make server calculate input from here eanDebug
     });
 
