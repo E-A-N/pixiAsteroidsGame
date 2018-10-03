@@ -1,5 +1,8 @@
 module.exports = {
         sockets: {},
         currentRoom: "gameRoom",
-        successfulJoin: "joinGameSuccess"
+        successfulJoin: "joinGameSuccess",
+        playerAttributes: {
+
+        }
 }
