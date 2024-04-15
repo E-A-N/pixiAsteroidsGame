@@ -129,6 +129,37 @@ gameObject.collision = function (spr2) {
     return possibleCollision;
 };
 
+gameObject.collision2 = function (spr2) {
+    var spr1 = this;
+    console.log("eandebug sprite name:", spr2.name)
+    let collideList = {
+        "playerShip": "playerShip",
+        "asteroidRock": "asteroidRock",
+        "playerBullet": "playerBullet"
+    }
+    if (typeof spr1.name === "undefined"){
+        return false;
+    }
+    if (collideList.hasOwnProperty(spr1.name) === false){
+        return false;
+    }
+    if (typeof spr2.name === "undefined"){
+        return false;
+    }
+    if (collideList.hasOwnProperty(spr2.name) === false){
+        return false;
+    }
+
+    let bounds1 = spr1.getBounds();
+    let bounds2 = spr2.getBounds();
+    return (
+        bounds1.x < bounds2.x + bounds2.width
+        && bounds1.x + bounds1.width > bounds2.x
+        && bounds1.y < bounds2.y + bounds2.height
+        && bounds1.y + bounds1.height > bounds2.y
+    );
+}
+
 /**
 *    This method traverses all game objects checking for a collision
 *    @param {array} sprList -a collection of registered gameObjects
@@ -139,10 +170,11 @@ gameObject.singleCollisionCheck = function(sprList, call = false){
     var self = this;
     var doSomething = call && typeof call === "function";
     var sprID;
+
     for (var x in sprList) {
         //prevent a collision with yourself
         if (self.id === sprList[x].id) continue;
-        var collisionCheck = self.collision(sprList[x]);
+        var collisionCheck = self.collision2(sprList[x]);
         if (collisionCheck){
             sprID = sprList[x].id;
             if (doSomething) call(self, sprList[x])

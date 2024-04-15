@@ -1,1 +1,29 @@
+client/documentation
 docgenerator
+ # Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Local development environment .env file
+.env
+
+# IDE configuration
+.vscode/
+.idea/
+
+# Operating System files
+.DS_Store
+Thumbs.db

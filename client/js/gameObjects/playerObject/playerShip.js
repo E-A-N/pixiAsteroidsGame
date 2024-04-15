@@ -3,6 +3,7 @@
 *    @param {object} spr - reference to sprite to be dynamically extended into playerShip
 */
 var playerShip = function(spr){
+    console.log("eandebug spr info:", spr)
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
     spr.acceleration = .05;

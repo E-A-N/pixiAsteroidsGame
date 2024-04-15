@@ -2,6 +2,8 @@
 *    @param {object} spr - reference to sprite to be dynamically expanded
 */
 var asteroidRock = function(spr){
+    console.log("spr info:", spr)
+
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
     //choose random direction to spin
