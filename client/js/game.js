@@ -29,6 +29,9 @@ _gameMaster.initGameSprite(_referee);
 
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
+const urlParams = new URLSearchParams(window.location.search);
+let debugParam = urlParams.get("debug");
+const DEBUG_MODE = debugParam === "5";
 
 //assign app parameters
 var opts = {};
@@ -55,6 +58,7 @@ var addSprite = function(x, y, src, texture, call = false){
     spr = _objPolymorph(spr);
     spr.x = x;
     spr.y = y;
+    spr.boundaryBox = new PIXI.Graphics();
 
     if (call && typeof call === "function") {
         call(spr);
@@ -150,8 +154,8 @@ var createPhase = function(){
 
     var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
-    asteroid1.sizeState = "big";
-    asteroid2.sizeState = "big";
+    asteroid1.sizeState = "large";
+    asteroid2.sizeState = "large";
     //app.stage.addChild(ship.debug);
     app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);

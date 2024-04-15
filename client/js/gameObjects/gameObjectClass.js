@@ -8,6 +8,12 @@ gameObject.spd = 1;      /** @member {Number} */
 gameObject.vx = 0;       /** @member {Number} */
 gameObject.vy = 0;       /** @member {Number} */
 gameObject.alive = true; /** @member {Boolean} */
+gameObject.boundaryBox = null /** @member {Object} */
+gameObject.boundsOffsetX = 1;       /** @member {Number} */
+gameObject.boundsOffsetY = 1;       /** @member {Number} */
+gameObject.boundsOffsetW = 1;       /** @member {Number} */
+gameObject.boundsOffsetH = 1;       /** @member {Number} */
+
 
 
 /**
@@ -129,6 +135,45 @@ gameObject.collision = function (spr2) {
     return possibleCollision;
 };
 
+gameObject.collision2 = function (spr2) {
+    var spr1 = this;
+    let collideList = {
+        "playerShip": "playerShip",
+        "asteroidRock": "asteroidRock",
+        "playerBullet": "playerBullet"
+    }
+    if (typeof spr1.name === "undefined"){
+        return false;
+    }
+    if (collideList.hasOwnProperty(spr1.name) === false){
+        return false;
+    }
+    if (typeof spr2.name === "undefined"){
+        return false;
+    }
+    if (collideList.hasOwnProperty(spr2.name) === false){
+        return false;
+    }
+
+    let bounds1 = spr1.getBounds();
+    let bounds2 = spr2.getBounds();
+    let bounds1X = bounds1.x + (bounds1.width * spr1.boundsOffsetX);
+    let bounds1Y = bounds1.y + (bounds1.height * spr1.boundsOffsetY);
+    let bounds1Width = bounds1.width * spr1.boundsOffsetW;
+    let bounds1Height = bounds1.height * spr1.boundsOffsetH;
+    let bounds2X = bounds2.x + (bounds2.width * spr2.boundsOffsetX);
+    let bounds2Y = bounds2.y + (bounds2.height * spr2.boundsOffsetY);
+    let bounds2Width = bounds2.width * spr2.boundsOffsetW;
+    let bounds2Height = bounds2.height * spr2.boundsOffsetH;
+
+    return (
+        bounds1X < bounds2X + bounds2Width
+        && bounds1X + bounds1Width > bounds2X
+        && bounds1Y < bounds2Y + bounds2Height
+        && bounds1Y + bounds1Height > bounds2Y
+    )
+}
+
 /**
 *    This method traverses all game objects checking for a collision
 *    @param {array} sprList -a collection of registered gameObjects
@@ -139,10 +184,11 @@ gameObject.singleCollisionCheck = function(sprList, call = false){
     var self = this;
     var doSomething = call && typeof call === "function";
     var sprID;
+
     for (var x in sprList) {
         //prevent a collision with yourself
         if (self.id === sprList[x].id) continue;
-        var collisionCheck = self.collision(sprList[x]);
+        var collisionCheck = self.collision2(sprList[x]);
         if (collisionCheck){
             sprID = sprList[x].id;
             if (doSomething) call(self, sprList[x])
@@ -151,4 +197,33 @@ gameObject.singleCollisionCheck = function(sprList, call = false){
         sprID = "No sprite IDs found";
     }
     return sprID;
+}
+
+/**
+*    This method draws the collions box of the current sprite
+*    @param {array} sprList -a collection of registered gameObjects
+*    @param {function} call - Callback action to take in the case there is a collision
+*    @returns {string} - ID key with collision results
+*/
+gameObject.drawBounds = function(){
+    var self = this;
+    if (!self.boundaryBox || self.boundaryBox === null){
+        return;
+    }
+    self.boundaryBox.clear();
+
+    // Set line style for the bounds
+    self.boundaryBox.lineStyle(2, 0xFF0000);
+    let bounds = self.getBounds();
+
+    // Draw a rectangle around the sprite's bounds
+    self.boundaryBox.drawRect(
+        bounds.x + (bounds.width * self.boundsOffsetX),
+        bounds.y + (bounds.height * self.boundsOffsetY),
+        bounds.width * self.boundsOffsetW,
+        bounds.height * self.boundsOffsetH
+    );
+
+    // Add the graphics object to the stage
+    app.stage.addChild(self.boundaryBox);
 }

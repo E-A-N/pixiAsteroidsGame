@@ -20,6 +20,10 @@ var playerShip = function(spr){
     spr.aImageCoolDownPeriod = 1;
     spr.aImageCoolDownTime = 1;
     spr.aImageThreshold = false;
+    spr.boundsOffsetX = 0.3;
+    spr.boundsOffsetY = 0.3;
+    spr.boundsOffsetW = 0.45;
+    spr.boundsOffsetH = 0.45;
 
 
 
@@ -163,6 +167,9 @@ var playerShip = function(spr){
     *    @param {number} delta - A time based value that sustains relative space/time accuracy
     */
     spr.update = function(delta){
+        if (DEBUG_MODE){
+            spr.drawBounds(); 
+        }
         spr.checkMyDeath();
         spr.bulletCoolDownCheck();
         spr.superFastEffect();
