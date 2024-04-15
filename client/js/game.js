@@ -55,6 +55,7 @@ var addSprite = function(x, y, src, texture, call = false){
     spr = _objPolymorph(spr);
     spr.x = x;
     spr.y = y;
+    spr.boundaryBox = new PIXI.Graphics();
 
     if (call && typeof call === "function") {
         call(spr);

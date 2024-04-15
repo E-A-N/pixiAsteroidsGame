@@ -107,6 +107,7 @@ var asteroidRock = function(spr){
     *    @param {number} delta - A time based value that sustains relative space/time accuracy
     */
     spr.update = function(delta){
+        spr.drawBounds(); //eandebug
         spr.screenWrap();
         spr.x += spr.vx * delta;
         spr.y += spr.vy * delta;

@@ -8,6 +8,7 @@ gameObject.spd = 1;      /** @member {Number} */
 gameObject.vx = 0;       /** @member {Number} */
 gameObject.vy = 0;       /** @member {Number} */
 gameObject.alive = true; /** @member {Boolean} */
+gameObject.boundaryBox = null /** @member {Object} */
 
 
 /**
@@ -183,4 +184,32 @@ gameObject.singleCollisionCheck = function(sprList, call = false){
         sprID = "No sprite IDs found";
     }
     return sprID;
+}
+
+/**
+*    This method draws the collions box of the current sprite
+*    @param {array} sprList -a collection of registered gameObjects
+*    @param {function} call - Callback action to take in the case there is a collision
+*    @returns {string} - ID key with collision results
+*/
+gameObject.drawBounds = function(){
+    var self = this;
+    if (!self.boundaryBox || self.boundaryBox === null){
+        return;
+    }
+    self.boundaryBox.clear();
+
+    // Set line style for the bounds
+    self.boundaryBox.lineStyle(2, 0xFF0000);
+
+    // Draw a rectangle around the sprite's bounds
+    self.boundaryBox.drawRect(
+        self.x,
+        self.y,
+        self.width * self.scale.x,
+        self.height * self.scale.y
+    );
+
+    // Add the graphics object to the stage
+    app.stage.addChild(self.boundaryBox);
 }
