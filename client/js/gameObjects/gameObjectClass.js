@@ -137,7 +137,6 @@ gameObject.collision = function (spr2) {
 
 gameObject.collision2 = function (spr2) {
     var spr1 = this;
-    console.log("eandebug sprite name:", spr2.name)
     let collideList = {
         "playerShip": "playerShip",
         "asteroidRock": "asteroidRock",
@@ -166,18 +165,7 @@ gameObject.collision2 = function (spr2) {
     let bounds2Y = bounds2.y + (bounds2.height * spr2.boundsOffsetY);
     let bounds2Width = bounds2.width * spr2.boundsOffsetW;
     let bounds2Height = bounds2.height * spr2.boundsOffsetH;
-    // self.boundaryBox.drawRect(
-    //     bounds.x + (bounds.width * self.boundsOffsetX),
-    //     bounds.y + (bounds.height * self.boundsOffsetY),
-    //     bounds.width * self.boundsOffsetW,
-    //     bounds.height * self.boundsOffsetH
-    // );
-    // return (
-    //     bounds1.x < bounds2.x + bounds2.width
-    //     && bounds1.x + bounds1.width > bounds2.x
-    //     && bounds1.y < bounds2.y + bounds2.height
-    //     && bounds1.y + bounds1.height > bounds2.y
-    // );
+
     return (
         bounds1X < bounds2X + bounds2Width
         && bounds1X + bounds1Width > bounds2X
@@ -226,9 +214,7 @@ gameObject.drawBounds = function(){
 
     // Set line style for the bounds
     self.boundaryBox.lineStyle(2, 0xFF0000);
-    console.log("eandebug:", self.name);
     let bounds = self.getBounds();
-    console.log("eandebug bounds:", bounds);
 
     // Draw a rectangle around the sprite's bounds
     self.boundaryBox.drawRect(

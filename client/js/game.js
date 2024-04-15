@@ -29,7 +29,7 @@ _gameMaster.initGameSprite(_referee);
 
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 //assign app parameters
 var opts = {};
 opts.autoStart = false;
@@ -151,8 +151,8 @@ var createPhase = function(){
 
     var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
     var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
-    asteroid1.sizeState = "big";
-    asteroid2.sizeState = "big";
+    asteroid1.sizeState = "large";
+    asteroid2.sizeState = "large";
     //app.stage.addChild(ship.debug);
     app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);

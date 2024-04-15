@@ -6,11 +6,6 @@ var asteroidRock = function(spr){
 
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
-    spr.hitboxAdjustment = 0.5;
-    spr.boundsOffsetX = 0.3;
-    spr.boundsOffsetY = 0.3;
-    spr.boundsOffsetW = 0.4;
-    spr.boundsOffsetH = 0.4;
 
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
@@ -29,6 +24,10 @@ var asteroidRock = function(spr){
                 spr.vy = (Math.floor(Math.random() * 30)/40) * spr.rotateDirection;
                 spr.scoreValue = 40;
                 spr.boomOst = _ost.smallExplosion;
+                spr.boundsOffsetX = 0.3;
+                spr.boundsOffsetY = 0.3;
+                spr.boundsOffsetW = 0.4;
+                spr.boundsOffsetH = 0.4;
                 break;
 
             case "medium":
@@ -39,6 +38,10 @@ var asteroidRock = function(spr){
                 spr.vy = (Math.floor(Math.random() * 5)/15) * spr.rotateDirection;
                 spr.scoreValue = 20;
                 spr.boomOst = _ost.medExplosion;
+                spr.boundsOffsetX = 0.3;
+                spr.boundsOffsetY = 0.3;
+                spr.boundsOffsetW = 0.4;
+                spr.boundsOffsetH = 0.4;
                 break;
 
             default:
@@ -48,6 +51,10 @@ var asteroidRock = function(spr){
                 spr.vy = (Math.floor(Math.random() * 10)/20) * spr.rotateDirection;
                 spr.scoreValue = 10;
                 spr.boomOst = _ost.bigExplosion;
+                spr.boundsOffsetX = 0.25;
+                spr.boundsOffsetY = 0.20;
+                spr.boundsOffsetW = 0.6;
+                spr.boundsOffsetH = 0.6;
                 break;
         }
 

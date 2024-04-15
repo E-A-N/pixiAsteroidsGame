@@ -3,7 +3,6 @@
 *    @param {object} spr - reference to sprite to be dynamically extended into playerShip
 */
 var playerShip = function(spr){
-    console.log("eandebug spr info:", spr)
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
     spr.acceleration = .05;
@@ -23,8 +22,8 @@ var playerShip = function(spr){
     spr.aImageThreshold = false;
     spr.boundsOffsetX = 0.3;
     spr.boundsOffsetY = 0.3;
-    spr.boundsOffsetW = 0.4;
-    spr.boundsOffsetH = 0.4;
+    spr.boundsOffsetW = 0.45;
+    spr.boundsOffsetH = 0.45;
 
 
 
