@@ -11,6 +11,10 @@ var playerBullet = function(spr){
     spr.name = "playerBullet";
     spr.lifeTime = 100;
     spr.mySound = _ost.fireBullet;
+    spr.boundsOffsetX = 0.3;
+    spr.boundsOffsetY = 0.3;
+    spr.boundsOffsetW = 0.4;
+    spr.boundsOffsetH = 0.4;
     /**
     *    This method needs to be fired to adabt object to immediate game settings
     */
@@ -24,6 +28,9 @@ var playerBullet = function(spr){
     *    @param {number} delta - A time value that helps keep the game in sync
     */
     spr.update = function(delta){
+        if (DEBUG_MODE){
+            spr.drawBounds(); 
+        }
         if (spr.alive) {
 
             if (--spr.lifeTime < 0){

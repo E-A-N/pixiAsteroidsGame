@@ -29,7 +29,7 @@ _gameMaster.initGameSprite(_referee);
 
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
-
+const DEBUG_MODE = true;
 //assign app parameters
 var opts = {};
 opts.autoStart = false;

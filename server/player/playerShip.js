@@ -20,6 +20,10 @@ const playerShip = function(config){
     this.aImageCoolDownPeriod = 1;
     this.aImageCoolDownTime = 1;
     this.aImageThreshold = false;
+    this.boundsOffsetX = 0.3;
+    this.boundsOffsetY = 0.3;
+    this.boundsOffsetW = 0.3;
+    this.boundsOffsetH = 0.2;
 
     return this;
 }
@@ -151,4 +155,3 @@ playerShip.prototype.fireBullet = function(){
         spr.x += spr.vx * delta;
         spr.y += spr.vy * delta;
     }
-}

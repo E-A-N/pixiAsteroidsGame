@@ -6,6 +6,12 @@ var asteroidRock = function(spr){
 
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
+    spr.hitboxAdjustment = 0.5;
+    spr.boundsOffsetX = 0.3;
+    spr.boundsOffsetY = 0.3;
+    spr.boundsOffsetW = 0.4;
+    spr.boundsOffsetH = 0.4;
+
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
 
@@ -107,7 +113,9 @@ var asteroidRock = function(spr){
     *    @param {number} delta - A time based value that sustains relative space/time accuracy
     */
     spr.update = function(delta){
-        spr.drawBounds(); //eandebug
+        if (DEBUG_MODE){
+            spr.drawBounds(); 
+        }
         spr.screenWrap();
         spr.x += spr.vx * delta;
         spr.y += spr.vy * delta;
