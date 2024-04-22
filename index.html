@@ -25,6 +25,11 @@
               background: none; /* Remove default button background */
               cursor: pointer; /* Change cursor to pointer */
             }
+
+                /* Set maximum width for images inside buttons */
+            .button-span button img {
+            max-width: 150px;
+            }
           </style>
     </head>
 
@@ -41,9 +46,9 @@
             </div>
             <div id="gameContainer"></div>
             <span class="button-span">
-                <button>Button 1</button>
-                <button>Button 2</button>
-                <button>Button 3</button>
+                <button><img src="client/img/left.png" alt="Left"></button>
+                <button><img src="client/img/action.png" alt="Action"></button>
+                <button><img src="client/img/right.png" alt="Right"></button>
             </span>
             <h2>Read the <a href="client/documentation/out/index.html">Documentation</a></h2>
 
