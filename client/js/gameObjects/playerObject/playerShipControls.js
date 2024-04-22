@@ -6,7 +6,26 @@ k.downInput = keyboard(40);
 k.leftInput = keyboard(37);
 k.rightInput = keyboard(39);
 k.fInput = keyboard(70);
+k.rightUIState = false;
+k.leftUIState = false;
+k.actionUIState = false;
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    k.leftUIButton = document.getElementById('leftBtn');
+    k.rightUIButton = document.getElementById('rightBtn');
+    k.actionUIButton = document.getElementById('actionBtn');
+    k.leftUIButton.addEventListener('pointerdown', () => {
+        console.log("eandebug ui button is:", k.leftUIButton)
+        k.leftUIState = true;
+    });
+    k.rightUIButton.addEventListener('pointerdown', () => {
+        k.rightUIState = true;
+    });
+    k.actionUIButton.addEventListener('pointerdown', () => {
+        k.actionUIButton = true;
+    });
+});
 
 /**  This utility function setups the player controls for the space ship
 *    @param {object} ship - reference to game ship
@@ -15,9 +34,12 @@ k.fInput = keyboard(70);
 var playerControls = function(ship){
 
     var thrusting = k.upInput.isDown;
-    var turningLeft =  k.leftInput.isDown && !k.rightInput.isDown;
-    var turningRight =  k.rightInput.isDown && !k.leftInput.isDown;
-    var okToShoot = k.fInput.isDown && ship.canShoot;
+    var turningLeft =  k.leftInput.isDown || k.leftUIState
+        && !k.rightInput.isDown;
+    var turningRight =  k.rightInput.isDown || k.rightUIState
+        && !k.leftInput.isDown;
+    var okToShoot = k.fInput.isDown || k.actionUIState
+        && ship.canShoot;
 
     if (okToShoot){
         ship.fireBullet()
@@ -44,4 +66,8 @@ var playerControls = function(ship){
     if (turningLeft) {
         ship.rotation -= ship.turnSpd;
     }
+
+    k.rightUIState = false;
+    k.leftUIState = false;
+    k.actionUIState = false;
 }
