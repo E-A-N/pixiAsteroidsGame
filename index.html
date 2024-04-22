@@ -16,6 +16,16 @@
         <script src="client/js/gameObjects/playerObject/playerShipControls.js"></script>
         <script src="client/js/gameObjects/playerObject/playerShip.js"></script>
         <script src="client/js/gameObjects/asteroidRock.js"></script>
+        <style>
+            /* Adding some spacing between buttons */
+            .button-span button {
+              margin-right: 10px;
+              padding: 0; /* Remove default button padding */
+              border: none; /* Remove default button border */
+              background: none; /* Remove default button background */
+              cursor: pointer; /* Change cursor to pointer */
+            }
+          </style>
     </head>
 
     <body >
@@ -30,10 +40,15 @@
                  <strong> Fire</strong>
             </div>
             <div id="gameContainer"></div>
-
+            <span class="button-span">
+                <button>Button 1</button>
+                <button>Button 2</button>
+                <button>Button 3</button>
+            </span>
             <h2>Read the <a href="client/documentation/out/index.html">Documentation</a></h2>
 
             <script src="client/js/game.js"></script>
+
         </center>
     </body>
 </html>

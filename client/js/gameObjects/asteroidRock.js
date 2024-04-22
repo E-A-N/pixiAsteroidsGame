@@ -70,9 +70,11 @@ var asteroidRock = function(spr){
     spr.explode = function(){
         switch (spr.sizeState){
             case "small":
+                navigator.vibrate(50);
                 break;
 
             case "medium":
+                navigator.vibrate(100);
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
                 spr.spitAsteroid('small');
@@ -82,6 +84,7 @@ var asteroidRock = function(spr){
                 break;
 
             default:
+                navigator.vibrate(200);
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
                 spr.spitAsteroid('medium');
