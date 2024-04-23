@@ -2,8 +2,6 @@
 *    @param {object} spr - reference to sprite to be dynamically expanded
 */
 var asteroidRock = function(spr){
-    console.log("spr info:", spr)
-
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
     spr.alpha = 0; //gameMaster countdown will reveal alpha
@@ -107,7 +105,7 @@ var asteroidRock = function(spr){
     spr.spitAsteroid = function(size) {
         var babyAst = new _sprite(spr.texture); //turn texture into sprite
         babyAst = _objPolymorph(babyAst);       //give sprite global game object attributes
-        _gameMaster.initGameSprite(babyAst);    //register new sprite into game
+        GameMaster.initGameSprite(babyAst);    //register new sprite into game
         asteroidRock(babyAst);  //give sprite asteroidRock specific fields
 
         var randomDir = Math.round(Math.random()) ? 1 : -1;

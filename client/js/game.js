@@ -12,7 +12,6 @@ var _imgRoot        = "client/img/"; //from index.html location
 var _astroidSpritesSheet = _imgRoot + "astroidsSprite.json";
 var _urls           = [_astroidSpritesSheet];
 var _gameCanvas     = document.getElementById("gameContainer");
-var _gameMaster     = new spriteHandler; //from spriteHandler.js
 var _objPolymorph   = gameObject.sprConstruct;
 
 //setup game audio
@@ -25,7 +24,7 @@ var _mobileuser = /Android|webOS|iPhone|iPod|BlackBerry|PlayBook|IEMobile|Window
 var _referee = {};
 _objPolymorph(_referee);
 stateController(_referee);
-_gameMaster.initGameSprite(_referee);
+GameMaster.initGameSprite(_referee);
 
 //text object for bug tracking
 var _debug = new PIXI.Text("DEBUG: ", {fontSize: 24});
@@ -66,7 +65,7 @@ var addSprite = function(x, y, src, texture, call = false){
         call(spr);
     }
 
-    _gameMaster.initGameSprite(spr);
+    GameMaster.initGameSprite(spr);
     return spr;
 }
 
@@ -102,7 +101,7 @@ var addAnimatedSprite = function(x, y, src, textures, call = false){
         call(spr);
     }
 
-    _gameMaster.initGameSprite(spr);
+    GameMaster.initGameSprite(spr);
     return spr;
 }
 
@@ -136,7 +135,7 @@ var update = function(){
     requestAnimationFrame(update);
     scoreBoard.format = scoreBoard.name + ": " + scoreBoard.score;
     scoreBoard.instance.text = scoreBoard.format;
-    _gameMaster.updateAll(_ticker.deltaTime);
+    GameMaster.updateAll(_ticker.deltaTime);
 };
 
 /**
@@ -147,7 +146,7 @@ var update = function(){
 var createPhase = function(){
     console.log("Everything has loaded!");
     var shipTextures = [_imgRoot+"sprites/ship2.png",_imgRoot+"sprites/ship1.png",];
-    //_gameMaster.initGameSprite(scoreBoard);
+    //GameMaster.initGameSprite(scoreBoard);
     //var ship = addAnimatedSprite(250, 250, _astroidSpritesSheet, shipTextures, playerShip);
     var ship = addSprite(250, 250, _astroidSpritesSheet, "ship1.png", playerShip);
     ship.debug = _debug; //temporary
@@ -155,14 +154,12 @@ var createPhase = function(){
     ship.textureThrust = _resources[_astroidSpritesSheet].textures["ship2.png"];
 
 
-    _gameMaster.newWave();
-    setInterval(_gameMaster.checkForCompletedWave.bind(_gameMaster), 1000);
+    GameMaster.newWave();
     //app.stage.addChild(ship.debug);
     app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);
-
-    _gameMaster.createAll();
-    _gameMaster.setupCountRoutine();
+    setInterval(GameMaster.checkForCompletedWave, 1000);
+    GameMaster.createAll();
 }
 
 

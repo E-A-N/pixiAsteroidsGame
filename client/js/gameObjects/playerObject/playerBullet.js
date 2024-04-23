@@ -40,7 +40,7 @@ var playerBullet = function(spr){
             }
 
             //Check for any collisions
-            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, spr2){
+            spr.singleCollisionCheck(GameMaster.spriteList, function(self, spr2){
                 if (spr2.name === "asteroidRock"){
                     spr.alive = false;
                     //spr.parent.debugMsg(spr.distance);

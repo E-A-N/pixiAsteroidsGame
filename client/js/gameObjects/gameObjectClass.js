@@ -36,7 +36,7 @@ gameObject.destroySelf = function(call = false){
     if (call && typeof call === "function") call()
     var id = this.id;
     app.stage.removeChild(this);
-    delete _gameMaster.spriteList[id];
+    delete GameMaster.spriteList[id];
     return id;
 }
 

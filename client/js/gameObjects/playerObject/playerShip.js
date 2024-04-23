@@ -57,7 +57,7 @@ var playerShip = function(spr){
         img = new _sprite(img);
         img = _objPolymorph(img);
         img.name = "afterImage";
-        _gameMaster.initGameSprite(img);
+        GameMaster.initGameSprite(img);
         img.x = spr.x;
         img.y = spr.y;
         img.anchor.x = spr.anchor.x;
@@ -82,7 +82,7 @@ var playerShip = function(spr){
         var img = _resources[_astroidSpritesSheet].textures["fireball.png"];
         var bullet = new _sprite(img);
         bullet = _objPolymorph(bullet);  //universal game object attributes
-        _gameMaster.initGameSprite(bullet);    //register new sprite into game
+        GameMaster.initGameSprite(bullet);    //register new sprite into game
         playerBullet(bullet); //bullet specific fields
         bullet.x = spr.x;
         bullet.y = spr.y;
@@ -120,7 +120,7 @@ var playerShip = function(spr){
         if (spr.alive) {
             playerControls(spr);
             //Check for any collisions
-            spr.singleCollisionCheck(_gameMaster.spriteList, function(self, rockSpr){
+            spr.singleCollisionCheck(GameMaster.spriteList, function(self, rockSpr){
                 if (rockSpr.name === "asteroidRock"){
                     self.destroySelf();
                     rockSpr.explode();
