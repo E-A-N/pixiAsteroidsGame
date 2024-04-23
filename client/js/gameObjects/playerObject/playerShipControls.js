@@ -85,6 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
     k.actionUIButton.addEventListener('contextmenu', function(event) {
         event.preventDefault(); // Prevent default context menu behavior
     });
+
+
+    //prevent context menu from entire container
+    let frameContainer  = document.getElementById('frameContainer');
+    frameContainer.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default context menu behavior
+    });
+
 });
 
 /**  This utility function setups the player controls for the space ship
