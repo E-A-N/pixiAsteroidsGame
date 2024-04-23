@@ -6,6 +6,7 @@ k.downInput = keyboard(40);
 k.leftInput = keyboard(37);
 k.rightInput = keyboard(39);
 k.fInput = keyboard(70);
+k.fInput2 = keyboard(32);
 k.rightUIState = false;
 k.leftUIState = false;
 k.thrustUIState = false;
@@ -81,7 +82,7 @@ var playerControls = function(ship){
         && !k.rightInput.isDown;
     var turningRight =  k.rightInput.isDown || k.rightUIState
         && !k.leftInput.isDown;
-    var okToShoot = (k.fInput.isDown || k.actionUIState)
+    var okToShoot = (k.fInput.isDown || k.fInput2.isDown || k.actionUIState)
         && ship.canShoot;
 
     if (okToShoot){
