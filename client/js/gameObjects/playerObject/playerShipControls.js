@@ -15,15 +15,40 @@ document.addEventListener('DOMContentLoaded', function() {
     k.leftUIButton = document.getElementById('leftBtn');
     k.rightUIButton = document.getElementById('rightBtn');
     k.actionUIButton = document.getElementById('actionBtn');
+    //left button setup
     k.leftUIButton.addEventListener('pointerdown', () => {
-        console.log("eandebug ui button is:", k.leftUIButton)
         k.leftUIState = true;
+        k.rightUIState = false;
     });
+    k.leftUIButton.addEventListener('pointerup', () => {
+        k.leftUIState = false;
+        
+    });
+    k.leftUIButton.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+    });
+
+    //right button setup
     k.rightUIButton.addEventListener('pointerdown', () => {
         k.rightUIState = true;
+        k.leftUIState = false;
     });
+    k.rightUIButton.addEventListener('pointerup', () => {
+        k.rightUIState = false;
+    });
+    k.rightUIButton.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+    });
+
+    //action butto setup
     k.actionUIButton.addEventListener('pointerdown', () => {
-        k.actionUIButton = true;
+        k.actionUIState = true;
+    });
+    k.actionUIButton.addEventListener('pointerup', () => {
+        k.actionUIState = false;
+    });
+    k.actionUIButton.addEventListener('dragstart', (event) => {
+        event.preventDefault();
     });
 });
 
@@ -67,7 +92,4 @@ var playerControls = function(ship){
         ship.rotation -= ship.turnSpd;
     }
 
-    k.rightUIState = false;
-    k.leftUIState = false;
-    k.actionUIState = false;
 }
