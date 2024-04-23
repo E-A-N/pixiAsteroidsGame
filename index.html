@@ -28,11 +28,27 @@
 
                 /* Set maximum width for images inside buttons */
             .button-span button img {
-                max-width: 150px;
+                max-width: 100px;
             }
 
             #respContainer {
                 max-width: 75%;
+            }
+
+            #gameFrame {
+                position: absolute;
+                top: -11%;
+                left: -16%;
+                width: 660px;
+                height: 660px;
+
+                z-index: -1;
+            }
+
+            #frameContainer {
+                position: absolute;
+                left: 25%;
+                top: 10%;
             }
           </style>
     </head>
@@ -49,16 +65,21 @@
                  <strong> F button </strong> to
                  <strong> Fire</strong>
             </div>
-            <div id="gameContainer"></div>
-            <span class="button-span">
-                <button><img id="thrustBtn" src="client/img/thrust.png" alt="Thrust"></button>
-            </span>
-            <br>
-            <span class="button-span">
-                <button><img id="leftBtn" src="client/img/left.png" alt="Left"></button>
-                <button><img id="actionBtn" src="client/img/action.png" alt="Action"></button>
-                <button><img id="rightBtn" src="client/img/right.png" alt="Right"></button>
-            </span>
+            <div id="frameContainer">
+                <img id="gameFrame" src="client/img/gameFrame.png" alt="Background Image">
+                <div id="gameContainer"></div>
+                <span class="button-span">
+                    <button><img id="thrustBtn" src="client/img/thrust.png" alt="Thrust"></button>
+                </span>
+                <br>
+                <span class="button-span">
+                    <button><img id="leftBtn" src="client/img/left.png" alt="Left"></button>
+                    <button><img id="actionBtn" src="client/img/action.png" alt="Action"></button>
+                    <button><img id="rightBtn" src="client/img/right.png" alt="Right"></button>
+                </span>
+            </div>
+            
+
             <script src="client/js/game.js"></script>
         </center>
         </div>

@@ -38,7 +38,9 @@ var opts = {};
 opts.autoStart = false;
 opts.width     = _gameWidth;
 opts.height    = _gameHeight;
-opts.backgroundColor = 0x1099bb;
+// opts.backgroundColor = 0x1099bb;
+opts.backgroundColor = 0xffffff;
+
 
 //initialize app
 var app = new PIXI.Application(opts);
