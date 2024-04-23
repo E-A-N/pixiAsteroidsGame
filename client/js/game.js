@@ -154,15 +154,13 @@ var createPhase = function(){
     ship.textureIdle = ship.texture;
     ship.textureThrust = _resources[_astroidSpritesSheet].textures["ship2.png"];
 
-    var asteroid1 = addSprite(150,100, _astroidSpritesSheet, "rock1.png", asteroidRock);
-    var asteroid2 = addSprite(350,400, _astroidSpritesSheet, "rock2.png", asteroidRock);
-    asteroid1.sizeState = "large";
-    asteroid2.sizeState = "large";
+
+    _gameMaster.newWave();
+    setInterval(_gameMaster.checkForCompletedWave.bind(_gameMaster), 1000);
     //app.stage.addChild(ship.debug);
     app.stage.addChild(scoreBoard.instance);
     app.stage.addChild(ship);
-    app.stage.addChild(asteroid1);
-    app.stage.addChild(asteroid2);
+
     _gameMaster.createAll();
     _gameMaster.setupCountRoutine();
 }

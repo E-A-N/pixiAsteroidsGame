@@ -7,7 +7,7 @@ var spriteHandler = function(){
     this.defaultCount = 5;
     this.currentCount = 0;
     this.countRoutine = null;
-    this.countRoutine
+    this.bigRockStart = -1;
 };
 
 //Reference collection of all gamesprites
@@ -21,6 +21,45 @@ spriteHandler.prototype.setupCountRoutine = function() {
     this.currentCount = 0;
     this.countRoutine = setInterval(this.countDown.bind(this), 1000);
 }
+
+/**
+*    This starts the next stage of the game
+*/
+spriteHandler.prototype.newWave = function() {
+    var self = this;
+    self.bigRockStart += 2;
+    let rockTypes = ["rock1.png", "rock2.png"];
+    for (let i = 0; i < this.bigRockStart; i++){
+        let coinFlip = Math.random() > 0.5 ? 0 : 1;
+        var asteroid = addSprite(
+            Math.floor(Math.random() * _gameWidth),
+            Math.floor(Math.random() * _gameHeight), 
+            _astroidSpritesSheet, 
+            rockTypes[coinFlip], 
+            asteroidRock
+        );
+        asteroid.sizeState = "large";
+        app.stage.addChild(asteroid);
+    }
+    self.setupCountRoutine();
+}
+
+/**
+*    This method checks for existing astroids, starting a new wave
+if there are none
+*/
+spriteHandler.prototype.checkForCompletedWave = function() {
+    var self = this;
+    for (let i in self.spriteList){
+        let spr = self.spriteList[i];
+        if (spr.name === "asteroidRock"){
+            return;
+        }
+    }
+
+    self.newWave();
+}
+
 
 /**
 *    This method adds a new sprite to the sprite collection and issues it an ID
