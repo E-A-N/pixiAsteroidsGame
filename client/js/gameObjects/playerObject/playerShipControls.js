@@ -8,15 +8,18 @@ k.rightInput = keyboard(39);
 k.fInput = keyboard(70);
 k.rightUIState = false;
 k.leftUIState = false;
+k.thrustUIState = false;
 k.actionUIState = false;
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    k.leftUIButton = document.getElementById('leftBtn');
-    k.rightUIButton = document.getElementById('rightBtn');
+    k.leftUIButton   = document.getElementById('leftBtn');
+    k.rightUIButton  = document.getElementById('rightBtn');
     k.actionUIButton = document.getElementById('actionBtn');
+    k.thrustUIButton = document.getElementById('thrustBtn');
     //left button setup
-    k.leftUIButton.addEventListener('pointerdown', () => {
+    k.leftUIButton.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
         k.leftUIState = true;
         k.rightUIState = false;
     });
@@ -29,19 +32,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     //right button setup
-    k.rightUIButton.addEventListener('pointerdown', () => {
+    k.rightUIButton.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
         k.rightUIState = true;
         k.leftUIState = false;
     });
-    k.rightUIButton.addEventListener('pointerup', () => {
+    k.rightUIButton.addEventListener('pointerup', (event) => {
         k.rightUIState = false;
     });
     k.rightUIButton.addEventListener('dragstart', (event) => {
         event.preventDefault();
     });
 
-    //action butto setup
-    k.actionUIButton.addEventListener('pointerdown', () => {
+    //thrust button setup
+    k.thrustUIButton.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+        k.thrustUIState = true;
+    });
+    k.thrustUIButton.addEventListener('pointerup', (event) => {
+        k.thrustUIState = false;
+    });
+    k.thrustUIButton.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+    });
+
+
+    //action button setup
+    k.actionUIButton.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
         k.actionUIState = true;
     });
     k.actionUIButton.addEventListener('pointerup', () => {
@@ -58,12 +76,12 @@ document.addEventListener('DOMContentLoaded', function() {
 */
 var playerControls = function(ship){
 
-    var thrusting = k.upInput.isDown;
+    var thrusting = k.upInput.isDown || k.thrustUIState;
     var turningLeft =  k.leftInput.isDown || k.leftUIState
         && !k.rightInput.isDown;
     var turningRight =  k.rightInput.isDown || k.rightUIState
         && !k.leftInput.isDown;
-    var okToShoot = k.fInput.isDown || k.actionUIState
+    var okToShoot = (k.fInput.isDown || k.actionUIState)
         && ship.canShoot;
 
     if (okToShoot){
