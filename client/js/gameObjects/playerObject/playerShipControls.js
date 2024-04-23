@@ -24,12 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
         k.leftUIState = true;
         k.rightUIState = false;
     });
-    k.leftUIButton.addEventListener('pointerup', () => {
+    k.leftUIButton.addEventListener('pointerup', (event) => {
+        event.preventDefault();
         k.leftUIState = false;
         
     });
     k.leftUIButton.addEventListener('dragstart', (event) => {
         event.preventDefault();
+    });
+    k.leftUIButton.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default context menu behavior
     });
 
     //right button setup
@@ -39,10 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         k.leftUIState = false;
     });
     k.rightUIButton.addEventListener('pointerup', (event) => {
+        event.preventDefault();
         k.rightUIState = false;
     });
     k.rightUIButton.addEventListener('dragstart', (event) => {
         event.preventDefault();
+    });
+    k.rightUIButton.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default context menu behavior
     });
 
     //thrust button setup
@@ -51,10 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
         k.thrustUIState = true;
     });
     k.thrustUIButton.addEventListener('pointerup', (event) => {
+        event.preventDefault();
         k.thrustUIState = false;
     });
     k.thrustUIButton.addEventListener('dragstart', (event) => {
         event.preventDefault();
+    });
+    k.thrustUIButton.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default context menu behavior
     });
 
 
@@ -63,11 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         k.actionUIState = true;
     });
-    k.actionUIButton.addEventListener('pointerup', () => {
+    k.actionUIButton.addEventListener('pointerup', (event) => {
+        event.preventDefault();
         k.actionUIState = false;
     });
     k.actionUIButton.addEventListener('dragstart', (event) => {
         event.preventDefault();
+    });
+    k.actionUIButton.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default context menu behavior
     });
 });
 
