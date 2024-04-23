@@ -8,6 +8,7 @@ gameObject.spd = 1;      /** @member {Number} */
 gameObject.vx = 0;       /** @member {Number} */
 gameObject.vy = 0;       /** @member {Number} */
 gameObject.alive = true; /** @member {Boolean} */
+gameObject.intangible = true; /** @member {Boolean} */
 gameObject.boundaryBox = null /** @member {Object} */
 gameObject.boundsOffsetX = 1;       /** @member {Number} */
 gameObject.boundsOffsetY = 1;       /** @member {Number} */
@@ -152,6 +153,14 @@ gameObject.collision2 = function (spr2) {
         return false;
     }
     if (collideList.hasOwnProperty(spr2.name) === false){
+        return false;
+    }
+
+    if (spr1.intangible){
+        return false;
+    }
+
+    if (spr2.intangible){
         return false;
     }
 

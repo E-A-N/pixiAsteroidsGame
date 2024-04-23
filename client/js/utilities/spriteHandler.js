@@ -4,12 +4,45 @@
 */
 var spriteHandler = function(){
     this.info = "Sprite Master Object!!";
+    this.defaultCount = 5;
+    this.currentCount = 0;
+    this.countRoutine = null;
+    this.countRoutine
 };
 
 //Reference collection of all gamesprites
 spriteHandler.prototype.spriteList = {}; /** @member {object} */
 spriteHandler.prototype.issuedIds = 0;   /** @member {number} */
 
+/**
+*    This method adds a new sprite to the sprite collection and issues it an ID
+*/
+spriteHandler.prototype.setupCountRoutine = function() {
+    this.currentCount = 0;
+    this.countRoutine = setInterval(this.countDown.bind(this), 1000);
+}
+
+/**
+*    This method adds a new sprite to the sprite collection and issues it an ID
+*    @param {object} spr - The sprite to be added to collection
+*    @returns {number} - an id to reference the sprite with
+*/
+spriteHandler.prototype.countDown = function() {
+    this.currentCount += 1;
+    for (let i in this.spriteList){
+        let spr = this.spriteList[i];
+        if (spr.name === "asteroidRock" && this.currentCount !== 0){
+            spr.alpha = (this.currentCount/this.defaultCount);
+        }
+    }
+    if (this.currentCount >= this.defaultCount){
+        for (let i in this.spriteList){
+            let spr = this.spriteList[i];
+            spr.intangible = false;
+        }
+        clearInterval(this.countRoutine);
+    }
+}
 
 /**
 *    This method checks all sprites for any particular task

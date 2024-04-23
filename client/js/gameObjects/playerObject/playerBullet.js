@@ -20,6 +20,7 @@ var playerBullet = function(spr){
     */
     spr.create = function(){
         spr.mySound.play();
+        spr.intangible = false;
         spr.vx = Math.cos(spr.rotation) * spr.spd;
         spr.vy = Math.sin(spr.rotation) * spr.spd;
     }

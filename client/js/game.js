@@ -164,7 +164,9 @@ var createPhase = function(){
     app.stage.addChild(asteroid1);
     app.stage.addChild(asteroid2);
     _gameMaster.createAll();
+    _gameMaster.setupCountRoutine();
 }
+
 
 //Make sure resources are loaded before starting game
 _loader.onComplete.add(createPhase);

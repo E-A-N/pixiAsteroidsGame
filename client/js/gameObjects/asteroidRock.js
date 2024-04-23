@@ -6,6 +6,7 @@ var asteroidRock = function(spr){
 
     /** @memberof asteroidRock */
     spr.name = "asteroidRock";
+    spr.alpha = 0; //gameMaster countdown will reveal alpha
 
     //choose random direction to spin
     spr.rotateDirection = Math.round(Math.random()) ? 1 : -1;
@@ -114,6 +115,8 @@ var asteroidRock = function(spr){
         babyAst.sizeState = size;
         babyAst.x = spr.x + (Math.random() * 25) * randomDir;
         babyAst.y = spr.y + (Math.random() * 25) * randomDir;
+        babyAst.alpha = 1;
+        babyAst.intangible = false;
         babyAst.create();
         app.stage.addChild(babyAst);
         return babyAst;
