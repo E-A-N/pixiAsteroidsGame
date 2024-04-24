@@ -7,6 +7,7 @@ var playerBullet = function(spr){
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
     spr.spd = 5;
+    spr.speedBonus = scoreBoard.score > 10000 ? 1 : 0;
     spr.distance = 0;
     spr.name = "playerBullet";
     spr.lifeTime = 100;
@@ -19,7 +20,7 @@ var playerBullet = function(spr){
     *    This method needs to be fired to adabt object to immediate game settings
     */
     spr.create = function(){
-        spr.mySound.play();
+        // spr.mySound.play();
         spr.intangible = false;
         spr.vx = Math.cos(spr.rotation) * spr.spd;
         spr.vy = Math.sin(spr.rotation) * spr.spd;
@@ -51,8 +52,8 @@ var playerBullet = function(spr){
         }
 
         spr.screenWrap();
-        spr.x += spr.vx * delta;
-        spr.y += spr.vy * delta;
+        spr.x += spr.vx * (delta + spr.speedBonus);
+        spr.y += spr.vy * (delta + spr.speedBonus);
         spr.distance += spr.spd;
     }
 }

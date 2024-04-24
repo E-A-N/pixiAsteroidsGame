@@ -78,16 +78,18 @@ var playerShip = function(spr){
     *    This method enables a player ship to fire a bullet object
     *    @returnss {object} a new created bullet object
     */
-    spr.fireBullet = function(){
+    spr.fireBullet = function(xoff = 0, yoff = 0){
+        var angle = spr.rotation;
+        var offsetX = xoff * Math.cos(angle) - yoff * Math.sin(angle);
+        var offsetY = xoff * Math.sin(angle) + yoff * Math.cos(angle);
         var img = _resources[_astroidSpritesSheet].textures["fireball.png"];
         var bullet = new _sprite(img);
         bullet = _objPolymorph(bullet);  //universal game object attributes
         GameMaster.initGameSprite(bullet);    //register new sprite into game
         playerBullet(bullet); //bullet specific fields
-        bullet.x = spr.x;
-        bullet.y = spr.y;
+        bullet.x = spr.x + offsetX
+        bullet.y = spr.y + offsetY
         bullet.rotation = spr.rotation;
-        //bullet.parent = spr;
         bullet.create();
         app.stage.addChild(bullet);
 

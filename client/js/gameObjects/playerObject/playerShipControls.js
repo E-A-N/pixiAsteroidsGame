@@ -110,7 +110,21 @@ var playerControls = function(ship){
         && ship.canShoot;
 
     if (okToShoot){
-        ship.fireBullet()
+        if (scoreBoard.score > 3000){
+            let sound = ship.fireBullet(0, 15).mySound;
+            ship.fireBullet(0, -15)
+
+            if (scoreBoard.score > 15000){
+                ship.fireBullet(0, 0)
+            }
+            sound.play();
+        }
+        else {
+            let sound = ship.fireBullet(0, 0).mySound;
+            sound.play();
+        }
+
+        
         ship.canShoot = false;
         ship.coolDown = true;
     }
