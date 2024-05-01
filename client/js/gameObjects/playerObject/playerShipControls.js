@@ -128,7 +128,7 @@ var playerControls = function(ship){
         ship.canShoot = false;
         ship.coolDown = true;
     }
-    if(thrusting){
+    if(thrusting)   {
         if (ship.texture.textureCacheIds[0] === "ship1.png"){
             ship.texture = ship.textureThrust
         }

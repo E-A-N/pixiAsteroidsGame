@@ -5,13 +5,13 @@
 var playerShip = function(spr){
     spr.anchor.x = 0.5;
     spr.anchor.y = 0.5;
-    spr.acceleration = .05;
+    spr.acceleration = .03;
     spr.spd = 5;
-    spr.turnSpd = .05; //speed at which ship rotates
+    spr.turnSpd = .02; //speed at which ship rotates
     spr.friction = .997; //speed at which ship will gradually slowdown
     spr.canShoot = true;
     spr.coolingDown = false;
-    spr.coolDownPeriod = 10;
+    spr.coolDownPeriod = 15;
     spr.coolDownTime = 0;
     spr.name = "playerShip";
     spr.respawnTime = 200;
@@ -91,8 +91,6 @@ var playerShip = function(spr){
         bullet.y = spr.y + offsetY
         bullet.rotation = spr.rotation;
         bullet.create();
-        app.stage.addChild(bullet);
-
         return bullet;
     }
 

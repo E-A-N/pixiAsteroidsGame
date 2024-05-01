@@ -24,6 +24,15 @@ var playerBullet = function(spr){
         spr.intangible = false;
         spr.vx = Math.cos(spr.rotation) * spr.spd;
         spr.vy = Math.sin(spr.rotation) * spr.spd;
+        
+        app.stage.addChild(spr);
+        // for (var i = 0; i < gameObjects.length; i++) {
+        //     var obj = gameObjects[i];
+        //     if (obj !== bullet && obj.hitTestPoint(bullet.x + Math.cos(angle) * 1000, bullet.y + Math.sin(angle) * 1000, true)) {
+        //         collision = true;
+        //         break;
+        //     }
+        // }
     }
 
     /**
