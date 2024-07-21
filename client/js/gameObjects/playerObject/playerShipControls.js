@@ -93,6 +93,14 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Prevent default context menu behavior
     });
 
+
+    document.addEventListener('dblclick', (event) => {
+        event.preventDefault();
+    });
+
+    document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+    });
 });
 
 /**  This utility function setups the player controls for the space ship
